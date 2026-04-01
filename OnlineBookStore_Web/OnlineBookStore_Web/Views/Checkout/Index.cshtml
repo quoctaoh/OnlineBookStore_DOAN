@@ -1,0 +1,97 @@
+﻿@* Views/Checkout/Index.cshtml *@
+@using OnlineBookStore_Web.Models
+@using Microsoft.AspNetCore.Http
+@{
+    ViewData["Title"] = "Thanh Toán";
+    var cartDetails = ViewBag.CartDetails as List<ChiTietGioHang>;
+    var user = ViewBag.CurrentUser as NguoiDung;
+
+    decimal subtotal = 0;
+    if (cartDetails != null)
+    {
+        subtotal = cartDetails.Sum(ct => ct.SoLuong * ct.MaSachNavigation.GiaBan);
+    }
+}
+
+<h1>Thanh Toán Đơn Hàng</h1>
+<hr />
+
+<div class="row">
+    <div class="col-md-7">
+        <h3>1. Thông tin giao hàng</h3>
+        @* Form này sẽ chứa toàn bộ thông tin địa chỉ và gọi Action PlaceOrder *@
+        <form asp-controller="Checkout" asp-action="PlaceOrder" method="post">
+            @Html.AntiForgeryToken()
+
+            <div class="form-group mb-3">
+                <label for="HoTen">Họ và tên (*)</label>
+                <input type="text" id="HoTen" name="HoTen" class="form-control" value="@user?.HoTen" required />
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 form-group mb-3">
+                    <label for="DienThoai">Số điện thoại (*)</label>
+                    <input type="text" id="DienThoai" name="DienThoai" class="form-control" value="@user?.DienThoai" required />
+                </div>
+                <div class="col-md-6 form-group mb-3">
+                    <label for="Email">Địa chỉ Email</label>
+                    <input type="email" id="Email" name="Email" class="form-control" value="@user?.Email" />
+                </div>
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="DiaChiGiaoHang">Địa chỉ giao hàng chi tiết (*)</label>
+                <input type="text" id="DiaChiGiaoHang" name="DiaChiGiaoHang" class="form-control" value="@user?.DiaChi" required />
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="GhiChu">Ghi chú (Không bắt buộc)</label>
+                <textarea id="GhiChu" name="GhiChu" class="form-control"></textarea>
+            </div>
+
+            @* Trạng thái thanh toán mặc định (COD) *@
+            <input type="hidden" name="PhuongThucTT" value="COD" />
+
+            <div class="mt-4">
+                <button type="submit" class="btn btn-lg btn-success">Xác nhận và Đặt hàng</button>
+                <a asp-action="Index" asp-controller="Cart" class="btn btn-secondary">Quay lại Giỏ hàng</a>
+            </div>
+        </form>
+    </div>
+
+    <div class="col-md-5">
+        <h3>2. Đơn hàng của bạn</h3>
+        <div class="card p-3">
+            <table class="table table-sm">
+                <thead>
+                    <tr>
+                        <th>Sản phẩm</th>
+                        <th class="text-right">Tạm tính</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (cartDetails != null)
+                    {
+                        @foreach (var item in cartDetails)
+                        {
+                                    <tr>
+                                        <td>@item.MaSachNavigation.TenSach x @item.SoLuong</td>
+                                        <td class="text-right">@String.Format("{0:N0}", item.SoLuong * item.MaSachNavigation.GiaBan) VNĐ</td>
+                                    </tr>
+                        }
+                    }
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td>Vận chuyển</td>
+                        <td class="text-right">MIỄN PHÍ</td>
+                    </tr>
+                    <tr class="table-info">
+                        <td><strong>TỔNG CỘNG</strong></td>
+                        <td class="text-right"><strong>@String.Format("{0:N0}", subtotal) VNĐ</strong></td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>

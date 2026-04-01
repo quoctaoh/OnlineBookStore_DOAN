@@ -1,0 +1,309 @@
+{
+  "Files": [
+    {
+      "Id": "E:\\DoAn\\ASP_OBW\\OnlineBookStore_Web\\OnlineBookStore_Web\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\OnlineBookStore_Web.bundle.scp.css",
+      "PackagePath": "staticwebassets\\OnlineBookStore_Web.bundle.scp.css"
+    },
+    {
+      "Id": "E:\\DoAn\\ASP_OBW\\OnlineBookStore_Web\\OnlineBookStore_Web\\wwwroot\\css\\site.css",
+      "PackagePath": "staticwebassets\\css\\site.css"
+    },
+    {
+      "Id": "E:\\DoAn\\ASP_OBW\\OnlineBookStore_Web\\OnlineBookStore_Web\\wwwroot\\favicon.ico",
+      "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "E:\\DoAn\\ASP_OBW\\OnlineBookStore_Web\\OnlineBookStore_Web\\wwwroot\\images\\BannerChinh.jpg",
+      "PackagePath": "staticwebassets\\images\\BannerChinh.jpg"
+    },
+    {
+      "Id": "E:\\DoAn\\ASP_OBW\\OnlineBookStore_Web\\OnlineBookStore_Web\\wwwroot\\images\\BiMatTuDuyTrieuPhu.jpg",
+      "PackagePath": "staticwebassets\\images\\BiMatTuDuyTrieuPhu.jpg"
+    },
+    {
+      "Id": "E:\\DoAn\\ASP_OBW\\OnlineBookStore_Web\\OnlineBookStore_Web\\wwwroot\\images\\DacNhanTam.jpg",
+      "PackagePath": "staticwebassets\\images\\DacNhanTam.jpg"
+    },
+    {
+      "Id": "E:\\DoAn\\ASP_OBW\\OnlineBookStore_Web\\OnlineBookStore_Web\\wwwroot\\images\\LuocSuThoiGian.jpg",
+      "PackagePath": "staticwebassets\\images\\LuocSuThoiGian.jpg"
+    },
+    {
+      "Id": "E:\\DoAn\\ASP_OBW\\OnlineBookStore_Web\\OnlineBookStore_Web\\wwwroot\\images\\NhaGiaKim.jpg",
+      "PackagePath": "staticwebassets\\images\\NhaGiaKim.jpg"
+    },
+    {
+      "Id": "E:\\DoAn\\ASP_OBW\\OnlineBookStore_Web\\OnlineBookStore_Web\\wwwroot\\images\\SuTichChuCuoi.jpg",
+      "PackagePath": "staticwebassets\\images\\SuTichChuCuoi.jpg"
+    },
+    {
+      "Id": "E:\\DoAn\\ASP_OBW\\OnlineBookStore_Web\\OnlineBookStore_Web\\wwwroot\\images\\bookcovers\\1c143493-e4bf-4fac-a1c7-f452880a755d.jpg",
+      "PackagePath": "staticwebassets\\images\\bookcovers\\1c143493-e4bf-4fac-a1c7-f452880a755d.jpg"
+    },
+    {
+      "Id": "E:\\DoAn\\ASP_OBW\\OnlineBookStore_Web\\OnlineBookStore_Web\\wwwroot\\images\\bookcovers\\4c7d8f81-8a21-40b6-8e3e-f2ddfa1fd8a3.jpg",
+      "PackagePath": "staticwebassets\\images\\bookcovers\\4c7d8f81-8a21-40b6-8e3e-f2ddfa1fd8a3.jpg"
+    },
+    {
+      "Id": "E:\\DoAn\\ASP_OBW\\OnlineBookStore_Web\\OnlineBookStore_Web\\wwwroot\\images\\bookcovers\\4d0644ec-6aee-417b-8de7-cbd5002d5830.jpg",
+      "PackagePath": "staticwebassets\\images\\bookcovers\\4d0644ec-6aee-417b-8de7-cbd5002d5830.jpg"
+    },
+    {
+      "Id": "E:\\DoAn\\ASP_OBW\\OnlineBookStore_Web\\OnlineBookStore_Web\\wwwroot\\images\\bookcovers\\731460d8-5059-4749-9f61-b4d34a0c03c4.jpg",
+      "PackagePath": "staticwebassets\\images\\bookcovers\\731460d8-5059-4749-9f61-b4d34a0c03c4.jpg"
+    },
+    {
+      "Id": "E:\\DoAn\\ASP_OBW\\OnlineBookStore_Web\\OnlineBookStore_Web\\wwwroot\\images\\conan100-limited.jpg",
+      "PackagePath": "staticwebassets\\images\\conan100-limited.jpg"
+    },
+    {
+      "Id": "E:\\DoAn\\ASP_OBW\\OnlineBookStore_Web\\OnlineBookStore_Web\\wwwroot\\js\\site.js",
+      "PackagePath": "staticwebassets\\js\\site.js"
+    },
+    {
+      "Id": "E:\\DoAn\\ASP_OBW\\OnlineBookStore_Web\\OnlineBookStore_Web\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "PackagePath": "staticwebassets\\lib\\bootstrap"
+    },
+    {
+      "Id": "E:\\DoAn\\ASP_OBW\\OnlineBookStore_Web\\OnlineBookStore_Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
+    },
+    {
+      "Id": "E:\\DoAn\\ASP_OBW\\OnlineBookStore_Web\\OnlineBookStore_Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map"
+    },
+    {
+      "Id": "E:\\DoAn\\ASP_OBW\\OnlineBookStore_Web\\OnlineBookStore_Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
+    },
+    {
+      "Id": "E:\\DoAn\\ASP_OBW\\OnlineBookStore_Web\\OnlineBookStore_Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
+    },
+    {
+      "Id": "E:\\DoAn\\ASP_OBW\\OnlineBookStore_Web\\OnlineBookStore_Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css"
+    },
+    {
+      "Id": "E:\\DoAn\\ASP_OBW\\OnlineBookStore_Web\\OnlineBookStore_Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map"
+    },
+    {
+      "Id": "E:\\DoAn\\ASP_OBW\\OnlineBookStore_Web\\OnlineBookStore_Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css"
+    },
+    {
+      "Id": "E:\\DoAn\\ASP_OBW\\OnlineBookStore_Web\\OnlineBookStore_Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
+    },
+    {
+      "Id": "E:\\DoAn\\ASP_OBW\\OnlineBookStore_Web\\OnlineBookStore_Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
+    },
+    {
+      "Id": "E:\\DoAn\\ASP_OBW\\OnlineBookStore_Web\\OnlineBookStore_Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map"
+    },
+    {
+      "Id": "E:\\DoAn\\ASP_OBW\\OnlineBookStore_Web\\OnlineBookStore_Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css"
+    },
+    {
+      "Id": "E:\\DoAn\\ASP_OBW\\OnlineBookStore_Web\\OnlineBookStore_Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map"
+    },
+    {
+      "Id": "E:\\DoAn\\ASP_OBW\\OnlineBookStore_Web\\OnlineBookStore_Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css"
+    },
+    {
+      "Id": "E:\\DoAn\\ASP_OBW\\OnlineBookStore_Web\\OnlineBookStore_Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map"
+    },
+    {
+      "Id": "E:\\DoAn\\ASP_OBW\\OnlineBookStore_Web\\OnlineBookStore_Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css"
+    },
+    {
+      "Id": "E:\\DoAn\\ASP_OBW\\OnlineBookStore_Web\\OnlineBookStore_Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
+    },
+    {
+      "Id": "E:\\DoAn\\ASP_OBW\\OnlineBookStore_Web\\OnlineBookStore_Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
+    },
+    {
+      "Id": "E:\\DoAn\\ASP_OBW\\OnlineBookStore_Web\\OnlineBookStore_Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map"
+    },
+    {
+      "Id": "E:\\DoAn\\ASP_OBW\\OnlineBookStore_Web\\OnlineBookStore_Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css"
+    },
+    {
+      "Id": "E:\\DoAn\\ASP_OBW\\OnlineBookStore_Web\\OnlineBookStore_Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map"
+    },
+    {
+      "Id": "E:\\DoAn\\ASP_OBW\\OnlineBookStore_Web\\OnlineBookStore_Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css"
+    },
+    {
+      "Id": "E:\\DoAn\\ASP_OBW\\OnlineBookStore_Web\\OnlineBookStore_Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map"
+    },
+    {
+      "Id": "E:\\DoAn\\ASP_OBW\\OnlineBookStore_Web\\OnlineBookStore_Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css"
+    },
+    {
+      "Id": "E:\\DoAn\\ASP_OBW\\OnlineBookStore_Web\\OnlineBookStore_Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
+    },
+    {
+      "Id": "E:\\DoAn\\ASP_OBW\\OnlineBookStore_Web\\OnlineBookStore_Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css"
+    },
+    {
+      "Id": "E:\\DoAn\\ASP_OBW\\OnlineBookStore_Web\\OnlineBookStore_Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
+    },
+    {
+      "Id": "E:\\DoAn\\ASP_OBW\\OnlineBookStore_Web\\OnlineBookStore_Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
+    },
+    {
+      "Id": "E:\\DoAn\\ASP_OBW\\OnlineBookStore_Web\\OnlineBookStore_Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "E:\\DoAn\\ASP_OBW\\OnlineBookStore_Web\\OnlineBookStore_Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
+    },
+    {
+      "Id": "E:\\DoAn\\ASP_OBW\\OnlineBookStore_Web\\OnlineBookStore_Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
+    },
+    {
+      "Id": "E:\\DoAn\\ASP_OBW\\OnlineBookStore_Web\\OnlineBookStore_Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
+    },
+    {
+      "Id": "E:\\DoAn\\ASP_OBW\\OnlineBookStore_Web\\OnlineBookStore_Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
+    },
+    {
+      "Id": "E:\\DoAn\\ASP_OBW\\OnlineBookStore_Web\\OnlineBookStore_Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js"
+    },
+    {
+      "Id": "E:\\DoAn\\ASP_OBW\\OnlineBookStore_Web\\OnlineBookStore_Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map"
+    },
+    {
+      "Id": "E:\\DoAn\\ASP_OBW\\OnlineBookStore_Web\\OnlineBookStore_Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
+    },
+    {
+      "Id": "E:\\DoAn\\ASP_OBW\\OnlineBookStore_Web\\OnlineBookStore_Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
+    },
+    {
+      "Id": "E:\\DoAn\\ASP_OBW\\OnlineBookStore_Web\\OnlineBookStore_Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js"
+    },
+    {
+      "Id": "E:\\DoAn\\ASP_OBW\\OnlineBookStore_Web\\OnlineBookStore_Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map"
+    },
+    {
+      "Id": "E:\\DoAn\\ASP_OBW\\OnlineBookStore_Web\\OnlineBookStore_Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js"
+    },
+    {
+      "Id": "E:\\DoAn\\ASP_OBW\\OnlineBookStore_Web\\OnlineBookStore_Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map"
+    },
+    {
+      "Id": "E:\\DoAn\\ASP_OBW\\OnlineBookStore_Web\\OnlineBookStore_Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js"
+    },
+    {
+      "Id": "E:\\DoAn\\ASP_OBW\\OnlineBookStore_Web\\OnlineBookStore_Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js.map"
+    },
+    {
+      "Id": "E:\\DoAn\\ASP_OBW\\OnlineBookStore_Web\\OnlineBookStore_Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
+    },
+    {
+      "Id": "E:\\DoAn\\ASP_OBW\\OnlineBookStore_Web\\OnlineBookStore_Web\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
+    },
+    {
+      "Id": "E:\\DoAn\\ASP_OBW\\OnlineBookStore_Web\\OnlineBookStore_Web\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Id": "E:\\DoAn\\ASP_OBW\\OnlineBookStore_Web\\OnlineBookStore_Web\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
+    },
+    {
+      "Id": "E:\\DoAn\\ASP_OBW\\OnlineBookStore_Web\\OnlineBookStore_Web\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
+    },
+    {
+      "Id": "E:\\DoAn\\ASP_OBW\\OnlineBookStore_Web\\OnlineBookStore_Web\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\LICENSE.md"
+    },
+    {
+      "Id": "E:\\DoAn\\ASP_OBW\\OnlineBookStore_Web\\OnlineBookStore_Web\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.js"
+    },
+    {
+      "Id": "E:\\DoAn\\ASP_OBW\\OnlineBookStore_Web\\OnlineBookStore_Web\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.min.js"
+    },
+    {
+      "Id": "E:\\DoAn\\ASP_OBW\\OnlineBookStore_Web\\OnlineBookStore_Web\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.js"
+    },
+    {
+      "Id": "E:\\DoAn\\ASP_OBW\\OnlineBookStore_Web\\OnlineBookStore_Web\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
+    },
+    {
+      "Id": "E:\\DoAn\\ASP_OBW\\OnlineBookStore_Web\\OnlineBookStore_Web\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery\\LICENSE.txt"
+    },
+    {
+      "Id": "E:\\DoAn\\ASP_OBW\\OnlineBookStore_Web\\OnlineBookStore_Web\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.js"
+    },
+    {
+      "Id": "E:\\DoAn\\ASP_OBW\\OnlineBookStore_Web\\OnlineBookStore_Web\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.js"
+    },
+    {
+      "Id": "E:\\DoAn\\ASP_OBW\\OnlineBookStore_Web\\OnlineBookStore_Web\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.OnlineBookStore_Web.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.OnlineBookStore_Web.props",
+      "PackagePath": "build\\OnlineBookStore_Web.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.OnlineBookStore_Web.props",
+      "PackagePath": "buildMultiTargeting\\OnlineBookStore_Web.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.OnlineBookStore_Web.props",
+      "PackagePath": "buildTransitive\\OnlineBookStore_Web.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

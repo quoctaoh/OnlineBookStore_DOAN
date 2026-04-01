@@ -1,0 +1,36 @@
+﻿@model OnlineBookStore_Web.Models.Sach
+
+@{
+    ViewData["Title"] = "Xác nhận Xóa";
+    Layout = "_Layout";
+}
+
+<h1 class="text-danger">Xác nhận Xóa Sách</h1>
+<p class="lead">Bạn có chắc chắn muốn xóa cuốn sách này khỏi hệ thống không?</p>
+<hr />
+
+<div class="alert alert-warning">
+    <strong>Lưu ý:</strong> Hành động này không thể hoàn tác.
+</div>
+
+<div>
+    <dl class="row">
+        <dt class="col-sm-3">Tên Sách:</dt>
+        <dd class="col-sm-9">@Html.DisplayFor(model => model.TenSach)</dd>
+
+        <dt class="col-sm-3">Tác Giả:</dt>
+        <dd class="col-sm-9">@Html.DisplayFor(model => model.TacGia)</dd>
+
+        <dt class="col-sm-3">Giá Bán:</dt>
+        <dd class="col-sm-9">@String.Format("{0:N0}", Model.GiaBan) VNĐ</dd>
+
+        <dt class="col-sm-3">Tồn Kho:</dt>
+        <dd class="col-sm-9">@Html.DisplayFor(model => model.SoLuongTon)</dd>
+    </dl>
+
+    <form asp-action="DeleteBook">
+        <input type="hidden" asp-for="MaSach" />
+        <button type="submit" class="btn btn-danger">Xác nhận Xóa</button>
+        <a asp-action="ListBooks" class="btn btn-secondary">Hủy</a>
+    </form>
+</div>

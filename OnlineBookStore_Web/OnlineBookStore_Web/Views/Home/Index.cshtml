@@ -1,0 +1,71 @@
+﻿@using OnlineBookStore_Web.Models
+@{
+    ViewData["Title"] = "Trang Chủ - Online Bookstore";
+    var topBooks = ViewBag.TopBooks as List<Sach>;
+    var featuredBook = ViewBag.FeaturedBook as Sach;
+}
+
+<style>
+    /* CSS Tùy chỉnh cho phần nổi bật */
+    .featured-card {
+        background-color: #f8f8f8;
+        border-radius: 10px;
+        padding: 20px;
+    }
+</style>
+
+<div class="container mt-4">
+
+    @* KHU VỰC 1: BANNER LỚN*@
+    <div class="text-center rounded-3 mb-5 overflow-hidden" 
+         style="
+            height: 300px; /* Chiều cao cố định */
+            width: 100%;
+            background-image: url('/images/BannerChinh.jpg'); /* ĐƯỜNG DẪN ĐẾN ẢNH BANNER */
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;">
+    </div>
+
+    @* KHU VỰC 2: TOP THỊNH HÀNH *@
+    <h2 class="text-center mb-4">TOP THỊNH HÀNH</h2>
+    <div class="row row-cols-1 row-cols-md-5 g-4 mb-5">
+        @if (topBooks != null)
+        {
+            @foreach (var book in topBooks)
+            {
+                        <div class="col">
+                            <div class="card h-100 text-center shadow-sm">
+                        @* Hiển thị ảnh thumbnail sách *@
+                                <img src="@book.HinhAnh" class="card-img-top mx-auto mt-2" alt="@book.TenSach" style="width: 100px; height: 150px; object-fit: cover;">
+                                <div class="card-body">
+                                    <h6 class="card-title">@book.TenSach</h6>
+                                    <p class="text-danger">@String.Format("{0:N0} VNĐ", book.GiaBan)</p>
+                                    <a asp-controller="Book" asp-action="Details" asp-route-id="@book.MaSach" class="btn btn-sm btn-outline-primary">Xem chi tiết</a>
+                                </div>
+                            </div>
+                        </div>
+            }
+        }
+    </div>
+
+    @* KHU VỰC 3: SÁCH NỔI BẬT *@
+    @if (featuredBook != null)
+    {
+            <h2 class="mb-4">SÁCH NỔI BẬT</h2>
+            <div class="row featured-card shadow-lg">
+                <div class="col-md-4 text-center">
+                    <img src="@featuredBook.HinhAnh" alt="Ảnh bìa @featuredBook.TenSach" style="max-width: 100%; height: auto; border-radius: 5px;">
+                </div>
+                <div class="col-md-8">
+                    <h3 class="mt-2 text-primary">@featuredBook.TenSach</h3>
+                    <p><strong>Tác giả:</strong> @featuredBook.TacGia</p>
+                    <p><strong>Thể loại:</strong> @featuredBook.MaTlNavigation?.TenTheLoai</p>
+                    <p>@featuredBook.MoTa?.Substring(0, Math.Min(featuredBook.MoTa.Length, 300)) ...</p>
+                    <a asp-controller="Book" asp-action="Details" asp-route-id="@featuredBook.MaSach" class="btn btn-warning btn-lg">Xem chi tiết và Mua ngay</a>
+                </div>
+            </div>
+    }
+</div>

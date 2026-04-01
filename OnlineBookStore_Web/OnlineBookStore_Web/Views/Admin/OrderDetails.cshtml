@@ -1,0 +1,68 @@
+﻿@model List<OnlineBookStore_Web.Models.ChiTietDonHang>
+
+@{
+    var order = ViewBag.Order as OnlineBookStore_Web.Models.DonHang;
+    ViewData["Title"] = $"Chi Tiết Đơn Hàng #{order?.MaDh}";
+    Layout = "_Layout";
+}
+
+<h1>Chi Tiết Đơn Hàng #@order?.MaDh</h1>
+<hr />
+
+@if (order == null)
+{
+        <p class="text-danger">Không tìm thấy thông tin đơn hàng.</p>
+}
+else
+{
+    @* KHỐI ROW CHÍNH *@
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card p-3 mb-4">
+                    <h5>Thông tin Khách hàng</h5>
+                    <p><strong>Khách hàng:</strong> @(order.MaNdNavigation?.HoTen ?? "N/A")</p>
+                    <p><strong>Điện thoại:</strong> @(order.MaNdNavigation?.DienThoai ?? "N/A")</p>
+                    <p><strong>Ngày đặt:</strong> @order.NgayDatHang.ToString("dd/MM/yyyy HH:mm")</p>
+                    <p><strong>Địa chỉ giao:</strong> @order.DiaChiGiaoHang</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card p-3 mb-4 bg-light">
+                    <h5>Trạng thái & Tổng tiền</h5>
+                    <p><strong>Trạng thái:</strong> <span class="badge bg-primary">@order.TrangThaiDh</span></p>
+                    <p><strong>Tổng tiền:</strong> <strong class="text-danger">@String.Format("{0:N0} VNĐ", order.TongTien)</strong></p>
+                    <a asp-action="EditStatus" asp-route-id="@order.MaDh" class="btn btn-sm btn-warning">Cập nhật Trạng thái</a>
+                </div>
+            </div>
+        </div>
+    @* KHỐI ROW CHÍNH KẾT THÚC *@
+
+        <h4>Sản phẩm đã đặt</h4>
+        <table class="table table-bordered table-sm">
+            <thead>
+                <tr>
+                    <th>Tên Sách</th>
+                    <th>Tác Giả</th>
+                    <th>Đơn Giá (Tại thời điểm đặt)</th>
+                    <th>Số lượng</th>
+                    <th>Thành tiền</th>
+                </tr>
+            </thead>
+                <tbody>
+
+            <tbody>
+                @foreach (var detail in Model)
+                {
+                        <tr>
+                            <td>@detail.MaSachNavigation?.TenSach</td>
+                            <td>@detail.MaSachNavigation?.TacGia</td>
+                            <td>@String.Format("{0:N0} VNĐ", detail.DonGia)</td>
+                            <td>@detail.SoLuong</td> 
+                            <td>@String.Format("{0:N0} VNĐ", detail.SoLuong * detail.DonGia)</td>
+                        </tr>
+                }
+            </tbody>
+        </table>
+
+        <a asp-action="ListOrders" class="btn btn-secondary">Quay lại Danh sách Đơn hàng</a>
+}

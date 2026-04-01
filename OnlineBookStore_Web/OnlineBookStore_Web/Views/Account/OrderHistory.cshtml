@@ -1,0 +1,50 @@
+﻿@model List<OnlineBookStore_Web.Models.DonHang>
+
+@{
+    ViewData["Title"] = "Lịch Sử Đơn Hàng";
+}
+
+<h1>Lịch Sử Đơn Hàng</h1>
+<hr />
+
+@if (Model == null || !Model.Any())
+{
+        <div class="alert alert-info">
+            Bạn chưa có đơn hàng nào.
+        </div>
+        <p>
+            <a asp-controller="Book" asp-action="Index" class="btn btn-primary">Bắt đầu mua sắm</a>
+        </p>
+}
+else
+{
+    @foreach (var order in Model)
+    {
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-header bg-light">
+                        <div class="d-flex justify-content-between">
+                            <strong>Mã Đơn Hàng: #@order.MaDh</strong>
+                            <span class="badge bg-@(@order.TrangThaiDh == "Đã giao thành công" ? "success" : "warning")">
+                        @order.TrangThaiDh
+                            </span>
+                        </div>
+                        <div>
+                            Ngày Đặt: @order.NgayDatHang.ToString("dd/MM/yyyy HH:mm") |
+                            Tổng Tiền: <strong>@String.Format("{0:N0} VNĐ", order.TongTien)</strong>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h6>Địa chỉ giao hàng: @order.DiaChiGiaoHang</h6>
+                        <p class="text-muted small mb-1">Chi tiết các sản phẩm đã đặt:</p>
+                        <ul class="list-group list-group-flush">
+                    @foreach (var detail in order.ChiTietDonHangs)
+                    {
+                                    <li class="list-group-item">
+                                                    Sản phẩm: @detail.MaSach | Số lượng: @detail.SoLuong | Giá: @String.Format("{0:N0} VNĐ", detail.DonGia)
+                                    </li>
+                    }
+                        </ul>
+                    </div>
+                </div>
+    }
+}

@@ -1,0 +1,42 @@
+﻿@model OnlineBookStore_Web.Models.NguoiDung
+
+@{
+    ViewData["Title"] = "Đăng Nhập";
+}
+
+<h2>Đăng Nhập</h2>
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Login" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            @* Trường Tên đăng nhập *@
+            <div class="form-group">
+                <label asp-for="TenDangNhap" class="control-label"></label>
+                <input asp-for="TenDangNhap" class="form-control" />
+                <span asp-validation-for="TenDangNhap" class="text-danger"></span>
+            </div>
+
+            @* Trường Mật khẩu *@
+            <div class="form-group">
+                <label asp-for="MatKhau" class="control-label"></label>
+                <input asp-for="MatKhau" class="form-control" type="password" />
+                <span asp-validation-for="MatKhau" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mt-3">
+                <input type="submit" value="Đăng Nhập" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="d-flex justify-content-between align-items-center mt-3">
+    <a asp-action="ForgotPassword" class="text-decoration-none">Quên mật khẩu?</a>
+</div>
+
+<div class="mt-3">
+    <p>Chưa có tài khoản? <a asp-action="Register">Đăng ký ngay</a></p>
+</div>

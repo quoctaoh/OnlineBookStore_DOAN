@@ -1,0 +1,53 @@
+﻿@* Views/Admin/Index.cshtml *@
+@{
+    ViewData["Title"] = "Admin Dashboard";
+    Layout = "_Layout"; 
+}
+
+<div class="container mt-5">
+    <div class="jumbotron bg-light p-5 rounded">
+        <h1 class="display-4">Chào mừng, <span class="text-primary">@ViewData["AdminName"]</span>!</h1>
+        <p class="lead">Khu vực Quản trị Hệ thống. Vui lòng chọn chức năng để tiếp tục.</p>
+        <hr class="my-4">
+    </div>
+
+    <div class="row mt-4">
+
+        @* QUẢN LÝ SÁCH (CRUD) *@
+        <div class="col-md-4 mb-3">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title text-success">Quản lý Sách (CRUD)</h5>
+                    <p class="card-text">Thêm, sửa, xóa, và cập nhật thông tin sản phẩm.</p>
+                    <a asp-controller="Admin" asp-action="ListBooks" class="btn btn-sm btn-success">Truy cập</a>
+                </div>
+            </div>
+        </div>
+
+        @* QUẢN LÝ ĐƠN HÀNG - ĐÃ SỬA LIÊN KẾT *@
+        <div class="col-md-4 mb-3">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title text-info">Quản lý Đơn hàng</h5>
+                    <p class="card-text">Xác nhận, theo dõi và cập nhật trạng thái đơn hàng.</p>
+                    <a asp-controller="Admin" asp-action="ListOrders" class="btn btn-sm btn-outline-info">Truy cập</a> 
+                </div>
+            </div>
+        </div>
+
+        @* XEM DOANH THU - ĐÃ SỬA LIÊN KẾT *@
+        <div class="col-md-4 mb-3">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title text-warning">Xem Doanh thu & Báo cáo</h5>
+                    <p class="card-text">Thống kê doanh số bán hàng và lợi nhuận.</p>
+                    <a asp-controller="Admin" asp-action="SalesSummary" class="btn btn-sm btn-outline-warning">Truy cập</a> 
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-5">
+        <a asp-controller="Account" asp-action="LogoutAdmin" class="btn btn-danger">Đăng xuất Admin</a>
+    </div>
+</div>

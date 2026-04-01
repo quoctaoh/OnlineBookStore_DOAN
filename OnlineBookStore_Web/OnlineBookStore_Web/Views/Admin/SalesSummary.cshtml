@@ -1,0 +1,66 @@
+﻿@{
+    ViewData["Title"] = "Báo Cáo Doanh Thu";
+    Layout = "_Layout";
+
+    // Ép kiểu các biến từ ViewBag
+    var totalRevenue = (decimal)ViewBag.TotalRevenue;
+    var totalOrders = (int)ViewBag.TotalOrders;
+    var completedOrders = ViewBag.CompletedOrders as List<OnlineBookStore_Web.Models.DonHang>;
+}
+
+<h1>Báo Cáo Doanh Thu Tổng Quát</h1>
+<hr />
+
+<div class="row mb-5">
+
+    @* KẾT QUẢ 1: TỔNG DOANH THU *@
+    <div class="col-md-6">
+        <div class="card text-white bg-success shadow-lg">
+            <div class="card-body">
+                <h5 class="card-title">TỔNG DOANH THU ĐÃ HOÀN THÀNH</h5>
+                <p class="card-text display-4">@String.Format("{0:N0} VNĐ", totalRevenue)</p>
+            </div>
+        </div>
+    </div>
+
+    @* KẾT QUẢ 2: TỔNG SỐ ĐƠN HÀNG *@
+    <div class="col-md-6">
+        <div class="card text-white bg-info shadow-lg">
+            <div class="card-body">
+                <h5 class="card-title">TỔNG SỐ ĐƠN HÀNG HOÀN THÀNH</h5>
+                <p class="card-text display-4">@totalOrders</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h4>Chi tiết Đơn hàng đã Hoàn thành</h4>
+
+<table class="table table-sm table-striped">
+    <thead>
+        <tr>
+            <th>Mã ĐH</th>
+            <th>Ngày Đặt</th>
+            <th>Khách hàng</th>
+            <th>Tổng tiền</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (completedOrders != null)
+        {
+            @foreach (var order in completedOrders)
+            {
+                        <tr>
+                            <td>@order.MaDh</td>
+                            <td>@order.NgayDatHang.ToString("dd/MM/yyyy HH:mm")</td>
+                            <td>@(order.MaNdNavigation?.HoTen ?? "N/A")</td>
+                            <td>@String.Format("{0:N0} VNĐ", order.TongTien)</td>
+                        </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<p class="mt-4">
+    <a asp-action="Index" class="btn btn-secondary">Quay lại Dashboard</a>
+</p>

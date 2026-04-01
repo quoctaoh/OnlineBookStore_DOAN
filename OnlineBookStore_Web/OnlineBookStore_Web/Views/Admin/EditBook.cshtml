@@ -1,0 +1,77 @@
+﻿@model OnlineBookStore_Web.Models.Sach
+
+@{
+    ViewData["Title"] = "Chỉnh Sửa Sách: " + Model.TenSach;
+    Layout = "_Layout";
+}
+
+<h1>Chỉnh Sửa Sách</h1>
+<hr />
+
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="EditBook">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @* Truyền MaSach qua hidden field *@
+            <input type="hidden" asp-for="MaSach" /> 
+
+            @* Trường Tên Sách *@
+            <div class="form-group mb-3">
+                <label asp-for="TenSach" class="control-label"></label>
+                <input asp-for="TenSach" class="form-control" />
+                <span asp-validation-for="TenSach" class="text-danger"></span>
+            </div>
+
+            @* Trường Tác Giả *@
+            <div class="form-group mb-3">
+                <label asp-for="TacGia" class="control-label"></label>
+                <input asp-for="TacGia" class="form-control" />
+                <span asp-validation-for="TacGia" class="text-danger"></span>
+            </div>
+
+            @* Trường Thể Loại (Dropdown) *@
+            <div class="form-group mb-3">
+                <label asp-for="MaTl" class="control-label">Thể Loại</label>
+                <select asp-for="MaTl" class="form-control" asp-items="ViewBag.MaTl"></select>
+            </div>
+
+            @* Trường NXB (Dropdown) *@
+            <div class="form-group mb-3">
+                <label asp-for="MaNxb" class="control-label">Nhà Xuất Bản</label>
+                <select asp-for="MaNxb" class="form-control" asp-items="ViewBag.MaNxb"></select>
+            </div>
+
+            @* Trường Giá Bán *@
+            <div class="form-group mb-3">
+                <label asp-for="GiaBan" class="control-label"></label>
+                <input asp-for="GiaBan" class="form-control" />
+                <span asp-validation-for="GiaBan" class="text-danger"></span>
+            </div>
+
+            @* Trường Tồn Kho *@
+            <div class="form-group mb-3">
+                <label asp-for="SoLuongTon" class="control-label">Số Lượng Tồn</label>
+                <input asp-for="SoLuongTon" class="form-control" />
+                <span asp-validation-for="SoLuongTon" class="text-danger"></span>
+            </div>
+
+            @* Trường Mô Tả *@
+            <div class="form-group mb-3">
+                <label asp-for="MoTa" class="control-label"></label>
+                <textarea asp-for="MoTa" class="form-control" rows="3"></textarea>
+                <span asp-validation-for="MoTa" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mt-4">
+                <input type="submit" value="Lưu Thay Đổi" class="btn btn-success" />
+                <a asp-action="ListBooks" class="btn btn-secondary">Quay lại Danh sách</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

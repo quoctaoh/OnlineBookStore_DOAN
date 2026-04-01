@@ -1,0 +1,50 @@
+﻿@model IEnumerable<OnlineBookStore_Web.Models.Sach>
+
+@{
+    ViewData["Title"] = "Quản Lý Sách";
+    Layout = "_Layout";
+}
+
+<h1>Quản Lý Sách</h1>
+<hr />
+
+@* Hiển thị thông báo thành công sau khi Thêm/Sửa/Xóa *@
+@if (TempData["SuccessMessage"] != null)
+{
+        <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+}
+
+<p>
+    <a asp-action="CreateBook" class="btn btn-success">Thêm Sách Mới</a>
+</p>
+
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Tên Sách</th>
+            <th>Tác Giả</th>
+            <th>Thể Loại</th>
+            <th>Giá Bán</th>
+            <th>Tồn Kho</th>
+            <th>Chức năng</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.MaSach)</td>
+                    <td>@Html.DisplayFor(modelItem => item.TenSach)</td>
+                    <td>@Html.DisplayFor(modelItem => item.TacGia)</td>
+                    <td>@(item.MaTlNavigation?.TenTheLoai ?? "N/A")</td>
+                    <td>@String.Format("{0:N0}", item.GiaBan) VNĐ</td>
+                    <td>@Html.DisplayFor(modelItem => item.SoLuongTon)</td>
+                    <td>
+                        <a asp-action="EditBook" asp-route-id="@item.MaSach" class="btn btn-sm btn-primary">Sửa</a>
+                        <a asp-action="DeleteBook" asp-route-id="@item.MaSach" class="btn btn-sm btn-danger">Xóa</a>
+                    </td>
+                </tr>
+        }
+    </tbody>
+</table>

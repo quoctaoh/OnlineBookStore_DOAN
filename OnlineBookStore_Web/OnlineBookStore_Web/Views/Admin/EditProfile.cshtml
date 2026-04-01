@@ -1,0 +1,49 @@
+﻿@model OnlineBookStore_Web.Models.Admin
+
+@{
+    ViewData["Title"] = "Cập nhật Thông tin Admin";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml"; 
+}
+
+<div class="container mt-4">
+    <h1 class="mb-4">Cập nhật Tên hiển thị</h1>
+    <hr />
+
+    <div class="row">
+        <div class="col-md-6">
+            <form asp-action="EditProfile" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <input type="hidden" asp-for="MaAdmin" />
+
+                <div class="form-group mb-3">
+                    <label class="control-label">Tên Đăng Nhập</label>
+                    <input class="form-control" value="@Model.TenDangNhap" readonly />
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="HoTen" class="control-label">Họ và Tên hiển thị mới</label>
+                    <input asp-for="HoTen" class="form-control" />
+                    <span asp-validation-for="HoTen" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mt-4">
+                    <input type="submit" value="Lưu Tên Mới" class="btn btn-primary" />
+                    <a asp-action="Index" class="btn btn-secondary">Hủy bỏ</a>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-6">
+            <div class="alert alert-info" role="alert">
+                <h4 class="alert-heading">Lưu ý!</h4>
+                <p>Bạn chỉ có thể thay đổi Họ và Tên hiển thị tại đây. Tên Đăng nhập và Mật khẩu không được phép sửa đổi.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

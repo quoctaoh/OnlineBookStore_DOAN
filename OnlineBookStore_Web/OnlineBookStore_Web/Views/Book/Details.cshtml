@@ -1,0 +1,64 @@
+﻿@model OnlineBookStore_Web.Models.Sach
+
+@{
+    ViewData["Title"] = Model.TenSach;
+}
+
+<h1>Chi Tiết Sản Phẩm: @Model.TenSach</h1>
+<hr />
+
+<div class="row">
+    @* CỘT 1: HIỂN THỊ ẢNH BÌA SÁCH *@
+    <div class="col-md-4">
+        <img src="@Model.HinhAnh" 
+             alt="Ảnh bìa @Model.TenSach" 
+             style="max-width: 100%; height: auto; border: 1px solid #ccc; padding: 5px;" />
+    </div>
+
+    @* CỘT 2: THÔNG TIN VÀ FORM THÊM VÀO GIỎ *@
+    <div class="col-md-8">
+        <dl class="row">
+            <dt class="col-sm-4">Tác Giả:</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.TacGia)</dd>
+
+            <dt class="col-sm-4">Thể Loại:</dt>
+            <dd class="col-sm-8">@(Model.MaTlNavigation != null ? Model.MaTlNavigation.TenTheLoai : "Không rõ")</dd>
+
+            <dt class="col-sm-4">Nhà Xuất Bản:</dt>
+            <dd class="col-sm-8">@(Model.MaNxbNavigation != null ? Model.MaNxbNavigation.TenNxb : "Không rõ")</dd>
+
+            <dt class="col-sm-4">Giá Bán:</dt>
+            <dd class="col-sm-8"><strong>@String.Format("{0:N0}", Model.GiaBan) VNĐ</strong></dd>
+
+            <dt class="col-sm-4">Tồn Kho:</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.SoLuongTon)</dd>
+        </dl>
+
+        <h4>Mô Tả Chi Tiết</h4>
+        <p>@Html.DisplayFor(model => model.MoTa)</p>
+
+        @* KHỐI FORM THÊM VÀO GIỎ DUY NHẤT *@
+        <div class="mt-4">
+            @if (Model.SoLuongTon > 0)
+            {
+                    <form asp-controller="Cart" asp-action="AddToCart" method="post" class="d-flex align-items-center">
+                    @Html.AntiForgeryToken()
+                        <input type="hidden" name="MaSach" value="@Model.MaSach" /> 
+
+                        <label for="SoLuong" class="me-2">Số lượng:</label>
+                        <input type="number" id="SoLuong" name="SoLuong" value="1" min="1" max="@Model.SoLuongTon" style="width: 80px;" class="form-control d-inline w-auto me-3" />
+
+                        <button type="submit" class="btn btn-primary">Thêm vào Giỏ hàng</button>
+                    </form>
+            }
+            else
+            {
+                    <p class="text-danger mt-2">Sản phẩm đã hết hàng!</p>
+            }
+        </div>
+    </div>
+</div>
+<hr />
+<div>
+    <a asp-action="Index" class="btn btn-secondary">Quay lại Danh mục</a>
+</div>

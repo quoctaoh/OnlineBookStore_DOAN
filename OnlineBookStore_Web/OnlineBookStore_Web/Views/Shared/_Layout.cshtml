@@ -1,0 +1,145 @@
+﻿@using Microsoft.AspNetCore.Http
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - OnlineBookStore_Web</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/OnlineBookStore_Web.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">OnlineBookStore_Web</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+
+                    @* Lấy thông tin Session một lần duy nhất *@
+                    @{
+                        var userId = Context.Session.GetInt32("UserId");
+                        var userName = Context.Session.GetString("UserName");
+                        // Thêm biến kiểm tra Admin
+                        var adminName = Context.Session.GetString("AdminName");
+                        var isAdmin = !string.IsNullOrEmpty(adminName);
+                        var isLoggedIn = userId.HasValue || isAdmin;
+                    }
+
+                    @* MENU CHÍNH *@
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Trang chủ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Book" asp-action="Index">Danh mục Sách</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Chính sách</a>
+                        </li>
+
+                        @* 1. LIÊN KẾT ADMIN DASHBOARD (Khi Admin đã đăng nhập) *@
+                        @if (isAdmin)
+                        {
+                                <li class="nav-item">
+                                    <a class="nav-link text-danger fw-bold" asp-area="" asp-controller="Admin" asp-action="Index">
+                                        <i class="fas fa-chart-line"></i> ADMIN DASHBOARD
+                                    </a>
+                                </li>
+                        }
+
+                        @* 2. LIÊN KẾT ADMIN LOGIN (Khi chưa có ai đăng nhập) *@
+                        @if (!isLoggedIn)
+                        {
+                                <li class="nav-item">
+                                    <a class="nav-link text-secondary" asp-area="" asp-controller="Account" asp-action="LoginAdmin" title="Đăng nhập Admin">
+                                        <small>QUẢN TRỊ</small>
+                                    </a>
+                                </li>
+                        }
+                    </ul>
+
+                    @* LOGIC KIỂM TRA ĐĂNG NHẬP/ĐĂNG XUẤT (Session) - Phần bên phải *@
+                    <ul class="navbar-nav">
+                        @if (userId.HasValue)
+                        {
+                            @* Đã đăng nhập User thường: Hiển thị tên, Lịch sử Đơn hàng, Đăng xuất *@
+                                <li class="nav-item">
+                                    <a class="nav-link text-primary" href="#">Xin chào @userName</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="OrderHistory">Lịch sử Đơn hàng</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Logout">Đăng xuất</a>
+                                </li>
+                        }
+                        else if (isAdmin)
+                        {
+                            @* Đã đăng nhập Admin: Chỉ hiển thị tên và Đăng xuất Admin *@
+                                <li class="nav-item">
+                                    <a class="nav-link text-danger" href="#">Quản trị viên @adminName</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="LogoutAdmin">Đăng xuất Admin</a>
+                                </li>
+                        }
+                        else
+                        {
+                            @* Chưa đăng nhập: Hiển thị Đăng nhập và Đăng ký (cho User thường) *@
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login">Đăng nhập</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Register">Đăng ký</a>
+                                </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @* HIỂN THỊ THÔNG BÁO THÀNH CÔNG (Dùng cho CRUD Admin) *@
+            @if (TempData["SuccessMessage"] != null)
+            {
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <i class="fas fa-check-circle"></i> @TempData["SuccessMessage"]
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+            }
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2025 - OnlineBookStore_Web - <a asp-area="" asp-controller="Home" asp-action="Privacy">Chính sách Bảo mật</a>
+        </div>
+    </footer>
+    @* Các file JavaScript *@
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+        s1.async=true;
+        s1.src='https://embed.tawk.to/YOUR_PROPERTY_ID/default';
+        s1.charset='UTF-8';
+        s1.setAttribute('crossorigin','*');
+        s0.parentNode.insertBefore(s1,s0);
+    })();
+</script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
