@@ -1,2 +1,0 @@
-ALTER TABLE NguoiDung
-ADD MaXacThuc VARCHAR(10) NULL;
