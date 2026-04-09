@@ -43,5 +43,7 @@ namespace OnlineBookStore_Web.Models
         public virtual TheLoai MaTlNavigation { get; set; } = null!;
         public virtual ICollection<ChiTietDonHang> ChiTietDonHangs { get; set; }
         public virtual ICollection<ChiTietGioHang> ChiTietGioHangs { get; set; }
+
+        public virtual ICollection<DanhGia> DanhGias { get; set; } = new List<DanhGia>();
     }
 }

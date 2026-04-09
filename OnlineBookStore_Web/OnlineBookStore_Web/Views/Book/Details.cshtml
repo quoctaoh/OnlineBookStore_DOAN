@@ -1,64 +1,307 @@
 ﻿@model OnlineBookStore_Web.Models.Sach
-
 @{
     ViewData["Title"] = Model.TenSach;
 }
 
-<h1>Chi Tiết Sản Phẩm: @Model.TenSach</h1>
-<hr />
+<style>
+    :root {
+        --navy-darkest: #020c1b;
+        --navy-deep: #0a192f;
+        --navy-soft: #112240;
+        --accent-cyan: #64ffda;
+        --text-bright: #e6f1ff;
+        --text-dim: #8892b0;
+        --glass-bg: rgba(255, 255, 255, 0.05);
+        --glass-border: rgba(255, 255, 255, 0.1);
+    }
 
-<div class="row">
-    @* CỘT 1: HIỂN THỊ ẢNH BÌA SÁCH *@
-    <div class="col-md-4">
-        <img src="@Model.HinhAnh" 
-             alt="Ảnh bìa @Model.TenSach" 
-             style="max-width: 100%; height: auto; border: 1px solid #ccc; padding: 5px;" />
+    body {
+        background-color: var(--navy-darkest) !important;
+        color: var(--text-bright);
+    }
+
+    /* Breadcrumb style */
+    .breadcrumb-item a { color: var(--accent-cyan) !important; }
+    .breadcrumb-item.active { color: var(--text-dim) !important; }
+
+    /* Khối ảnh Glassmorphism */
+    .product-image-glass {
+        background: var(--glass-bg) !important;
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        border: 1px solid var(--glass-border);
+        transition: 0.4s;
+    }
+    .img-main-container {
+        background: #fff; /* Giữ nền trắng nhẹ cho ảnh sách nổi bật */
+        border-radius: 15px;
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .img-main-container img {
+        max-height: 450px;
+        object-fit: contain;
+        transition: 0.5s;
+    }
+    .img-main-container:hover img { transform: scale(1.05); }
+
+    /* Thông tin chi tiết */
+    .price-box-glass {
+        background: rgba(100, 255, 218, 0.05) !important;
+        border-left: 4px solid var(--accent-cyan);
+        border-radius: 12px;
+    }
+
+    .purchase-box-glass {
+        background: var(--glass-bg) !important;
+        backdrop-filter: blur(10px);
+        border: 1px solid var(--glass-border);
+        border-radius: 20px;
+    }
+
+    /* Input số lượng Custom */
+    .quantity-picker-dark {
+        background: var(--navy-soft);
+        border: 1px solid var(--glass-border);
+        border-radius: 10px;
+    }
+    .quantity-picker-dark button { color: var(--accent-cyan) !important; background: transparent !important; }
+    .quantity-picker-dark input { background: transparent !important; color: #fff !important; border: none !important; }
+
+    /* Button Custom */
+    .btn-add-cart {
+        border: 1px solid var(--accent-cyan) !important;
+        color: var(--accent-cyan) !important;
+        transition: 0.3s;
+    }
+    .btn-add-cart:hover {
+        background: rgba(100, 255, 218, 0.1) !important;
+        transform: translateY(-2px);
+    }
+    .btn-buy-now {
+        background: var(--accent-cyan) !important;
+        color: var(--navy-darkest) !important;
+        border: none !important;
+    }
+    .btn-buy-now:hover {
+        background: #fff !important;
+        transform: translateY(-2px);
+    }
+
+    /* Đánh giá sao */
+    .star-rating-dark { display: flex; flex-direction: row-reverse; justify-content: flex-end; }
+    .star-rating-dark input { display: none; }
+    .star-rating-dark label { color: var(--navy-soft); cursor: pointer; font-size: 1.5rem; transition: 0.2s; }
+    .star-rating-dark label:hover, 
+    .star-rating-dark label:hover ~ label, 
+    .star-rating-dark input:checked ~ label { color: var(--accent-cyan); }
+
+    .comment-box {
+        background: var(--navy-soft) !important;
+        color: #fff !important;
+        border: 1px solid var(--glass-border) !important;
+    }
+</style>
+
+<div class="container mt-5 mb-5">
+    <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index" class="text-decoration-none">Trang chủ</a></li>
+            <li class="breadcrumb-item"><a asp-controller="Book" asp-action="Index" class="text-decoration-none">Cửa hàng</a></li>
+            <li class="breadcrumb-item active">@Model.TenSach</li>
+        </ol>
+    </nav>
+
+    <div class="row g-5">
+        @* --- KHỐI ẢNH (Bên trái) --- *@
+        <div class="col-lg-5">
+            <div class="product-image-glass p-3 rounded-4 text-center sticky-top" style="top: 100px; z-index: 1;">
+                <div class="img-main-container shadow-sm">
+                    <img src="@Model.HinhAnh" alt="@Model.TenSach" class="img-fluid rounded-3" onerror="this.src='/images/no-image.png'"/>
+                </div>
+                <div class="mt-3 d-flex justify-content-center gap-2">
+                    <span class="badge rounded-pill" style="background: rgba(100, 255, 218, 0.1); color: var(--accent-cyan); border: 1px solid rgba(100, 255, 218, 0.2);">Chính hãng 100%</span>
+                    <span class="badge rounded-pill" style="background: rgba(59, 130, 246, 0.1); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.2);">Freeship Extra</span>
+                </div>
+            </div>
+        </div>
+
+        @* --- KHỐI THÔNG TIN (Bên phải) --- *@
+        <div class="col-lg-7">
+            <div class="ps-lg-3">
+                <h1 class="display-6 fw-bold mb-2" style="color: #fff;">@Model.TenSach</h1>
+                
+                <div class="d-flex align-items-center mb-3">
+                    <div class="text-warning me-2">
+                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i>
+                    </div>
+                    <span class="small border-start border-secondary ps-2 text-muted">(4.5 Đánh giá | 120 đã bán)</span>
+                </div>
+
+                <div class="price-box-glass p-4 mb-4">
+                    <h2 style="color: var(--accent-cyan);" class="fw-bold mb-0">@Model.GiaBan.ToString("N0") <span class="fs-4">VNĐ</span></h2>
+                    <p class="text-muted small text-decoration-line-through mb-0">@( (Model.GiaBan * 1.2m).ToString("N0") ) VNĐ</p>
+                </div>
+
+                @* Thông số chi tiết *@
+                <div class="row mb-4">
+                    <div class="col-6 mb-3">
+                        <p class="mb-0 text-muted small">Tác giả</p>
+                        <p class="fw-bold mb-0 text-white">@Model.TacGia</p>
+                    </div>
+                    <div class="col-6 mb-3">
+                        <p class="mb-0 text-muted small">Thể loại</p>
+                        <p class="fw-bold mb-0" style="color: var(--accent-cyan);">@(Model.MaTlNavigation?.TenTheLoai ?? "Đang cập nhật")</p>
+                    </div>
+                    <div class="col-6 mb-3">
+                        <p class="mb-0 text-muted small">Nhà xuất bản</p>
+                        <p class="fw-bold mb-0 text-white">@(Model.MaNxbNavigation?.TenNxb ?? "Đang cập nhật")</p>
+                    </div>
+                    <div class="col-6 mb-3">
+                        <p class="mb-0 text-muted small">Tình trạng</p>
+                        <p class="fw-bold mb-0 @(Model.SoLuongTon > 0 ? "text-success" : "text-danger")">
+                             @(Model.SoLuongTon > 0 ? $"Còn hàng ({Model.SoLuongTon})" : "Hết hàng")
+                        </p>
+                    </div>
+                </div>
+
+                @* Form mua hàng *@
+                <div class="purchase-box-glass p-4 mb-5 shadow-sm">
+                    <div class="d-flex align-items-center gap-3 mb-4">
+                        <div class="quantity-picker-dark d-flex align-items-center overflow-hidden">
+                            <button class="btn border-0 px-3 py-2" onclick="changeQty(-1)"><i class="bi bi-dash-lg"></i></button>
+                            <input type="number" id="SoLuongInput" value="1" min="1" max="@Model.SoLuongTon" 
+                                   class="form-control text-center fw-bold shadow-none" style="width: 60px;" readonly />
+                            <button class="btn border-0 px-3 py-2" onclick="changeQty(1)"><i class="bi bi-plus-lg"></i></button>
+                        </div>
+                        <span class="text-muted small">@Model.SoLuongTon sản phẩm sẵn có</span>
+                    </div>
+
+                    <div class="row g-2">
+                        <div class="col-6">
+                            <button class="btn btn-add-cart w-100 py-3 fw-bold rounded-3" onclick="ajaxAddToCart(@Model.MaSach)">
+                                <i class="bi bi-cart-plus me-2"></i>Thêm giỏ hàng
+                            </button>
+                        </div>
+                        <div class="col-6">
+                            <form asp-controller="Cart" asp-action="BuyNow" method="post" onsubmit="syncQuantity()">
+                                <input type="hidden" name="MaSach" value="@Model.MaSach" />
+                                <input type="hidden" name="SoLuong" id="BuyNowQuantity" value="1" />
+                                <button type="submit" class="btn btn-buy-now w-100 py-3 fw-bold rounded-3 shadow">
+                                    MUA NGAY
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                @* Mô tả *@
+                <div class="description-section">
+                    <h5 class="fw-bold border-bottom border-secondary pb-2 mb-3" style="color: var(--accent-cyan);">Giới thiệu nội dung</h5>
+                    <div class="content text-dim" style="line-height: 1.8; color: var(--text-dim);">
+                        @Model.MoTa
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    @* CỘT 2: THÔNG TIN VÀ FORM THÊM VÀO GIỎ *@
-    <div class="col-md-8">
-        <dl class="row">
-            <dt class="col-sm-4">Tác Giả:</dt>
-            <dd class="col-sm-8">@Html.DisplayFor(model => model.TacGia)</dd>
+    @* --- PHẦN ĐÁNH GIÁ --- *@
+    <div class="row mt-5">
+        <div class="col-lg-8">
+            <div class="purchase-box-glass p-4">
+                <h4 class="fw-bold mb-4 text-white">Khách hàng nhận xét</h4>
+                <form asp-controller="Cart" asp-action="PostReview" method="post">
+                    <input type="hidden" name="MaSach" value="@Model.MaSach" />
+                    <div class="star-rating-dark mb-3">
+                        <input type="radio" name="Rating" value="5" id="rate-5" required><label for="rate-5" class="bi bi-star-fill"></label>
+                        <input type="radio" name="Rating" value="4" id="rate-4"><label for="rate-4" class="bi bi-star-fill"></label>
+                        <input type="radio" name="Rating" value="3" id="rate-3"><label for="rate-3" class="bi bi-star-fill"></label>
+                        <input type="radio" name="Rating" value="2" id="rate-2"><label for="rate-2" class="bi bi-star-fill"></label>
+                        <input type="radio" name="Rating" value="1" id="rate-1"><label for="rate-1" class="bi bi-star-fill"></label>
+                    </div>
+                    <textarea name="NoiDung" class="form-control comment-box mb-3 p-3 rounded-4 shadow-none" rows="3" placeholder="Viết đánh giá của bạn..."></textarea>
+                    <button type="submit" class="btn btn-buy-now px-5 py-2 rounded-pill fw-bold">Gửi đánh giá</button>
+                </form>
+                @* --- PHẦN HIỂN THỊ DANH SÁCH ĐÁNH GIÁ ĐÃ CÓ --- *@
+<div class="mt-5">
+    <h5 class="fw-bold mb-4" style="color: var(--accent-cyan);">
+        <i class="bi bi-chat-left-dots me-2"></i>Đánh giá từ độc giả
+    </h5>
 
-            <dt class="col-sm-4">Thể Loại:</dt>
-            <dd class="col-sm-8">@(Model.MaTlNavigation != null ? Model.MaTlNavigation.TenTheLoai : "Không rõ")</dd>
-
-            <dt class="col-sm-4">Nhà Xuất Bản:</dt>
-            <dd class="col-sm-8">@(Model.MaNxbNavigation != null ? Model.MaNxbNavigation.TenNxb : "Không rõ")</dd>
-
-            <dt class="col-sm-4">Giá Bán:</dt>
-            <dd class="col-sm-8"><strong>@String.Format("{0:N0}", Model.GiaBan) VNĐ</strong></dd>
-
-            <dt class="col-sm-4">Tồn Kho:</dt>
-            <dd class="col-sm-8">@Html.DisplayFor(model => model.SoLuongTon)</dd>
-        </dl>
-
-        <h4>Mô Tả Chi Tiết</h4>
-        <p>@Html.DisplayFor(model => model.MoTa)</p>
-
-        @* KHỐI FORM THÊM VÀO GIỎ DUY NHẤT *@
-        <div class="mt-4">
-            @if (Model.SoLuongTon > 0)
-            {
-                    <form asp-controller="Cart" asp-action="AddToCart" method="post" class="d-flex align-items-center">
-                    @Html.AntiForgeryToken()
-                        <input type="hidden" name="MaSach" value="@Model.MaSach" /> 
-
-                        <label for="SoLuong" class="me-2">Số lượng:</label>
-                        <input type="number" id="SoLuong" name="SoLuong" value="1" min="1" max="@Model.SoLuongTon" style="width: 80px;" class="form-control d-inline w-auto me-3" />
-
-                        <button type="submit" class="btn btn-primary">Thêm vào Giỏ hàng</button>
-                    </form>
-            }
-            else
-            {
-                    <p class="text-danger mt-2">Sản phẩm đã hết hàng!</p>
-            }
+    @if (Model.DanhGias != null && Model.DanhGias.Any())
+    {
+        foreach (var dg in Model.DanhGias.OrderByDescending(x => x.NgayDanhGia))
+        {
+            <div class="purchase-box-glass p-4 mb-3" style="border-radius: 15px;">
+                <div class="d-flex justify-content-between align-items-start mb-2">
+                    <div class="d-flex align-items-center">
+                        @* Ảnh đại diện giả định *@
+                        <div class="rounded-circle bg-secondary d-flex align-items-center justify-content-center me-3" style="width: 40px; height: 40px;">
+                            <i class="bi bi-person-fill text-white"></i>
+                        </div>
+                        <div>
+                            <p class="fw-bold mb-0 text-white">@dg.MaNdNavigation?.HoTen</p>
+                            <div class="text-warning small" style="font-size: 0.75rem;">
+                                @for (int i = 1; i <= 5; i++)
+                                {
+                                    <i class="bi @(i <= dg.SoSao ? "bi-star-fill" : "bi-star")"></i>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <span class="text-muted small">@dg.NgayDanhGia.ToString("dd/MM/yyyy")</span>
+                </div>
+                <div class="ms-5">
+                    <p class="mb-0" style="color: var(--text-dim); line-height: 1.6;">
+                        @dg.NoiDung
+                    </p>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="text-center py-4 opacity-50">
+            <i class="bi bi-chat-square-text display-6 mb-2"></i>
+            <p>Chưa có đánh giá nào cho cuốn sách này. Hãy là người đầu tiên!</p>
+        </div>
+    }
+</div>
+            </div>
         </div>
     </div>
 </div>
-<hr />
-<div>
-    <a asp-action="Index" class="btn btn-secondary">Quay lại Danh mục</a>
-</div>
+
+@section Scripts {
+    <script>
+        function changeQty(val) {
+            let input = $('#SoLuongInput');
+            let current = parseInt(input.val());
+            let next = current + val;
+            if (next >= 1 && next <= @Model.SoLuongTon) {
+                input.val(next);
+            }
+        }
+
+        function syncQuantity() {
+            $('#BuyNowQuantity').val($('#SoLuongInput').val());
+        }
+
+        function ajaxAddToCart(id) {
+            var qty = parseInt($('#SoLuongInput').val());
+            $.post('/Cart/AddToCart', { MaSach: id, SoLuong: qty }, function (res) {
+                if (res.success) {
+                    var badge = $('#cart-count');
+                    badge.text((parseInt(badge.text()) || 0) + qty);
+                    
+                    const toast = $('<div class="position-fixed bottom-0 end-0 p-4" style="z-index: 9999"><div class="alert shadow-lg rounded-pill mb-0" style="background: var(--accent-cyan); color: #020c1b; font-weight: bold;"><i class="bi bi-check-circle-fill me-2"></i>Đã thêm vào giỏ hàng!</div></div>');
+                    $('body').append(toast);
+                    setTimeout(() => toast.fadeOut(() => toast.remove()), 2500);
+                } else alert(res.message);
+            });
+        }
+    </script>
+}

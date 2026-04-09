@@ -39,5 +39,6 @@ namespace OnlineBookStore_Web.Models
 
         [DisplayName("Đơn hàng")]
         public virtual ICollection<DonHang> DonHangs { get; set; }
+        public virtual ICollection<DanhGia> DanhGias { get; set; }
     }
 }

@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "E:\\DoAn\\ASP_OBW\\OnlineBookStore_Web\\OnlineBookStore_Web\\OnlineBookStore_Web.csproj": {}
+    "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\OnlineBookStore_Web.csproj": {}
   },
   "projects": {
-    "E:\\DoAn\\ASP_OBW\\OnlineBookStore_Web\\OnlineBookStore_Web\\OnlineBookStore_Web.csproj": {
+    "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\OnlineBookStore_Web.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\DoAn\\ASP_OBW\\OnlineBookStore_Web\\OnlineBookStore_Web\\OnlineBookStore_Web.csproj",
+        "projectUniqueName": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\OnlineBookStore_Web.csproj",
         "projectName": "OnlineBookStore_Web",
-        "projectPath": "E:\\DoAn\\ASP_OBW\\OnlineBookStore_Web\\OnlineBookStore_Web\\OnlineBookStore_Web.csproj",
-        "packagesPath": "C:\\Users\\ACER\\.nuget\\packages\\",
-        "outputPath": "E:\\DoAn\\ASP_OBW\\OnlineBookStore_Web\\OnlineBookStore_Web\\obj\\",
+        "projectPath": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\OnlineBookStore_Web.csproj",
+        "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\Visual file\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\ACER\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,7 +26,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -40,7 +43,8 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        }
+        },
+        "SdkAnalysisLevel": "10.0.200"
       },
       "frameworks": {
         "net8.0": {
@@ -61,6 +65,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[6.0.36, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.4, )"
             }
           },
           "imports": [
@@ -74,6 +82,24 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[8.0.25, 8.0.25]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[8.0.25, 8.0.25]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[8.0.25, 8.0.25]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[8.0.25, 8.0.25]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -82,7 +108,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.201/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
