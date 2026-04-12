@@ -1,50 +1,135 @@
-﻿@model List<OnlineBookStore_Web.Models.DonHang>
-
+﻿@model IEnumerable<OnlineBookStore_Web.Models.DonHang>
 @{
-    ViewData["Title"] = "Lịch Sử Đơn Hàng";
+    ViewData["Title"] = "Lịch sử đơn hàng";
 }
 
-<h1>Lịch Sử Đơn Hàng</h1>
-<hr />
+<style>
+    :root {
+        --navy-darkest: #020c1b;
+        --accent-cyan: #64ffda;
+        --glass-bg: rgba(255, 255, 255, 0.03);
+        --glass-border: rgba(255, 255, 255, 0.1);
+    }
 
-@if (Model == null || !Model.Any())
-{
-        <div class="alert alert-info">
-            Bạn chưa có đơn hàng nào.
-        </div>
-        <p>
-            <a asp-controller="Book" asp-action="Index" class="btn btn-primary">Bắt đầu mua sắm</a>
-        </p>
-}
-else
-{
-    @foreach (var order in Model)
+    body {
+        background-color: var(--navy-darkest) !important;
+        color: #e6f1ff;
+    }
+
+    .order-card-glass {
+        background: var(--glass-bg);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        border: 1px solid var(--glass-border);
+        border-radius: 20px;
+        transition: 0.3s;
+    }
+
+    .order-card-glass:hover {
+        border-color: var(--accent-cyan);
+        transform: translateY(-5px);
+    }
+
+    .status-badge {
+        padding: 6px 16px;
+        border-radius: 50px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+
+    .status-pending { background: rgba(255, 193, 7, 0.1); color: #ffc107; border: 1px solid rgba(255, 193, 7, 0.2); }
+    .status-completed { background: rgba(100, 255, 218, 0.1); color: var(--accent-cyan); border: 1px solid rgba(100, 255, 218, 0.2); }
+    
+    .table-order img {
+        width: 60px;
+        height: 80px;
+        object-fit: cover;
+        border-radius: 8px;
+        border: 1px solid var(--glass-border);
+    }
+</style>
+
+<div class="container mt-5 mb-5">
+    <div class="d-flex align-items-center mb-5">
+        <h2 class="fw-bold m-0" style="color: var(--accent-cyan);">
+            <i class="bi bi-clock-history me-3"></i>LỊCH SỬ ĐƠN HÀNG
+        </h2>
+    </div>
+
+    @if (Model != null && Model.Any())
     {
-                <div class="card mb-4 shadow-sm">
-                    <div class="card-header bg-light">
-                        <div class="d-flex justify-content-between">
-                            <strong>Mã Đơn Hàng: #@order.MaDh</strong>
-                            <span class="badge bg-@(@order.TrangThaiDh == "Đã giao thành công" ? "success" : "warning")">
-                        @order.TrangThaiDh
-                            </span>
-                        </div>
-                        <div>
-                            Ngày Đặt: @order.NgayDatHang.ToString("dd/MM/yyyy HH:mm") |
-                            Tổng Tiền: <strong>@String.Format("{0:N0} VNĐ", order.TongTien)</strong>
-                        </div>
+        @foreach (var order in Model)
+        {
+            <div class="order-card-glass p-4 mb-4 shadow-lg">
+                <div class="row align-items-center mb-4">
+                    <div class="col-md-6">
+                        <h5 class="text-white mb-1">Đơn hàng #@order.MaDh</h5>
+                        <p class="text-muted small mb-0">
+                            Ngày đặt: @(order.NgayDatHang.ToString("dd/MM/yyyy HH:mm"))
+                        </p>
                     </div>
-                    <div class="card-body">
-                        <h6>Địa chỉ giao hàng: @order.DiaChiGiaoHang</h6>
-                        <p class="text-muted small mb-1">Chi tiết các sản phẩm đã đặt:</p>
-                        <ul class="list-group list-group-flush">
-                    @foreach (var detail in order.ChiTietDonHangs)
-                    {
-                                    <li class="list-group-item">
-                                                    Sản phẩm: @detail.MaSach | Số lượng: @detail.SoLuong | Giá: @String.Format("{0:N0} VNĐ", detail.DonGia)
-                                    </li>
-                    }
-                        </ul>
+                    <div class="col-md-6 text-md-end mt-3 mt-md-0">
+                        <span class="status-badge @(order.TrangThaiDh == "Đã hoàn thành" ? "status-completed" : "status-pending")">
+                            <i class="bi bi-patch-check-fill me-1"></i> @order.TrangThaiDh
+                        </span>
                     </div>
                 </div>
+
+                <div class="table-responsive">
+                    <table class="table table-borderless text-white align-middle table-order">
+                        <thead class="border-bottom border-secondary">
+                            <tr class="text-muted small">
+                                <th>SẢN PHẨM</th>
+                                <th></th>
+                                <th class="text-center">SỐ LƯỢNG</th>
+                                <th class="text-end">THÀNH TIỀN</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in order.ChiTietDonHangs)
+                            {
+                                <tr>
+                                    <td style="width: 80px;">
+                                        <img src="@(item.MaSachNavigation?.HinhAnh)" alt="Book" onerror="this.src='/images/no-image.png'" />
+                                    </td>
+                                    <td>
+                                        <div class="fw-bold">@(item.MaSachNavigation?.TenSach)</div>
+                                        <div class="small text-muted">Đơn giá: @(item.DonGia.ToString("N0"))đ</div>
+                                    </td>
+                                    <td class="text-center">x @item.SoLuong</td>
+                                    <td class="text-end fw-bold" style="color: var(--accent-cyan);">
+                                        @((item.SoLuong * item.DonGia).ToString("N0"))đ
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="pt-3 mt-2 border-top border-secondary d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
+                    <div class="text-muted small">
+                        <i class="bi bi-geo-alt-fill me-1"></i> Giao đến: @order.DiaChiGiaoHang
+                    </div>
+                    <div class="text-md-end">
+                        <span class="text-muted me-2">Tổng thanh toán:</span>
+                        <span class="fs-4 fw-bold" style="color: var(--accent-cyan);">
+                            @(order.TongTien.ToString("N0")) đ
+                        </span>
+                    </div>
+                </div>
+            </div>
+        }
     }
-}
+    else
+    {
+        <div class="order-card-glass p-5 text-center">
+            <i class="bi bi-inbox display-1 opacity-25 mb-4"></i>
+            <h4>Chưa có đơn hàng nào</h4>
+            <p class="text-muted">Có vẻ như bạn chưa thực hiện giao dịch nào tại BookStore.</p>
+            <a asp-controller="Book" asp-action="Index" class="btn btn-outline-info rounded-pill px-5 mt-3">
+                MUA SẮM NGAY
+            </a>
+        </div>
+    }
+</div>

@@ -3,24 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|c:\\users\\pc\\documents\\onlinebookstore_doan\\onlinebookstore_web\\onlinebookstore_web\\controllers\\cartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|solutionrelative:onlinebookstore_web\\controllers\\cartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|c:\\users\\pc\\documents\\onlinebookstore_doan\\onlinebookstore_web\\onlinebookstore_web\\models\\nguoidung.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|solutionrelative:onlinebookstore_web\\models\\nguoidung.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|c:\\users\\pc\\documents\\onlinebookstore_doan\\onlinebookstore_web\\onlinebookstore_web\\models\\sach.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|solutionrelative:onlinebookstore_web\\models\\sach.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|c:\\users\\pc\\documents\\onlinebookstore_doan\\onlinebookstore_web\\onlinebookstore_web\\models\\onlinebookstore_doancontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|solutionrelative:onlinebookstore_web\\models\\onlinebookstore_doancontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|c:\\users\\pc\\documents\\onlinebookstore_doan\\onlinebookstore_web\\onlinebookstore_web\\controllers\\bookcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|solutionrelative:onlinebookstore_web\\controllers\\bookcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|c:\\users\\pc\\documents\\onlinebookstore_doan\\onlinebookstore_web\\onlinebookstore_web\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|solutionrelative:onlinebookstore_web\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|c:\\users\\pc\\documents\\onlinebookstore_doan\\onlinebookstore_web\\onlinebookstore_web\\views\\book\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -31,12 +19,72 @@
       "RelativeMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|solutionrelative:onlinebookstore_web\\models\\danhgia.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|c:\\users\\pc\\documents\\onlinebookstore_doan\\onlinebookstore_web\\onlinebookstore_web\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|solutionrelative:onlinebookstore_web\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|c:\\users\\pc\\documents\\onlinebookstore_doan\\onlinebookstore_web\\onlinebookstore_web\\controllers\\checkoutcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|solutionrelative:onlinebookstore_web\\controllers\\checkoutcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|c:\\users\\pc\\documents\\onlinebookstore_doan\\onlinebookstore_web\\onlinebookstore_web\\views\\account\\orderhistory.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|solutionrelative:onlinebookstore_web\\views\\account\\orderhistory.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|c:\\users\\pc\\documents\\onlinebookstore_doan\\onlinebookstore_web\\onlinebookstore_web\\views\\checkout\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|solutionrelative:onlinebookstore_web\\views\\checkout\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|c:\\users\\pc\\documents\\onlinebookstore_doan\\onlinebookstore_web\\onlinebookstore_web\\models\\donhang.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|solutionrelative:onlinebookstore_web\\models\\donhang.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|c:\\users\\pc\\documents\\onlinebookstore_doan\\onlinebookstore_web\\onlinebookstore_web\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|solutionrelative:onlinebookstore_web\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|c:\\users\\pc\\documents\\onlinebookstore_doan\\onlinebookstore_web\\onlinebookstore_web\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|solutionrelative:onlinebookstore_web\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|c:\\users\\pc\\documents\\onlinebookstore_doan\\onlinebookstore_web\\onlinebookstore_web\\models\\errorviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|solutionrelative:onlinebookstore_web\\models\\errorviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|c:\\users\\pc\\documents\\onlinebookstore_doan\\onlinebookstore_web\\onlinebookstore_web\\models\\chitietgiohang.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|solutionrelative:onlinebookstore_web\\models\\chitietgiohang.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|c:\\users\\pc\\documents\\onlinebookstore_doan\\onlinebookstore_web\\onlinebookstore_web\\models\\sach.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|solutionrelative:onlinebookstore_web\\models\\sach.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|c:\\users\\pc\\documents\\onlinebookstore_doan\\onlinebookstore_web\\onlinebookstore_web\\models\\nhaxuatban.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|solutionrelative:onlinebookstore_web\\models\\nhaxuatban.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|c:\\users\\pc\\documents\\onlinebookstore_doan\\onlinebookstore_web\\onlinebookstore_web\\models\\giohang.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|solutionrelative:onlinebookstore_web\\models\\giohang.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|c:\\users\\pc\\documents\\onlinebookstore_doan\\onlinebookstore_web\\onlinebookstore_web\\models\\khuyenmai.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|solutionrelative:onlinebookstore_web\\models\\khuyenmai.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|c:\\users\\pc\\documents\\onlinebookstore_doan\\onlinebookstore_web\\onlinebookstore_web\\models\\nguoidung.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|solutionrelative:onlinebookstore_web\\models\\nguoidung.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|c:\\users\\pc\\documents\\onlinebookstore_doan\\onlinebookstore_web\\onlinebookstore_web\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|solutionrelative:onlinebookstore_web\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|c:\\users\\pc\\documents\\onlinebookstore_doan\\onlinebookstore_web\\onlinebookstore_web\\views\\home\\privacy.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|solutionrelative:onlinebookstore_web\\views\\home\\privacy.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|c:\\users\\pc\\documents\\onlinebookstore_doan\\onlinebookstore_web\\onlinebookstore_web\\models\\onlinebookstore_doancontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|solutionrelative:onlinebookstore_web\\models\\onlinebookstore_doancontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|c:\\users\\pc\\documents\\onlinebookstore_doan\\onlinebookstore_web\\onlinebookstore_web\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|solutionrelative:onlinebookstore_web\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|c:\\users\\pc\\documents\\onlinebookstore_doan\\onlinebookstore_web\\onlinebookstore_web\\views\\cart\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -55,32 +103,8 @@
       "RelativeMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|solutionrelative:onlinebookstore_web\\views\\book\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|c:\\users\\pc\\documents\\onlinebookstore_doan\\onlinebookstore_web\\onlinebookstore_web\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|solutionrelative:onlinebookstore_web\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|c:\\users\\pc\\documents\\onlinebookstore_doan\\onlinebookstore_web\\onlinebookstore_web\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|solutionrelative:onlinebookstore_web\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|c:\\users\\pc\\documents\\onlinebookstore_doan\\onlinebookstore_web\\onlinebookstore_web\\controllers\\checkoutcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|solutionrelative:onlinebookstore_web\\controllers\\checkoutcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|c:\\users\\pc\\documents\\onlinebookstore_doan\\onlinebookstore_web\\onlinebookstore_web\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|solutionrelative:onlinebookstore_web\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|c:\\users\\pc\\documents\\onlinebookstore_doan\\onlinebookstore_web\\onlinebookstore_web\\views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|solutionrelative:onlinebookstore_web\\views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|c:\\users\\pc\\documents\\onlinebookstore_doan\\onlinebookstore_web\\onlinebookstore_web\\models\\donhang.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|solutionrelative:onlinebookstore_web\\models\\donhang.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|c:\\users\\pc\\documents\\onlinebookstore_doan\\onlinebookstore_web\\onlinebookstore_web\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|solutionrelative:onlinebookstore_web\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|c:\\users\\pc\\documents\\onlinebookstore_doan\\onlinebookstore_web\\onlinebookstore_web\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -95,32 +119,8 @@
       "RelativeMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|solutionrelative:onlinebookstore_web\\onlinebookstore_web.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|c:\\users\\pc\\documents\\onlinebookstore_doan\\onlinebookstore_web\\onlinebookstore_web\\models\\errorviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|solutionrelative:onlinebookstore_web\\models\\errorviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|c:\\users\\pc\\documents\\onlinebookstore_doan\\onlinebookstore_web\\onlinebookstore_web\\models\\chitietgiohang.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|solutionrelative:onlinebookstore_web\\models\\chitietgiohang.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|c:\\users\\pc\\documents\\onlinebookstore_doan\\onlinebookstore_web\\onlinebookstore_web\\views\\account\\orderhistory.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|solutionrelative:onlinebookstore_web\\views\\account\\orderhistory.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|c:\\users\\pc\\documents\\onlinebookstore_doan\\onlinebookstore_web\\onlinebookstore_web\\models\\chitietdonhang.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|solutionrelative:onlinebookstore_web\\models\\chitietdonhang.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|c:\\users\\pc\\documents\\onlinebookstore_doan\\onlinebookstore_web\\onlinebookstore_web\\models\\admin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|solutionrelative:onlinebookstore_web\\models\\admin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|c:\\users\\pc\\documents\\onlinebookstore_doan\\onlinebookstore_web\\onlinebookstore_web\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|solutionrelative:onlinebookstore_web\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|c:\\users\\pc\\documents\\onlinebookstore_doan\\onlinebookstore_web\\onlinebookstore_web\\models\\giohang.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|solutionrelative:onlinebookstore_web\\models\\giohang.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|c:\\users\\pc\\documents\\onlinebookstore_doan\\onlinebookstore_web\\onlinebookstore_web\\views\\admin\\orderdetails.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -129,10 +129,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|c:\\users\\pc\\documents\\onlinebookstore_doan\\onlinebookstore_web\\onlinebookstore_web\\models\\theloai.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|solutionrelative:onlinebookstore_web\\models\\theloai.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|c:\\users\\pc\\documents\\onlinebookstore_doan\\onlinebookstore_web\\onlinebookstore_web\\models\\nhaxuatban.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|solutionrelative:onlinebookstore_web\\models\\nhaxuatban.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|c:\\users\\pc\\documents\\onlinebookstore_doan\\onlinebookstore_web\\onlinebookstore_web\\views\\admin\\listorders.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -149,10 +145,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|c:\\users\\pc\\documents\\onlinebookstore_doan\\onlinebookstore_web\\onlinebookstore_web\\views\\admin\\createbook.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|solutionrelative:onlinebookstore_web\\views\\admin\\createbook.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|c:\\users\\pc\\documents\\onlinebookstore_doan\\onlinebookstore_web\\onlinebookstore_web\\models\\khuyenmai.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|solutionrelative:onlinebookstore_web\\models\\khuyenmai.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|c:\\users\\pc\\documents\\onlinebookstore_doan\\onlinebookstore_web\\onlinebookstore_web\\views\\account\\verifyotp.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -177,10 +169,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|c:\\users\\pc\\documents\\onlinebookstore_doan\\onlinebookstore_web\\onlinebookstore_web\\views\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|solutionrelative:onlinebookstore_web\\views\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|c:\\users\\pc\\documents\\onlinebookstore_doan\\onlinebookstore_web\\onlinebookstore_web\\views\\home\\privacy.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|solutionrelative:onlinebookstore_web\\views\\home\\privacy.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9E3B1AB8-D3EB-487D-BF09-9742CDC5937A}|OnlineBookStore_Web\\OnlineBookStore_Web.csproj|c:\\users\\pc\\documents\\onlinebookstore_doan\\onlinebookstore_web\\onlinebookstore_web\\views\\shared\\_validationscriptspartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -222,7 +210,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -230,33 +218,254 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "OnlineBookstore_DOANContext.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Models\\OnlineBookstore_DOANContext.cs",
-              "RelativeDocumentMoniker": "OnlineBookStore_Web\\Models\\OnlineBookstore_DOANContext.cs",
-              "ToolTip": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Models\\OnlineBookstore_DOANContext.cs",
-              "RelativeToolTip": "OnlineBookStore_Web\\Models\\OnlineBookstore_DOANContext.cs",
-              "ViewState": "AgIAADcAAAAAAAAAAAAqwEoAAAAsAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "BookController.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Controllers\\BookController.cs",
+              "RelativeDocumentMoniker": "OnlineBookStore_Web\\Controllers\\BookController.cs",
+              "ToolTip": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Controllers\\BookController.cs",
+              "RelativeToolTip": "OnlineBookStore_Web\\Controllers\\BookController.cs",
+              "ViewState": "AgIAAEwAAAAAAAAAAAAwwFQAAAA4AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-09T16:24:38.26Z",
+              "WhenOpened": "2026-04-12T14:55:52.677Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AccountController.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Controllers\\AccountController.cs",
+              "RelativeDocumentMoniker": "OnlineBookStore_Web\\Controllers\\AccountController.cs",
+              "ToolTip": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Controllers\\AccountController.cs",
+              "RelativeToolTip": "OnlineBookStore_Web\\Controllers\\AccountController.cs",
+              "ViewState": "AgIAAPkAAAAAAAAAAAAswAwBAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-12T14:00:55.478Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "OrderHistory.cshtml",
+              "DocumentMoniker": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Views\\Account\\OrderHistory.cshtml",
+              "RelativeDocumentMoniker": "OnlineBookStore_Web\\Views\\Account\\OrderHistory.cshtml",
+              "ToolTip": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Views\\Account\\OrderHistory.cshtml",
+              "RelativeToolTip": "OnlineBookStore_Web\\Views\\Account\\OrderHistory.cshtml",
+              "ViewState": "AgIAAG8AAAAAAAAAAAAwwIYAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-12T13:48:24.633Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Views\\Checkout\\Index.cshtml",
+              "RelativeDocumentMoniker": "OnlineBookStore_Web\\Views\\Checkout\\Index.cshtml",
+              "ToolTip": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Views\\Checkout\\Index.cshtml",
+              "RelativeToolTip": "OnlineBookStore_Web\\Views\\Checkout\\Index.cshtml",
+              "ViewState": "AgIAAMgAAAAAAAAAAAAwwOIAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-12T13:26:25.61Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "DonHang.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Models\\DonHang.cs",
+              "RelativeDocumentMoniker": "OnlineBookStore_Web\\Models\\DonHang.cs",
+              "ToolTip": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Models\\DonHang.cs",
+              "RelativeToolTip": "OnlineBookStore_Web\\Models\\DonHang.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAQwBQAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-09T02:47:41.582Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "CheckoutController.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Controllers\\CheckoutController.cs",
+              "RelativeDocumentMoniker": "OnlineBookStore_Web\\Controllers\\CheckoutController.cs",
+              "ToolTip": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Controllers\\CheckoutController.cs",
+              "RelativeToolTip": "OnlineBookStore_Web\\Controllers\\CheckoutController.cs",
+              "ViewState": "AgIAAHkAAAAAAAAAAAAwwJAAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-09T02:47:41.621Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Views\\Book\\Details.cshtml",
+              "RelativeDocumentMoniker": "OnlineBookStore_Web\\Views\\Book\\Details.cshtml",
+              "ToolTip": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Views\\Book\\Details.cshtml",
+              "RelativeToolTip": "OnlineBookStore_Web\\Views\\Book\\Details.cshtml",
+              "ViewState": "AgIAABsBAAAAAAAAAAAwwC0BAABPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-09T02:47:41.82Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\appsettings.json",
+              "RelativeDocumentMoniker": "OnlineBookStore_Web\\appsettings.json",
+              "ToolTip": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\appsettings.json",
+              "RelativeToolTip": "OnlineBookStore_Web\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-04-09T02:49:03.863Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "DanhGia.cs",
               "DocumentMoniker": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Models\\DanhGia.cs",
               "RelativeDocumentMoniker": "OnlineBookStore_Web\\Models\\DanhGia.cs",
               "ToolTip": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Models\\DanhGia.cs",
               "RelativeToolTip": "OnlineBookStore_Web\\Models\\DanhGia.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACIAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAABUAAAAAAAAAAAAiwCIAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-04-09T16:15:21.361Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 9,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Program.cs",
+              "RelativeDocumentMoniker": "OnlineBookStore_Web\\Program.cs",
+              "ToolTip": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Program.cs",
+              "RelativeToolTip": "OnlineBookStore_Web\\Program.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAAB0AAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-09T02:47:41.604Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "NhaXuatBan.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Models\\NhaXuatBan.cs",
+              "RelativeDocumentMoniker": "OnlineBookStore_Web\\Models\\NhaXuatBan.cs",
+              "ToolTip": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Models\\NhaXuatBan.cs",
+              "RelativeToolTip": "OnlineBookStore_Web\\Models\\NhaXuatBan.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-09T02:47:41.597Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Sach.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Models\\Sach.cs",
+              "RelativeDocumentMoniker": "OnlineBookStore_Web\\Models\\Sach.cs",
+              "ToolTip": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Models\\Sach.cs",
+              "RelativeToolTip": "OnlineBookStore_Web\\Models\\Sach.cs",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAQwC4AAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-09T02:47:41.53Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "ChiTietGioHang.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Models\\ChiTietGioHang.cs",
+              "RelativeDocumentMoniker": "OnlineBookStore_Web\\Models\\ChiTietGioHang.cs",
+              "ToolTip": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Models\\ChiTietGioHang.cs",
+              "RelativeToolTip": "OnlineBookStore_Web\\Models\\ChiTietGioHang.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-09T02:47:41.569Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "ErrorViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Models\\ErrorViewModel.cs",
+              "RelativeDocumentMoniker": "OnlineBookStore_Web\\Models\\ErrorViewModel.cs",
+              "ToolTip": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Models\\ErrorViewModel.cs",
+              "RelativeToolTip": "OnlineBookStore_Web\\Models\\ErrorViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-09T02:47:41.54Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "GioHang.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Models\\GioHang.cs",
+              "RelativeDocumentMoniker": "OnlineBookStore_Web\\Models\\GioHang.cs",
+              "ToolTip": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Models\\GioHang.cs",
+              "RelativeToolTip": "OnlineBookStore_Web\\Models\\GioHang.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAzwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-09T02:47:41.593Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "KhuyenMai.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Models\\KhuyenMai.cs",
+              "RelativeDocumentMoniker": "OnlineBookStore_Web\\Models\\KhuyenMai.cs",
+              "ToolTip": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Models\\KhuyenMai.cs",
+              "RelativeToolTip": "OnlineBookStore_Web\\Models\\KhuyenMai.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAxwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-09T02:47:41.653Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "NguoiDung.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Models\\NguoiDung.cs",
+              "RelativeDocumentMoniker": "OnlineBookStore_Web\\Models\\NguoiDung.cs",
+              "ToolTip": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Models\\NguoiDung.cs",
+              "RelativeToolTip": "OnlineBookStore_Web\\Models\\NguoiDung.cs",
+              "ViewState": "AgIAABsAAAAAAAAAAAAowCUAAAA1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-09T02:47:41.543Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "OnlineBookStore_Web\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "OnlineBookStore_Web\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAABcBAAAAAAAAAAAwwCIBAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-09T02:47:41.799Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "Privacy.cshtml",
+              "DocumentMoniker": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Views\\Home\\Privacy.cshtml",
+              "RelativeDocumentMoniker": "OnlineBookStore_Web\\Views\\Home\\Privacy.cshtml",
+              "ToolTip": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Views\\Home\\Privacy.cshtml",
+              "RelativeToolTip": "OnlineBookStore_Web\\Views\\Home\\Privacy.cshtml",
+              "ViewState": "AgIAAHcAAAAAAAAAAAAswIcAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-09T02:47:41.805Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Views\\Home\\Index.cshtml",
               "RelativeDocumentMoniker": "OnlineBookStore_Web\\Views\\Home\\Index.cshtml",
@@ -269,85 +478,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Details.cshtml",
-              "DocumentMoniker": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Views\\Book\\Details.cshtml",
-              "RelativeDocumentMoniker": "OnlineBookStore_Web\\Views\\Book\\Details.cshtml",
-              "ToolTip": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Views\\Book\\Details.cshtml",
-              "RelativeToolTip": "OnlineBookStore_Web\\Views\\Book\\Details.cshtml",
-              "ViewState": "AgIAANcAAAAAAAAAAAAswOwAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-09T02:47:41.82Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "CartController.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Controllers\\CartController.cs",
-              "RelativeDocumentMoniker": "OnlineBookStore_Web\\Controllers\\CartController.cs",
-              "ToolTip": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Controllers\\CartController.cs",
-              "RelativeToolTip": "OnlineBookStore_Web\\Controllers\\CartController.cs",
-              "ViewState": "AgIAAJ4AAAAAAAAAAAAkwKgAAAA4AAAAAAAAAA==",
+              "DocumentIndex": 19,
+              "Title": "OnlineBookstore_DOANContext.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Models\\OnlineBookstore_DOANContext.cs",
+              "RelativeDocumentMoniker": "OnlineBookStore_Web\\Models\\OnlineBookstore_DOANContext.cs",
+              "ToolTip": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Models\\OnlineBookstore_DOANContext.cs",
+              "RelativeToolTip": "OnlineBookStore_Web\\Models\\OnlineBookstore_DOANContext.cs",
+              "ViewState": "AgIAADcAAAAAAAAAAAAqwEoAAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-09T02:47:41.78Z",
+              "WhenOpened": "2026-04-09T16:24:38.26Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Sach.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Models\\Sach.cs",
-              "RelativeDocumentMoniker": "OnlineBookStore_Web\\Models\\Sach.cs",
-              "ToolTip": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Models\\Sach.cs",
-              "RelativeToolTip": "OnlineBookStore_Web\\Models\\Sach.cs",
-              "ViewState": "AgIAACUAAAAAAAAAAAAkwC8AAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-09T02:47:41.53Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "NguoiDung.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Models\\NguoiDung.cs",
-              "RelativeDocumentMoniker": "OnlineBookStore_Web\\Models\\NguoiDung.cs",
-              "ToolTip": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Models\\NguoiDung.cs",
-              "RelativeToolTip": "OnlineBookStore_Web\\Models\\NguoiDung.cs",
-              "ViewState": "AgIAAB0AAAAAAAAAAAAswCUAAAA1AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-09T02:47:41.543Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Views\\Checkout\\Index.cshtml",
-              "RelativeDocumentMoniker": "OnlineBookStore_Web\\Views\\Checkout\\Index.cshtml",
-              "ToolTip": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Views\\Checkout\\Index.cshtml",
-              "RelativeToolTip": "OnlineBookStore_Web\\Views\\Checkout\\Index.cshtml",
-              "ViewState": "AgIAANkAAAAAAAAAAAAcwAABAAAGAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-09T02:47:41.825Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "BookController.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Controllers\\BookController.cs",
-              "RelativeDocumentMoniker": "OnlineBookStore_Web\\Controllers\\BookController.cs",
-              "ToolTip": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Controllers\\BookController.cs",
-              "RelativeToolTip": "OnlineBookStore_Web\\Controllers\\BookController.cs",
-              "ViewState": "AgIAAEYAAAAAAAAAAAAqwFoAAAAdAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-09T02:47:41.573Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 21,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Views\\Cart\\Index.cshtml",
               "RelativeDocumentMoniker": "OnlineBookStore_Web\\Views\\Cart\\Index.cshtml",
@@ -360,7 +504,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 22,
               "Title": "Register.cshtml",
               "DocumentMoniker": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Views\\Account\\Register.cshtml",
               "RelativeDocumentMoniker": "OnlineBookStore_Web\\Views\\Account\\Register.cshtml",
@@ -373,7 +517,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 23,
               "Title": "Login.cshtml",
               "DocumentMoniker": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Views\\Account\\Login.cshtml",
               "RelativeDocumentMoniker": "OnlineBookStore_Web\\Views\\Account\\Login.cshtml",
@@ -386,7 +530,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 24,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Views\\Book\\Index.cshtml",
               "RelativeDocumentMoniker": "OnlineBookStore_Web\\Views\\Book\\Index.cshtml",
@@ -399,46 +543,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "_Layout.cshtml",
-              "DocumentMoniker": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Views\\Shared\\_Layout.cshtml",
-              "RelativeDocumentMoniker": "OnlineBookStore_Web\\Views\\Shared\\_Layout.cshtml",
-              "ToolTip": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Views\\Shared\\_Layout.cshtml",
-              "RelativeToolTip": "OnlineBookStore_Web\\Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AgIAAM4AAAAAAAAAAAAowOQAAAAHAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-09T02:47:41.799Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\appsettings.json",
-              "RelativeDocumentMoniker": "OnlineBookStore_Web\\appsettings.json",
-              "ToolTip": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\appsettings.json",
-              "RelativeToolTip": "OnlineBookStore_Web\\appsettings.json",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAABEAAAAmAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-04-09T02:49:03.863Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "DonHang.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Models\\DonHang.cs",
-              "RelativeDocumentMoniker": "OnlineBookStore_Web\\Models\\DonHang.cs",
-              "ToolTip": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Models\\DonHang.cs",
-              "RelativeToolTip": "OnlineBookStore_Web\\Models\\DonHang.cs",
-              "ViewState": "AgIAAAoAAAAAAAAAAAAQwB0AAAA7AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-09T02:47:41.582Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 25,
               "Title": "_ViewImports.cshtml",
               "DocumentMoniker": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Views\\_ViewImports.cshtml",
               "RelativeDocumentMoniker": "OnlineBookStore_Web\\Views\\_ViewImports.cshtml",
@@ -451,59 +556,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Program.cs",
-              "RelativeDocumentMoniker": "OnlineBookStore_Web\\Program.cs",
-              "ToolTip": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Program.cs",
-              "RelativeToolTip": "OnlineBookStore_Web\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-09T02:47:41.604Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "CheckoutController.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Controllers\\CheckoutController.cs",
-              "RelativeDocumentMoniker": "OnlineBookStore_Web\\Controllers\\CheckoutController.cs",
-              "ToolTip": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Controllers\\CheckoutController.cs",
-              "RelativeToolTip": "OnlineBookStore_Web\\Controllers\\CheckoutController.cs",
-              "ViewState": "AgIAAGgAAAAAAAAAAAAYwIMAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-09T02:47:41.621Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "AccountController.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Controllers\\AccountController.cs",
-              "RelativeDocumentMoniker": "OnlineBookStore_Web\\Controllers\\AccountController.cs",
-              "ToolTip": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Controllers\\AccountController.cs",
-              "RelativeToolTip": "OnlineBookStore_Web\\Controllers\\AccountController.cs",
-              "ViewState": "AgIAANQAAAAAAAAAAAAmwOUAAAAuAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-09T02:47:41.546Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 23,
-              "Title": "ErrorViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Models\\ErrorViewModel.cs",
-              "RelativeDocumentMoniker": "OnlineBookStore_Web\\Models\\ErrorViewModel.cs",
-              "ToolTip": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Models\\ErrorViewModel.cs",
-              "RelativeToolTip": "OnlineBookStore_Web\\Models\\ErrorViewModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-09T02:47:41.54Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 26,
               "Title": "HomeController.cs",
               "DocumentMoniker": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Controllers\\HomeController.cs",
               "RelativeDocumentMoniker": "OnlineBookStore_Web\\Controllers\\HomeController.cs",
@@ -516,20 +569,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
-              "Title": "ChiTietDonHang.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Models\\ChiTietDonHang.cs",
-              "RelativeDocumentMoniker": "OnlineBookStore_Web\\Models\\ChiTietDonHang.cs",
-              "ToolTip": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Models\\ChiTietDonHang.cs",
-              "RelativeToolTip": "OnlineBookStore_Web\\Models\\ChiTietDonHang.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAnAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-09T02:47:41.536Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 27,
               "Title": "appsettings.Development.json",
               "DocumentMoniker": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\appsettings.Development.json",
               "RelativeDocumentMoniker": "OnlineBookStore_Web\\appsettings.Development.json",
@@ -542,7 +582,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 29,
               "Title": "Admin.cs",
               "DocumentMoniker": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Models\\Admin.cs",
               "RelativeDocumentMoniker": "OnlineBookStore_Web\\Models\\Admin.cs",
@@ -555,7 +595,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 28,
               "Title": "OnlineBookStore_Web.csproj",
               "DocumentMoniker": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\OnlineBookStore_Web.csproj",
               "RelativeDocumentMoniker": "OnlineBookStore_Web\\OnlineBookStore_Web.csproj",
@@ -568,80 +608,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
-              "Title": "OrderHistory.cshtml",
-              "DocumentMoniker": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Views\\Account\\OrderHistory.cshtml",
-              "RelativeDocumentMoniker": "OnlineBookStore_Web\\Views\\Account\\OrderHistory.cshtml",
-              "ToolTip": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Views\\Account\\OrderHistory.cshtml",
-              "RelativeToolTip": "OnlineBookStore_Web\\Views\\Account\\OrderHistory.cshtml",
-              "ViewState": "AgIAACIAAAAAAAAAAEBVwCoAAABMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-09T02:47:41.521Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 24,
-              "Title": "ChiTietGioHang.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Models\\ChiTietGioHang.cs",
-              "RelativeDocumentMoniker": "OnlineBookStore_Web\\Models\\ChiTietGioHang.cs",
-              "ToolTip": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Models\\ChiTietGioHang.cs",
-              "RelativeToolTip": "OnlineBookStore_Web\\Models\\ChiTietGioHang.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-09T02:47:41.569Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 28,
-              "Title": "AdminController.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Controllers\\AdminController.cs",
-              "RelativeDocumentMoniker": "OnlineBookStore_Web\\Controllers\\AdminController.cs",
-              "ToolTip": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Controllers\\AdminController.cs",
-              "RelativeToolTip": "OnlineBookStore_Web\\Controllers\\AdminController.cs",
-              "ViewState": "AgIAAGABAAAAAAAAAAAqwIoBAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-09T02:47:41.578Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 30,
               "Title": "OrderDetails.cshtml",
               "DocumentMoniker": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Views\\Admin\\OrderDetails.cshtml",
               "RelativeDocumentMoniker": "OnlineBookStore_Web\\Views\\Admin\\OrderDetails.cshtml",
               "ToolTip": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Views\\Admin\\OrderDetails.cshtml",
               "RelativeToolTip": "OnlineBookStore_Web\\Views\\Admin\\OrderDetails.cshtml",
-              "ViewState": "AgIAAAQAAAAAAAAAAEBVwBcAAABKAAAAAAAAAA==",
+              "ViewState": "AgIAAAEAAAAAAAAAAABhwBcAAABKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2026-04-09T02:47:41.589Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 29,
-              "Title": "GioHang.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Models\\GioHang.cs",
-              "RelativeDocumentMoniker": "OnlineBookStore_Web\\Models\\GioHang.cs",
-              "ToolTip": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Models\\GioHang.cs",
-              "RelativeToolTip": "OnlineBookStore_Web\\Models\\GioHang.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAIBJwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-09T02:47:41.593Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 32,
-              "Title": "NhaXuatBan.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Models\\NhaXuatBan.cs",
-              "RelativeDocumentMoniker": "OnlineBookStore_Web\\Models\\NhaXuatBan.cs",
-              "ToolTip": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Models\\NhaXuatBan.cs",
-              "RelativeToolTip": "OnlineBookStore_Web\\Models\\NhaXuatBan.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-09T02:47:41.597Z",
               "EditorCaption": ""
             },
             {
@@ -659,7 +634,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 32,
               "Title": "ListOrders.cshtml",
               "DocumentMoniker": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Views\\Admin\\ListOrders.cshtml",
               "RelativeDocumentMoniker": "OnlineBookStore_Web\\Views\\Admin\\ListOrders.cshtml",
@@ -672,7 +647,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
+              "DocumentIndex": 34,
               "Title": "ForgotPassword.cshtml",
               "DocumentMoniker": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Views\\Account\\ForgotPassword.cshtml",
               "RelativeDocumentMoniker": "OnlineBookStore_Web\\Views\\Account\\ForgotPassword.cshtml",
@@ -685,7 +660,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 33,
               "Title": "ResetPassword.cshtml",
               "DocumentMoniker": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Views\\Account\\ResetPassword.cshtml",
               "RelativeDocumentMoniker": "OnlineBookStore_Web\\Views\\Account\\ResetPassword.cshtml",
@@ -698,7 +673,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 36,
+              "DocumentIndex": 35,
               "Title": "CreateBook.cshtml",
               "DocumentMoniker": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Views\\Admin\\CreateBook.cshtml",
               "RelativeDocumentMoniker": "OnlineBookStore_Web\\Views\\Admin\\CreateBook.cshtml",
@@ -711,20 +686,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 37,
-              "Title": "KhuyenMai.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Models\\KhuyenMai.cs",
-              "RelativeDocumentMoniker": "OnlineBookStore_Web\\Models\\KhuyenMai.cs",
-              "ToolTip": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Models\\KhuyenMai.cs",
-              "RelativeToolTip": "OnlineBookStore_Web\\Models\\KhuyenMai.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-09T02:47:41.653Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 38,
+              "DocumentIndex": 36,
               "Title": "VerifyOtp.cshtml",
               "DocumentMoniker": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Views\\Account\\VerifyOtp.cshtml",
               "RelativeDocumentMoniker": "OnlineBookStore_Web\\Views\\Account\\VerifyOtp.cshtml",
@@ -737,7 +699,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 39,
+              "DocumentIndex": 37,
               "Title": "AdminAuthorization.cs",
               "DocumentMoniker": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Filters\\AdminAuthorization.cs",
               "RelativeDocumentMoniker": "OnlineBookStore_Web\\Filters\\AdminAuthorization.cs",
@@ -750,7 +712,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 40,
+              "DocumentIndex": 38,
               "Title": "EditProfile.cshtml",
               "DocumentMoniker": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Views\\Admin\\EditProfile.cshtml",
               "RelativeDocumentMoniker": "OnlineBookStore_Web\\Views\\Admin\\EditProfile.cshtml",
@@ -763,20 +725,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 41,
+              "DocumentIndex": 39,
               "Title": "_AdminLayout.cshtml",
               "DocumentMoniker": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Views\\Shared\\_AdminLayout.cshtml",
               "RelativeDocumentMoniker": "OnlineBookStore_Web\\Views\\Shared\\_AdminLayout.cshtml",
               "ToolTip": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Views\\Shared\\_AdminLayout.cshtml",
               "RelativeToolTip": "OnlineBookStore_Web\\Views\\Shared\\_AdminLayout.cshtml",
-              "ViewState": "AgIAAHsAAAAAAAAAAEBVwAMAAAAgAAAAAAAAAA==",
+              "ViewState": "AgIAAHgAAAAAAAAAAABhwAMAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2026-04-09T02:47:41.788Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 42,
+              "DocumentIndex": 40,
               "Title": "Error.cshtml",
               "DocumentMoniker": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Views\\Shared\\Error.cshtml",
               "RelativeDocumentMoniker": "OnlineBookStore_Web\\Views\\Shared\\Error.cshtml",
@@ -789,7 +751,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 43,
+              "DocumentIndex": 41,
               "Title": "_ViewStart.cshtml",
               "DocumentMoniker": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Views\\_ViewStart.cshtml",
               "RelativeDocumentMoniker": "OnlineBookStore_Web\\Views\\_ViewStart.cshtml",
@@ -802,20 +764,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 44,
-              "Title": "Privacy.cshtml",
-              "DocumentMoniker": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Views\\Home\\Privacy.cshtml",
-              "RelativeDocumentMoniker": "OnlineBookStore_Web\\Views\\Home\\Privacy.cshtml",
-              "ToolTip": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Views\\Home\\Privacy.cshtml",
-              "RelativeToolTip": "OnlineBookStore_Web\\Views\\Home\\Privacy.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-09T02:47:41.805Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 45,
+              "DocumentIndex": 42,
               "Title": "_ValidationScriptsPartial.cshtml",
               "DocumentMoniker": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
               "RelativeDocumentMoniker": "OnlineBookStore_Web\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
@@ -828,7 +777,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 46,
+              "DocumentIndex": 43,
               "Title": "DeleteBook.cshtml",
               "DocumentMoniker": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Views\\Admin\\DeleteBook.cshtml",
               "RelativeDocumentMoniker": "OnlineBookStore_Web\\Views\\Admin\\DeleteBook.cshtml",
@@ -841,20 +790,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 47,
+              "DocumentIndex": 44,
               "Title": "LoginAdmin.cshtml",
               "DocumentMoniker": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Views\\Account\\LoginAdmin.cshtml",
               "RelativeDocumentMoniker": "OnlineBookStore_Web\\Views\\Account\\LoginAdmin.cshtml",
               "ToolTip": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Views\\Account\\LoginAdmin.cshtml",
               "RelativeToolTip": "OnlineBookStore_Web\\Views\\Account\\LoginAdmin.cshtml",
-              "ViewState": "AgIAADQAAAAAAAAAAEBVwBcAAABPAAAAAAAAAA==",
+              "ViewState": "AgIAADEAAAAAAAAAAABhwBcAAABPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2026-04-09T02:47:41.864Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 49,
+              "DocumentIndex": 46,
               "Title": "ListBooks.cshtml",
               "DocumentMoniker": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Views\\Admin\\ListBooks.cshtml",
               "RelativeDocumentMoniker": "OnlineBookStore_Web\\Views\\Admin\\ListBooks.cshtml",
@@ -867,7 +816,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 50,
+              "DocumentIndex": 47,
               "Title": "SalesSummary.cshtml",
               "DocumentMoniker": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Views\\Admin\\SalesSummary.cshtml",
               "RelativeDocumentMoniker": "OnlineBookStore_Web\\Views\\Admin\\SalesSummary.cshtml",
@@ -880,7 +829,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 48,
+              "DocumentIndex": 45,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Views\\Admin\\Index.cshtml",
               "RelativeDocumentMoniker": "OnlineBookStore_Web\\Views\\Admin\\Index.cshtml",
@@ -893,7 +842,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 51,
+              "DocumentIndex": 48,
               "Title": "EditStatus.cshtml",
               "DocumentMoniker": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Views\\Admin\\EditStatus.cshtml",
               "RelativeDocumentMoniker": "OnlineBookStore_Web\\Views\\Admin\\EditStatus.cshtml",
@@ -906,7 +855,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 52,
+              "DocumentIndex": 49,
               "Title": "EditBook.cshtml",
               "DocumentMoniker": "C:\\Users\\PC\\Documents\\OnlineBookStore_DOAN\\OnlineBookStore_Web\\OnlineBookStore_Web\\Views\\Admin\\EditBook.cshtml",
               "RelativeDocumentMoniker": "OnlineBookStore_Web\\Views\\Admin\\EditBook.cshtml",

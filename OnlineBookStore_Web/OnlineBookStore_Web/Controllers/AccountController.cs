@@ -127,7 +127,22 @@ namespace OnlineBookStore_Web.Controllers
             ModelState.AddModelError(string.Empty, "Tên đăng nhập hoặc mật khẩu không đúng.");
             return View(model);
         }
+        public async Task<IActionResult> OrderHistory()
+        {
+            // 1. Lấy mã người dùng từ Session
+            var userId = HttpContext.Session.GetInt32("UserId");
+            if (userId == null) return RedirectToAction("Login");
 
+            // 2. Lấy danh sách đơn hàng của người dùng này (Kèm theo chi tiết)
+            var orders = await _context.DonHangs
+                .Include(d => d.ChiTietDonHangs)
+                    .ThenInclude(ct => ct.MaSachNavigation)
+                .Where(d => d.MaNd == userId.Value)
+                .OrderByDescending(d => d.NgayDatHang)
+                .ToListAsync();
+
+            return View(orders);
+        }
         // --- ĐĂNG XUẤT (LOGOUT) ---
         public IActionResult Logout()
         {
@@ -236,6 +251,19 @@ namespace OnlineBookStore_Web.Controllers
                 Body = $"OTP: {otp}",
                 IsBodyHtml = true
             }) smtp.Send(message);
+        }
+        public async Task<IActionResult> History() // Đổi tên hàm thành History cho rõ ràng
+        {
+            var userId = HttpContext.Session.GetInt32("UserId");
+            if (!userId.HasValue) return RedirectToAction("Login", "Account");
+
+            var orders = await _context.DonHangs
+                .Where(d => d.MaNd == userId.Value)
+                .OrderByDescending(d => d.NgayDatHang)
+                .ToListAsync();
+
+            // SỬA TẠI ĐÂY: Chỉ định đường dẫn tuyệt đối đến file View trong Account
+            return View("~/Views/Account/OrderHistory.cshtml", orders);
         }
     }
 }

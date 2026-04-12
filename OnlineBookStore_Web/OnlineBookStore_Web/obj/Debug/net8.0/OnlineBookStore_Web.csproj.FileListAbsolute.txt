@@ -136,3 +136,5 @@ C:\Users\PC\Documents\OnlineBookStore_DOAN\OnlineBookStore_Web\OnlineBookStore_W
 C:\Users\PC\Documents\OnlineBookStore_DOAN\OnlineBookStore_Web\OnlineBookStore_Web\obj\Debug\net8.0\OnlineBookStore_Web.genruntimeconfig.cache
 C:\Users\PC\Documents\OnlineBookStore_DOAN\OnlineBookStore_Web\OnlineBookStore_Web\obj\Debug\net8.0\ref\OnlineBookStore_Web.dll
 C:\Users\PC\Documents\OnlineBookStore_DOAN\OnlineBookStore_Web\OnlineBookStore_Web\bin\Debug\net8.0\Newtonsoft.Json.dll
+C:\Users\PC\Documents\OnlineBookStore_DOAN\OnlineBookStore_Web\OnlineBookStore_Web\bin\Debug\net8.0\PayOS.dll
+C:\Users\PC\Documents\OnlineBookStore_DOAN\OnlineBookStore_Web\OnlineBookStore_Web\bin\Debug\net8.0\payos-lib-dotnet-5.0.dll

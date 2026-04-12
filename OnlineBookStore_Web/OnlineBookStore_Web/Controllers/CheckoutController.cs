@@ -1,24 +1,25 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using OnlineBookStore_Web.Models;
 using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json;
-using System.Security.Cryptography;
-using System.Text;
+using Net.payOS;
+using Net.payOS.Types;
 
 namespace OnlineBookStore_Web.Controllers
 {
     public class CheckoutController : Controller
     {
         private readonly OnlineBookstore_DOANContext _context;
-        private readonly IConfiguration _configuration;
+        // Sử dụng định danh rõ ràng để tránh lỗi Namespace CS0118
+        private readonly Net.payOS.PayOS _payOS;
 
-        public CheckoutController(OnlineBookstore_DOANContext context, IConfiguration configuration)
+        public CheckoutController(OnlineBookstore_DOANContext context, Net.payOS.PayOS payOSService)
         {
             _context = context;
-            _configuration = configuration;
+            _payOS = payOSService;
         }
 
-        // Hiển thị trang thanh toán
+        // 1. Hiển thị trang thanh toán
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
             var userId = HttpContext.Session.GetInt32("UserId");
@@ -27,106 +28,131 @@ namespace OnlineBookStore_Web.Controllers
             var user = await _context.NguoiDungs.FindAsync(userId.Value);
             ViewBag.User = user;
 
-            var cartItems = await _context.ChiTietGioHangs
-                .Include(ct => ct.MaSachNavigation)
-                .Where(ct => ct.MaGhNavigation.MaNd == userId.Value)
-                .ToListAsync();
-
+            var cartItems = await GetCartItems(userId.Value);
             if (!cartItems.Any()) return RedirectToAction("Index", "Cart");
 
             return View(cartItems);
         }
 
+        // 2. Xử lý đặt hàng chính
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> ProcessOrder(string HoTen, string DiaChi, string SoDienThoai, string PaymentMethod)
+        public async Task<IActionResult> ProcessOrder(string PaymentMethod)
         {
             var userId = HttpContext.Session.GetInt32("UserId");
             if (!userId.HasValue) return RedirectToAction("Login", "Account");
 
-            var cartItems = await _context.ChiTietGioHangs
-                .Include(ct => ct.MaSachNavigation)
-                .Where(ct => ct.MaGhNavigation.MaNd == userId.Value)
-                .ToListAsync();
+            var cartItems = await GetCartItems(userId.Value);
+            if (!cartItems.Any()) return RedirectToAction("Index", "Cart");
 
-            long totalAmount = (long)cartItems.Sum(x => x.SoLuong * x.MaSachNavigation.GiaBan);
-
-            // --- XỬ LÝ THANH TOÁN MOMO ---
-            if (PaymentMethod == "MoMo")
+            // Nếu chọn PayOS (VietQR)
+            if (PaymentMethod == "PayOS")
             {
-                string endpoint = "https://test-payment.momo.vn/v2/gateway/api/create";
-                string partnerCode = _configuration["Momo:PartnerCode"];
-                string accessKey = _configuration["Momo:AccessKey"];
-                string secretKey = _configuration["Momo:SecretKey"];
-
-                string orderInfo = "Thanh toán đơn hàng OnlineBookStore";
-                string redirectUrl = $"{Request.Scheme}://{Request.Host}/Checkout/Success";
-                string ipnUrl = $"{Request.Scheme}://{Request.Host}/Checkout/Success";
-                string requestId = DateTime.Now.Ticks.ToString();
-                string orderId = DateTime.Now.Ticks.ToString();
-                string extraData = "";
-
-                string rawHash = $"accessKey={accessKey}&amount={totalAmount}&extraData={extraData}&ipnUrl={ipnUrl}&orderId={orderId}&orderInfo={orderInfo}&partnerCode={partnerCode}&redirectUrl={redirectUrl}&requestId={requestId}&requestType=captureWallet";
-                string signature = ComputeHmacSha256(rawHash, secretKey);
-
-                var requestData = new
-                {
-                    partnerCode,
-                    requestId,
-                    ipnUrl,
-                    redirectUrl,
-                    orderId,
-                    orderInfo,
-                    amount = totalAmount.ToString(),
-                    extraData,
-                    requestType = "captureWallet",
-                    signature,
-                    lang = "vi"
-                };
-
-                using (var client = new HttpClient())
-                {
-                    var response = await client.PostAsync(endpoint, new StringContent(JsonConvert.SerializeObject(requestData), Encoding.UTF8, "application/json"));
-                    var responseContent = await response.Content.ReadAsStringAsync();
-                    dynamic result = JsonConvert.DeserializeObject(responseContent);
-
-                    if (result.payUrl != null) return Redirect(result.payUrl.ToString());
-
-                    TempData["Error"] = "Lỗi MoMo: " + result.message;
-                    return RedirectToAction("Index");
-                }
+                long totalAmount = (long)cartItems.Sum(x => x.SoLuong * x.MaSachNavigation.GiaBan);
+                return await CreatePayOSPayment(totalAmount, cartItems);
             }
 
-            // --- THANH TOÁN COD ---
-            // Thêm logic lưu DonHang vào Database của Nguyên tại đây
-            TempData["SuccessMessage"] = "Đặt hàng thành công (COD)!";
-            HttpContext.Session.SetInt32("CartCount", 0);
-            return RedirectToAction("Index", "Home");
+            // Nếu chọn COD hoặc các phương thức khác, lưu đơn và chuyển về lịch sử
+            return await SaveOrderAndRedirect(userId.Value, "COD");
         }
 
-        public async Task<IActionResult> Success()
+        // 3. Logic tạo link thanh toán PayOS
+        private async Task<IActionResult> CreatePayOSPayment(long totalAmount, List<ChiTietGioHang> cartItems)
+        {
+            // Tạo mã đơn hàng số (PayOS yêu cầu kiểu int/long cho OrderCode)
+            int orderCode = int.Parse(DateTimeOffset.Now.ToString("ffffff"));
+
+            // Fix lỗi tên sản phẩm quá dài (giới hạn 20 ký tự)
+            var items = cartItems.Select(x => new ItemData(
+                x.MaSachNavigation.TenSach.Length > 20 ? x.MaSachNavigation.TenSach.Substring(0, 20) : x.MaSachNavigation.TenSach,
+                (int)x.SoLuong,
+                (int)x.MaSachNavigation.GiaBan)).ToList();
+
+            // Fix lỗi Description quá 25 ký tự
+            var paymentData = new PaymentData(
+                orderCode,
+                (int)totalAmount,
+                $"Thanh toan OBS {orderCode}",
+                items,
+                $"{Request.Scheme}://{Request.Host}/Checkout/Cancel",
+                $"{Request.Scheme}://{Request.Host}/Checkout/PaymentSuccess"
+            );
+
+            var response = await _payOS.createPaymentLink(paymentData);
+            return Redirect(response.checkoutUrl);
+        }
+
+        // 4. Callback khi PayOS thanh toán thành công
+        public async Task<IActionResult> PaymentSuccess()
         {
             var userId = HttpContext.Session.GetInt32("UserId");
-            if (userId.HasValue)
-            {
-                var items = _context.ChiTietGioHangs.Where(ct => ct.MaGhNavigation.MaNd == userId);
-                _context.ChiTietGioHangs.RemoveRange(items);
-                await _context.SaveChangesAsync();
-                HttpContext.Session.SetInt32("CartCount", 0);
-            }
-            TempData["SuccessMessage"] = "Thanh toán MoMo thành công!";
-            return RedirectToAction("Index", "Home");
+            if (!userId.HasValue) return RedirectToAction("Index", "Home");
+
+            return await SaveOrderAndRedirect(userId.Value, "PayOS");
         }
 
-        private string ComputeHmacSha256(string message, string secretKey)
+        // 5. Hàm dùng chung để lưu đơn hàng, xóa giỏ và chuyển hướng về Lịch sử
+        private async Task<IActionResult> SaveOrderAndRedirect(int userId, string method)
         {
-            var keyBytes = Encoding.UTF8.GetBytes(secretKey);
-            var messageBytes = Encoding.UTF8.GetBytes(message);
-            using (var hmac = new HMACSHA256(keyBytes))
+            // 1. Lấy thông tin giỏ hàng và người dùng
+            var cart = await _context.GioHangs
+                .Include(g => g.ChiTietGioHangs)
+                .ThenInclude(ct => ct.MaSachNavigation)
+                .FirstOrDefaultAsync(g => g.MaNd == userId);
+
+            if (cart == null || !cart.ChiTietGioHangs.Any())
+                return RedirectToAction("Index", "Cart");
+
+            var user = await _context.NguoiDungs.FindAsync(userId);
+
+            // 2. Tạo đối tượng đơn hàng mới
+            var newOrder = new DonHang
             {
-                var hashBytes = hmac.ComputeHash(messageBytes);
-                return BitConverter.ToString(hashBytes).Replace("-", "").ToLower();
+                MaNd = userId,
+                NgayDatHang = DateTime.Now,
+                TongTien = cart.ChiTietGioHangs.Sum(ct => ct.SoLuong * ct.MaSachNavigation.GiaBan),
+                TrangThaiDh = "Đang chờ xử lý", // Trạng thái mặc định
+                DiaChiGiaoHang = user.DiaChi, // Lấy địa chỉ từ thông tin user
+                ChiTietDonHangs = new List<ChiTietDonHang>()
+            };
+
+            // 3. Chuyển đổi từ ChiTietGioHang sang ChiTietDonHang
+            foreach (var item in cart.ChiTietGioHangs)
+            {
+                newOrder.ChiTietDonHangs.Add(new ChiTietDonHang
+                {
+                    MaSach = item.MaSach,
+                    SoLuong = item.SoLuong,
+                    DonGia = item.MaSachNavigation.GiaBan
+                });
             }
+
+            // 4. Lưu vào Database
+            _context.DonHangs.Add(newOrder);
+
+            // 5. Xóa các sản phẩm trong giỏ hàng sau khi đã đặt hàng
+            _context.ChiTietGioHangs.RemoveRange(cart.ChiTietGioHangs);
+
+            await _context.SaveChangesAsync();
+
+            // 6. Cập nhật lại Session số lượng giỏ hàng về 0
+            HttpContext.Session.SetInt32("CartCount", 0);
+            TempData["SuccessMessage"] = $"Đặt hàng thành công qua {method}!";
+
+            // 7. ĐIỀU HƯỚNG: Quay về hàm History trong AccountController
+            // Vì hàm History của bạn nằm trong AccountController nên dùng:
+            return RedirectToAction("History", "Account");
+        }
+
+        public IActionResult Cancel() => RedirectToAction("Index", "Cart");
+
+        // Helper lấy giỏ hàng kèm thông tin sách
+        private async Task<List<ChiTietGioHang>> GetCartItems(int userId)
+        {
+            return await _context.ChiTietGioHangs
+                .Include(ct => ct.MaSachNavigation)
+                .Where(ct => ct.MaGhNavigation.MaNd == userId)
+                .ToListAsync();
         }
     }
 }

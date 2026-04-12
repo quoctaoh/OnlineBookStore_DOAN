@@ -204,32 +204,30 @@
                         }
                     </div>
 
-                    @* Phương thức thanh toán *@
-                    <div class="mb-4">
-                        <div class="section-header mb-3">
-                            <i class="bi bi-wallet2" style="font-size: 1.2rem;"></i>
-                            <h6 class="m-0 fw-bold">Thanh Toán</h6>
-                        </div>
-                        
-                        <label class="payment-method-card">
-                            <input type="radio" name="PaymentMethod" value="COD" checked>
-                            <div class="card-content">
-                                <div class="fw-bold small">Tiền mặt (COD)</div>
-                                <div class="text-muted" style="font-size: 0.7rem;">Trả tiền khi nhận hàng</div>
-                            </div>
-                        </label>
+                    
+                  @* Phương thức thanh toán *@
+<div class="mb-4">
+    <div class="section-header mb-3">
+        <i class="bi bi-wallet2" style="font-size: 1.2rem;"></i>
+        <h6 class="m-0 fw-bold">Phương Thức Thanh Toán</h6>
+    </div>
+    
+    <label class="payment-method-card">
+        <input type="radio" name="PaymentMethod" value="COD" checked>
+        <div class="card-content">
+            <div class="fw-bold small">Tiền mặt (COD)</div>
+            <div class="text-muted" style="font-size: 0.7rem;">Trả tiền khi nhận sách tại nhà</div>
+        </div>
+    </label>
 
-                        <label class="payment-method-card">
-                            <input type="radio" name="PaymentMethod" value="MoMo">
-                            <div class="card-content d-flex align-items-center">
-                                <img src="/images/bookcovers/momo.png" width="24" class="me-2 rounded shadow-sm" onerror="this.style.display='none'">
-                                <div>
-                                    <div class="fw-bold small">Ví điện tử MoMo</div>
-                                    <div class="text-muted" style="font-size: 0.7rem;">Thanh toán nhanh qua App</div>
-                                </div>
-                            </div>
-                        </label>
-                    </div>
+    <label class="payment-method-card">
+        <input type="radio" name="PaymentMethod" value="PayOS">
+        <div class="card-content">
+            <div class="fw-bold small">Chuyển khoản VietQR (PayOS)</div>
+            <div class="text-muted" style="font-size: 0.7rem;">Quét mã QR qua ứng dụng Ngân hàng</div>
+        </div>
+    </label>
+</div>
 
                     @* Tổng kết *@
                     <div class="summary-box">
