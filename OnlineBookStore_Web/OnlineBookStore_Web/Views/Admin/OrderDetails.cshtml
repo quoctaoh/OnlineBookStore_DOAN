@@ -6,63 +6,206 @@
     Layout = "_Layout";
 }
 
-<h1>Chi Tiết Đơn Hàng #@order?.MaDh</h1>
-<hr />
+<style>
+    :root {
+        --glass-bg: rgba(255, 255, 255, 0.03);
+        --glass-border: rgba(255, 255, 255, 0.1);
+        --accent-cyan: #64ffda;
+    }
 
-@if (order == null)
-{
-        <p class="text-danger">Không tìm thấy thông tin đơn hàng.</p>
-}
-else
-{
-    @* KHỐI ROW CHÍNH *@
-        <div class="row">
+    .page-header {
+        border-bottom: 2px solid var(--accent-cyan);
+        display: inline-block;
+        padding-bottom: 10px;
+        margin-bottom: 30px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+
+    /* Card Glass */
+    .info-card-glass {
+        background: var(--glass-bg);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        border: 1px solid var(--glass-border);
+        border-radius: 20px;
+        padding: 25px;
+        height: 100%;
+        transition: 0.3s;
+    }
+
+        .info-card-glass:hover {
+            border-color: rgba(100, 255, 218, 0.3);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+    .info-label {
+        color: var(--accent-cyan);
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        margin-bottom: 5px;
+        display: block;
+    }
+
+    .info-value {
+        color: #e6f1ff;
+        font-weight: 500;
+        margin-bottom: 15px;
+    }
+
+    /* Bảng sản phẩm */
+    .table-container-glass {
+        background: var(--glass-bg);
+        border: 1px solid var(--glass-border);
+        border-radius: 20px;
+        padding: 20px;
+        margin-top: 20px;
+    }
+
+    .table-custom {
+        color: #e6f1ff !important;
+        margin-bottom: 0;
+    }
+
+        .table-custom thead th {
+            background: rgba(100, 255, 218, 0.05);
+            color: var(--accent-cyan);
+            border-bottom: 1px solid var(--glass-border);
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            padding: 12px;
+        }
+
+        .table-custom tbody td {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 12px;
+        }
+
+    .status-badge-detail {
+        padding: 8px 16px;
+        border-radius: 50px;
+        font-size: 0.8rem;
+        font-weight: 700;
+        background: rgba(100, 255, 218, 0.1);
+        color: var(--accent-cyan);
+        border: 1px solid rgba(100, 255, 218, 0.3);
+    }
+</style>
+
+<div class="container mt-5 mb-5">
+    <div class="mb-4">
+        <h2 class="page-header fw-bold text-white mb-0">
+            <i class="bi bi-receipt me-2"></i>CHI TIẾT ĐƠN HÀNG #@order?.MaDh
+        </h2>
+    </div>
+
+    @if (order == null)
+    {
+        <div class="info-card-glass text-center py-5">
+            <i class="bi bi-exclamation-triangle display-1 text-danger mb-3"></i>
+            <p class="text-danger fs-4">Không tìm thấy thông tin đơn hàng.</p>
+            <a asp-action="ListOrders" class="btn btn-outline-light rounded-pill px-4 mt-3">Quay lại danh sách</a>
+        </div>
+    }
+    else
+    {
+        <div class="row g-4 mb-5">
+            @* CỘT 1: THÔNG TIN KHÁCH HÀNG *@
             <div class="col-md-6">
-                <div class="card p-3 mb-4">
-                    <h5>Thông tin Khách hàng</h5>
-                    <p><strong>Khách hàng:</strong> @(order.MaNdNavigation?.HoTen ?? "N/A")</p>
-                    <p><strong>Điện thoại:</strong> @(order.MaNdNavigation?.DienThoai ?? "N/A")</p>
-                    <p><strong>Ngày đặt:</strong> @order.NgayDatHang.ToString("dd/MM/yyyy HH:mm")</p>
-                    <p><strong>Địa chỉ giao:</strong> @order.DiaChiGiaoHang</p>
+                <div class="info-card-glass shadow">
+                    <h5 class="text-white fw-bold mb-4 border-bottom border-secondary pb-2">
+                        <i class="bi bi-person-badge me-2 text-info"></i>Thông tin Khách hàng
+                    </h5>
+                    
+                    <span class="info-label">Tên khách hàng</span>
+                    <div class="info-value fs-5">@(order.MaNdNavigation?.HoTen ?? "Khách vãng lai")</div>
+
+                    <span class="info-label">Số điện thoại</span>
+                    <div class="info-value">@(order.MaNdNavigation?.DienThoai ?? "Chưa cập nhật")</div>
+
+                    <span class="info-label">Ngày đặt hàng</span>
+                    <div class="info-value">@order.NgayDatHang.ToString("dd/MM/yyyy HH:mm")</div>
+
+                    <span class="info-label">Địa chỉ giao nhận</span>
+                    <div class="info-value mb-0">
+                        <i class="bi bi-geo-alt me-1 text-danger"></i> @order.DiaChiGiaoHang
+                    </div>
                 </div>
             </div>
+
+            @* CỘT 2: TRẠNG THÁI & THANH TOÁN *@
             <div class="col-md-6">
-                <div class="card p-3 mb-4 bg-light">
-                    <h5>Trạng thái & Tổng tiền</h5>
-                    <p><strong>Trạng thái:</strong> <span class="badge bg-primary">@order.TrangThaiDh</span></p>
-                    <p><strong>Tổng tiền:</strong> <strong class="text-danger">@String.Format("{0:N0} VNĐ", order.TongTien)</strong></p>
-                    <a asp-action="EditStatus" asp-route-id="@order.MaDh" class="btn btn-sm btn-warning">Cập nhật Trạng thái</a>
+                <div class="info-card-glass shadow" style="background: rgba(100, 255, 218, 0.02);">
+                    <h5 class="text-white fw-bold mb-4 border-bottom border-secondary pb-2">
+                        <i class="bi bi-credit-card-2-back me-2 text-warning"></i>Trạng thái & Thanh toán
+                    </h5>
+
+                    <span class="info-label">Tình trạng đơn hàng</span>
+                    <div class="mb-4">
+                        <span class="status-badge-detail">@order.TrangThaiDh</span>
+                    </div>
+
+                    <span class="info-label">Tổng giá trị đơn hàng</span>
+                    <div class="display-5 fw-bold mb-4" style="color: var(--accent-cyan);">
+                        @String.Format("{0:N0}", order.TongTien) <small style="font-size: 1.5rem;">đ</small>
+                    </div>
+
+                    <div class="d-grid gap-2">
+                        <a asp-action="EditStatus" asp-route-id="@order.MaDh" class="btn btn-warning fw-bold rounded-pill py-2">
+                            <i class="bi bi-arrow-repeat me-2"></i>CẬP NHẬT TRẠNG THÁI
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
-    @* KHỐI ROW CHÍNH KẾT THÚC *@
 
-        <h4>Sản phẩm đã đặt</h4>
-        <table class="table table-bordered table-sm">
-            <thead>
-                <tr>
-                    <th>Tên Sách</th>
-                    <th>Tác Giả</th>
-                    <th>Đơn Giá (Tại thời điểm đặt)</th>
-                    <th>Số lượng</th>
-                    <th>Thành tiền</th>
-                </tr>
-            </thead>
-                <tbody>
-
-            <tbody>
-                @foreach (var detail in Model)
-                {
+        @* DANH SÁCH SẢN PHẨM *@
+        <h4 class="text-white fw-bold mb-3"><i class="bi bi-box-seam me-2 text-info"></i>Sản phẩm đã đặt</h4>
+        <div class="table-container-glass shadow-lg mb-4">
+            <div class="table-responsive">
+                <table class="table table-custom align-middle">
+                    <thead>
                         <tr>
-                            <td>@detail.MaSachNavigation?.TenSach</td>
-                            <td>@detail.MaSachNavigation?.TacGia</td>
-                            <td>@String.Format("{0:N0} VNĐ", detail.DonGia)</td>
-                            <td>@detail.SoLuong</td> 
-                            <td>@String.Format("{0:N0} VNĐ", detail.SoLuong * detail.DonGia)</td>
+                            <th>Tên Sách</th>
+                            <th>Tác Giả</th>
+                            <th class="text-end">Đơn Giá</th>
+                            <th class="text-center">Số lượng</th>
+                            <th class="text-end">Thành tiền</th>
                         </tr>
-                }
-            </tbody>
-        </table>
+                    </thead>
+                    <tbody>
+                        @foreach (var detail in Model)
+                        {
+                            <tr>
+                                <td class="fw-bold text-white">@detail.MaSachNavigation?.TenSach</td>
+                                <td class="text-muted">@detail.MaSachNavigation?.TacGia</td>
+                                <td class="text-end">@String.Format("{0:N0}", detail.DonGia) đ</td>
+                                <td class="text-center">
+                                    <span class="badge bg-secondary rounded-pill">x @detail.SoLuong</span>
+                                </td>
+                                <td class="text-end fw-bold" style="color: var(--accent-cyan);">
+                                    @String.Format("{0:N0}", detail.SoLuong * detail.DonGia) đ
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                    <tfoot class="border-top border-secondary">
+                        <tr>
+                            <td colspan="4" class="text-end text-muted text-uppercase fw-bold pt-3">Tổng cộng thanh toán:</td>
+                            <td class="text-end fs-4 fw-bold pt-3" style="color: var(--accent-cyan);">
+                                @String.Format("{0:N0}", order.TongTien) đ
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
 
-        <a asp-action="ListOrders" class="btn btn-secondary">Quay lại Danh sách Đơn hàng</a>
-}
+        <div class="mt-4">
+            <a asp-action="ListOrders" class="btn btn-outline-light rounded-pill px-4 btn-sm">
+                <i class="bi bi-arrow-left me-2"></i>Quay lại danh sách đơn hàng
+            </a>
+        </div>
+    }
+</div>

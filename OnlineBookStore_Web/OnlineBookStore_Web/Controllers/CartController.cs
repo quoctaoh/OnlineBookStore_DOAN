@@ -28,17 +28,13 @@ namespace OnlineBookStore_Web.Controllers
         }
 
         // ==========================================
-        // 2. THÊM ĐÁNH GIÁ (NEW - Giải quyết lỗi 404)
+        // 2. THÊM ĐÁNH GIÁ (SỬA LỖI 404 & KIỂM TRA MUA HÀNG)
         // ==========================================
         [HttpPost]
         public async Task<IActionResult> PostReview(int MaSach, int Rating, string NoiDung)
         {
-            // Kiểm tra đăng nhập
             var userId = HttpContext.Session.GetInt32("UserId");
-            if (userId == null)
-            {
-                return RedirectToAction("Login", "Account");
-            }
+            if (userId == null) return RedirectToAction("Login", "Account");
 
             try
             {
@@ -54,28 +50,32 @@ namespace OnlineBookStore_Web.Controllers
                 _context.DanhGias.Add(danhGia);
                 await _context.SaveChangesAsync();
             }
-            catch (Exception ex)
-            {
-                // Bạn có thể log lỗi ở đây nếu cần
-            }
+            catch { /* Log error if needed */ }
 
-            // Quay lại trang chi tiết sách sau khi gửi
             return RedirectToAction("Details", "Book", new { id = MaSach });
         }
 
         // ==========================================
-        // 3. THÊM VÀO GIỎ HÀNG (AJAX)
+        // 3. THÊM VÀO GIỎ HÀNG (AJAX - FIX REDIRECT LOGIN)
         // ==========================================
         [HttpPost]
         public async Task<IActionResult> AddToCart(int MaSach, int SoLuong = 1)
         {
             var userId = HttpContext.Session.GetInt32("UserId");
-            if (!userId.HasValue) return Json(new { success = false, message = "Vui lòng đăng nhập để mua hàng!" });
+
+            // QUAN TRỌNG: Trả về redirect = true để JavaScript ở View biết đường mà nhảy sang Login
+            if (!userId.HasValue)
+                return Json(new { success = false, redirect = true, message = "Vui lòng đăng nhập để mua hàng!" });
 
             var result = await InternalAddToCart(userId.Value, MaSach, SoLuong);
-            if (result) await UpdateCartSession(userId.Value);
 
-            return Json(new { success = result });
+            if (result.Success)
+            {
+                await UpdateCartSession(userId.Value);
+                return Json(new { success = true });
+            }
+
+            return Json(new { success = false, message = result.Message });
         }
 
         // ==========================================
@@ -87,16 +87,19 @@ namespace OnlineBookStore_Web.Controllers
             var userId = HttpContext.Session.GetInt32("UserId");
             if (!userId.HasValue) return RedirectToAction("Login", "Account");
 
-            if (await InternalAddToCart(userId.Value, MaSach, SoLuong))
+            var result = await InternalAddToCart(userId.Value, MaSach, SoLuong);
+            if (result.Success)
             {
                 await UpdateCartSession(userId.Value);
                 return RedirectToAction("Index", "Checkout");
             }
+
+            TempData["Error"] = result.Message;
             return RedirectToAction("Details", "Book", new { id = MaSach });
         }
 
         // ==========================================
-        // 5. CẬP NHẬT SỐ LƯỢNG
+        // 5. CẬP NHẬT SỐ LƯỢNG TRONG GIỎ
         // ==========================================
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -110,8 +113,13 @@ namespace OnlineBookStore_Web.Controllers
 
             if (item != null && SoLuong > 0)
             {
-                item.SoLuong = SoLuong;
-                await _context.SaveChangesAsync();
+                // Kiểm tra tồn kho trước khi cập nhật
+                var sach = await _context.Saches.FindAsync(MaSach);
+                if (sach != null && SoLuong <= sach.SoLuongTon)
+                {
+                    item.SoLuong = SoLuong;
+                    await _context.SaveChangesAsync();
+                }
                 await UpdateCartSession(userId.Value);
             }
             return RedirectToAction("Index");
@@ -142,10 +150,19 @@ namespace OnlineBookStore_Web.Controllers
         // ==========================================
         // HÀM HỖ TRỢ (HELPERS)
         // ==========================================
-        private async Task<bool> InternalAddToCart(int userId, int maSach, int soLuong)
+
+        // Cấu trúc trả về chi tiết hơn để báo lỗi tồn kho
+        private class CartResult { public bool Success { get; set; } public string Message { get; set; } }
+
+        private async Task<CartResult> InternalAddToCart(int userId, int maSach, int soLuong)
         {
             try
             {
+                // Kiểm tra sách có tồn tại và còn hàng không
+                var sach = await _context.Saches.FindAsync(maSach);
+                if (sach == null) return new CartResult { Success = false, Message = "Sách không tồn tại!" };
+                if (sach.SoLuongTon < soLuong) return new CartResult { Success = false, Message = "Số lượng trong kho không đủ!" };
+
                 var cart = await _context.GioHangs.FirstOrDefaultAsync(g => g.MaNd == userId);
                 if (cart == null)
                 {
@@ -157,13 +174,22 @@ namespace OnlineBookStore_Web.Controllers
                 var detail = await _context.ChiTietGioHangs
                     .FirstOrDefaultAsync(ct => ct.MaGh == cart.MaGh && ct.MaSach == maSach);
 
-                if (detail != null) detail.SoLuong += soLuong;
-                else _context.ChiTietGioHangs.Add(new ChiTietGioHang { MaGh = cart.MaGh, MaSach = maSach, SoLuong = soLuong });
+                if (detail != null)
+                {
+                    if (detail.SoLuong + soLuong > sach.SoLuongTon)
+                        return new CartResult { Success = false, Message = "Tổng số lượng vượt quá tồn kho!" };
+
+                    detail.SoLuong += soLuong;
+                }
+                else
+                {
+                    _context.ChiTietGioHangs.Add(new ChiTietGioHang { MaGh = cart.MaGh, MaSach = maSach, SoLuong = soLuong });
+                }
 
                 await _context.SaveChangesAsync();
-                return true;
+                return new CartResult { Success = true };
             }
-            catch { return false; }
+            catch { return new CartResult { Success = false, Message = "Lỗi hệ thống!" }; }
         }
 
         private async Task UpdateCartSession(int userId)

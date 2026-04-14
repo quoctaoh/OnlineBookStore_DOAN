@@ -6,6 +6,9 @@ wwwroot\images\bookcovers\1c143493-e4bf-4fac-a1c7-f452880a755d.jpg
 wwwroot\images\bookcovers\4c7d8f81-8a21-40b6-8e3e-f2ddfa1fd8a3.jpg
 wwwroot\images\bookcovers\4d0644ec-6aee-417b-8de7-cbd5002d5830.jpg
 wwwroot\images\bookcovers\731460d8-5059-4749-9f61-b4d34a0c03c4.jpg
+wwwroot\images\bookcovers\hashtag-mua-sam-tha-ga-khong-lo-ve-gia.jpg
+wwwroot\images\bookcovers\hot-deals-1.jpg
+wwwroot\images\bookcovers\momo.png
 wwwroot\images\conan100-limited.jpg
 wwwroot\images\DacNhanTam.jpg
 wwwroot\images\LuocSuThoiGian.jpg
@@ -69,6 +72,4 @@ wwwroot\lib\jquery\dist\jquery.js
 wwwroot\lib\jquery\dist\jquery.min.js
 wwwroot\lib\jquery\dist\jquery.min.map
 wwwroot\lib\jquery\LICENSE.txt
-wwwroot\images\bookcovers\momo.png
-wwwroot\images\bookcovers\hashtag-mua-sam-tha-ga-khong-lo-ve-gia.jpg
-wwwroot\images\bookcovers\hot-deals-1.jpg
+wwwroot\payOSlogo.png

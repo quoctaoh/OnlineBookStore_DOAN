@@ -1,53 +1,141 @@
-﻿@* Views/Admin/Index.cshtml *@
-@{
+﻿@{
     ViewData["Title"] = "Admin Dashboard";
-    Layout = "_Layout"; 
+    Layout = "_Layout";
 }
 
-<div class="container mt-5">
-    <div class="jumbotron bg-light p-5 rounded">
-        <h1 class="display-4">Chào mừng, <span class="text-primary">@ViewData["AdminName"]</span>!</h1>
-        <p class="lead">Khu vực Quản trị Hệ thống. Vui lòng chọn chức năng để tiếp tục.</p>
-        <hr class="my-4">
+<style>
+    :root {
+        --glass-bg: rgba(255, 255, 255, 0.03);
+        --glass-border: rgba(255, 255, 255, 0.1);
+        --accent-cyan: #64ffda;
+    }
+
+    /* Card hiệu ứng kính mờ */
+    .admin-card-glass {
+        background: var(--glass-bg);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        border: 1px solid var(--glass-border);
+        border-radius: 24px;
+        padding: 30px;
+        transition: all 0.3s ease;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .admin-card-glass:hover {
+        transform: translateY(-10px);
+        border-color: var(--accent-cyan);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+        background: rgba(100, 255, 218, 0.05);
+    }
+
+    .icon-box {
+        width: 60px;
+        height: 60px;
+        border-radius: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+    }
+
+    .bg-book { background: rgba(40, 167, 69, 0.1); color: #28a745; }
+    .bg-order { background: rgba(23, 162, 184, 0.1); color: #17a2b8; }
+    .bg-sales { background: rgba(255, 193, 7, 0.1); color: #ffc107; }
+
+    .btn-admin-action {
+        border-radius: 12px;
+        padding: 10px 20px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-size: 0.8rem;
+        transition: 0.3s;
+    }
+
+    .welcome-section {
+        background: linear-gradient(135deg, rgba(100, 255, 218, 0.1) 0%, rgba(2, 12, 27, 0) 100%);
+        border-radius: 30px;
+        border: 1px solid var(--glass-border);
+    }
+</style>
+
+<div class="container mt-5 mb-5">
+    <div class="welcome-section p-5 mb-5 shadow-lg">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <h1 class="display-5 fw-bold text-white mb-2">
+                    Chào mừng trở lại, <span style="color: var(--accent-cyan);">@ViewData["AdminName"]</span>!
+                </h1>
+                <p class="text-muted lead mb-0">Hệ thống quản trị OnlineBookStore đã sẵn sàng. Bạn muốn xử lý công việc gì hôm nay?</p>
+            </div>
+            <div class="col-md-4 text-md-end mt-4 mt-md-0">
+                <div class="text-muted small mb-2">Trạng thái hệ thống</div>
+                <span class="badge rounded-pill bg-success px-3 py-2">
+                    <i class="bi bi-check-circle-fill me-1"></i> Đang hoạt động
+                </span>
+            </div>
+        </div>
     </div>
 
-    <div class="row mt-4">
-
-        @* QUẢN LÝ SÁCH (CRUD) *@
-        <div class="col-md-4 mb-3">
-            <div class="card shadow-sm">
-                <div class="card-body">
-                    <h5 class="card-title text-success">Quản lý Sách (CRUD)</h5>
-                    <p class="card-text">Thêm, sửa, xóa, và cập nhật thông tin sản phẩm.</p>
-                    <a asp-controller="Admin" asp-action="ListBooks" class="btn btn-sm btn-success">Truy cập</a>
+    <div class="row g-4">
+        @* QUẢN LÝ SÁCH *@
+        <div class="col-md-4">
+            <div class="admin-card-glass shadow">
+                <div>
+                    <div class="icon-box bg-book">
+                        <i class="bi bi-book-half"></i>
+                    </div>
+                    <h4 class="fw-bold text-white">Quản lý Kho Sách</h4>
+                    <p class="text-muted">Thêm mới đầu sách, cập nhật số lượng tồn kho và thay đổi thông tin sản phẩm.</p>
                 </div>
+                <a asp-controller="Admin" asp-action="ListBooks" class="btn btn-success btn-admin-action w-100 mt-3">
+                    Quản lý ngay <i class="bi bi-arrow-right-short"></i>
+                </a>
             </div>
         </div>
 
-        @* QUẢN LÝ ĐƠN HÀNG - ĐÃ SỬA LIÊN KẾT *@
-        <div class="col-md-4 mb-3">
-            <div class="card shadow-sm">
-                <div class="card-body">
-                    <h5 class="card-title text-info">Quản lý Đơn hàng</h5>
-                    <p class="card-text">Xác nhận, theo dõi và cập nhật trạng thái đơn hàng.</p>
-                    <a asp-controller="Admin" asp-action="ListOrders" class="btn btn-sm btn-outline-info">Truy cập</a> 
+        @* QUẢN LÝ ĐƠN HÀNG *@
+        <div class="col-md-4">
+            <div class="admin-card-glass shadow">
+                <div>
+                    <div class="icon-box bg-order">
+                        <i class="bi bi-cart-check"></i>
+                    </div>
+                    <h4 class="fw-bold text-white">Quản lý Đơn hàng</h4>
+                    <p class="text-muted">Theo dõi đơn hàng mới, cập nhật trạng thái vận chuyển và xử lý yêu cầu khách hàng.</p>
                 </div>
+                <a asp-controller="Admin" asp-action="ListOrders" class="btn btn-info text-white btn-admin-action w-100 mt-3">
+                    Kiểm tra đơn hàng <i class="bi bi-arrow-right-short"></i>
+                </a>
             </div>
         </div>
 
-        @* XEM DOANH THU - ĐÃ SỬA LIÊN KẾT *@
-        <div class="col-md-4 mb-3">
-            <div class="card shadow-sm">
-                <div class="card-body">
-                    <h5 class="card-title text-warning">Xem Doanh thu & Báo cáo</h5>
-                    <p class="card-text">Thống kê doanh số bán hàng và lợi nhuận.</p>
-                    <a asp-controller="Admin" asp-action="SalesSummary" class="btn btn-sm btn-outline-warning">Truy cập</a> 
+        @* BÁO CÁO DOANH THU *@
+        <div class="col-md-4">
+            <div class="admin-card-glass shadow">
+                <div>
+                    <div class="icon-box bg-sales">
+                        <i class="bi bi-graph-up-arrow"></i>
+                    </div>
+                    <h4 class="fw-bold text-white">Báo cáo Doanh thu</h4>
+                    <p class="text-muted">Xem thống kê doanh số chi tiết theo thời gian và phân tích lợi nhuận cửa hàng.</p>
                 </div>
+                <a asp-controller="Admin" asp-action="SalesSummary" class="btn btn-warning btn-admin-action w-100 mt-3">
+                    Xem báo cáo <i class="bi bi-arrow-right-short"></i>
+                </a>
             </div>
         </div>
     </div>
 
-    <div class="mt-5">
-        <a asp-controller="Account" asp-action="LogoutAdmin" class="btn btn-danger">Đăng xuất Admin</a>
+    @* Nút đăng xuất *@
+    <div class="text-center mt-5">
+        <a asp-controller="Account" asp-action="LogoutAdmin" class="text-danger text-decoration-none fw-bold small">
+            <i class="bi bi-box-arrow-left me-1"></i> ĐĂNG XUẤT QUẢN TRỊ VIÊN
+        </a>
     </div>
 </div>

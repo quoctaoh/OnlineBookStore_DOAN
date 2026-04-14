@@ -5,120 +5,219 @@
     Layout = "_Layout";
 }
 
-<h1>Thêm Sách Mới</h1>
-<hr />
+<style>
+    :root {
+        --glass-bg: rgba(255, 255, 255, 0.03);
+        --glass-border: rgba(255, 255, 255, 0.1);
+        --accent-cyan: #64ffda;
+    }
 
-<div class="row">
-    <div class="col-md-6">
+    .page-header {
+        border-bottom: 2px solid var(--accent-cyan);
+        display: inline-block;
+        padding-bottom: 10px;
+        margin-bottom: 30px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+
+    .create-card-glass {
+        background: var(--glass-bg);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid var(--glass-border);
+        border-radius: 24px;
+        padding: 35px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+    }
+
+    .form-label-custom {
+        font-size: 0.8rem;
+        font-weight: 700;
+        color: var(--accent-cyan);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 8px;
+        display: block;
+    }
+
+    .form-control-glass {
+        background: rgba(2, 12, 27, 0.6) !important;
+        border: 1px solid var(--glass-border) !important;
+        color: white !important;
+        border-radius: 12px !important;
+        padding: 10px 15px !important;
+        transition: 0.3s;
+    }
+
+        .form-control-glass:focus {
+            border-color: var(--accent-cyan) !important;
+            box-shadow: 0 0 15px rgba(100, 255, 218, 0.1) !important;
+        }
+
+    .input-group-text-custom {
+        background: rgba(100, 255, 218, 0.1) !important;
+        border: 1px solid var(--glass-border) !important;
+        color: var(--accent-cyan) !important;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+        .input-group-text-custom:hover {
+            background: var(--accent-cyan) !important;
+            color: var(--navy-darkest) !important;
+        }
+
+    .btn-create-book {
+        background: var(--accent-cyan) !important;
+        color: #020c1b !important;
+        font-weight: 800;
+        border-radius: 12px;
+        padding: 12px 25px;
+        border: none;
+        transition: 0.3s;
+        text-transform: uppercase;
+    }
+
+        .btn-create-book:hover {
+            background: #fff !important;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(100, 255, 218, 0.2);
+        }
+
+    /* Modal Styling */
+    .modal-glass {
+        background: rgba(10, 25, 47, 0.8);
+        backdrop-filter: blur(15px);
+    }
+
+    .modal-content-glass {
+        background: var(--navy-bg);
+        border: 1px solid var(--glass-border);
+        border-radius: 20px;
+        color: white;
+    }
+</style>
+
+<div class="container mt-5 mb-5">
+    <div class="mb-4">
+        <h2 class="page-header fw-bold text-white mb-0">
+            <i class="bi bi-plus-square me-2"></i>THÊM SÁCH MỚI VÀO KHO
+        </h2>
+    </div>
+
+    <div class="create-card-glass">
         <form asp-action="CreateBook" method="post" enctype="multipart/form-data">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-4"></div>
 
-            @* Trường Tên Sách *@
-            <div class="form-group mb-3">
-                <label asp-for="TenSach" class="control-label">Tên Sách</label>
-                <input asp-for="TenSach" class="form-control" />
-                <span asp-validation-for="TenSach" class="text-danger"></span>
-            </div>
+            <div class="row">
+                @* Tên Sách & Tác Giả *@
+                <div class="col-md-6 mb-4">
+                    <label asp-for="TenSach" class="form-label-custom">Tên Sách</label>
+                    <input asp-for="TenSach" class="form-control form-control-glass" placeholder="Ví dụ: Đắc Nhân Tâm" />
+                    <span asp-validation-for="TenSach" class="text-danger small"></span>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <label asp-for="TacGia" class="form-label-custom">Tác Giả</label>
+                    <input asp-for="TacGia" class="form-control form-control-glass" placeholder="Tên tác giả..." />
+                    <span asp-validation-for="TacGia" class="text-danger small"></span>
+                </div>
 
-            @* Trường Tác Giả *@
-            <div class="form-group mb-3">
-                <label asp-for="TacGia" class="control-label">Tác Giả</label>
-                <input asp-for="TacGia" class="form-control" />
-                <span asp-validation-for="TacGia" class="text-danger"></span>
-            </div>
+                @* Thể Loại & NXB (Với nút thêm nhanh) *@
+                <div class="col-md-6 mb-4">
+                    <label asp-for="MaTl" class="form-label-custom">Thể Loại</label>
+                    <div class="input-group">
+                        <select asp-for="MaTl" class="form-control form-control-glass" asp-items="ViewBag.MaTl" id="selectTheLoai"></select>
+                        <button type="button" class="input-group-text input-group-text-custom" data-bs-toggle="modal" data-bs-target="#modalTheLoai">
+                            <i class="bi bi-plus-lg"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <label asp-for="MaNxb" class="form-label-custom">Nhà Xuất Bản</label>
+                    <div class="input-group">
+                        <select asp-for="MaNxb" class="form-control form-control-glass" asp-items="ViewBag.MaNxb" id="selectNXB"></select>
+                        <button type="button" class="input-group-text input-group-text-custom" data-bs-toggle="modal" data-bs-target="#modalNXB">
+                            <i class="bi bi-plus-lg"></i>
+                        </button>
+                    </div>
+                </div>
 
-            @* TRƯỜNG THỂ LOẠI *@
-            <div class="form-group mb-3">
-                <label asp-for="MaTl" class="control-label">Thể Loại</label>
-                <div class="input-group">
-                    <select asp-for="MaTl" class="form-control" asp-items="ViewBag.MaTl" id="selectTheLoai"></select>
-                    <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#modalTheLoai" title="Thêm thể loại mới">
-                        <i class="fas fa-plus"></i> +
-                    </button>
+                @* Giá & Số lượng *@
+                <div class="col-md-6 mb-4">
+                    <label asp-for="GiaBan" class="form-label-custom">Giá Bán (VNĐ)</label>
+                    <input asp-for="GiaBan" class="form-control form-control-glass" type="number" />
+                    <span asp-validation-for="GiaBan" class="text-danger small"></span>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <label asp-for="SoLuongTon" class="form-label-custom">Số Lượng Tồn Kho</label>
+                    <input asp-for="SoLuongTon" class="form-control form-control-glass" type="number" />
+                    <span asp-validation-for="SoLuongTon" class="text-danger small"></span>
+                </div>
+
+                @* Mô tả *@
+                <div class="col-12 mb-4">
+                    <label asp-for="MoTa" class="form-label-custom">Mô Tả</label>
+                    <textarea asp-for="MoTa" class="form-control form-control-glass" rows="3" placeholder="Nhập tóm tắt nội dung sách..."></textarea>
+                    <span asp-validation-for="MoTa" class="text-danger small"></span>
+                </div>
+
+                @* File Ảnh *@
+                <div class="col-12 mb-4">
+                    <label for="imageFile" class="form-label-custom">Ảnh Bìa Sách</label>
+                    <input type="file" id="imageFile" name="imageFile" accept="image/*" class="form-control form-control-glass" />
+                    <small class="text-muted mt-1 d-block"><i class="bi bi-info-circle me-1"></i> Định dạng hỗ trợ: JPG, PNG, WebP</small>
                 </div>
             </div>
 
-            @* TRƯỜNG NHÀ XUẤT BẢN *@
-            <div class="form-group mb-3">
-                <label asp-for="MaNxb" class="control-label">Nhà Xuất Bản</label>
-                <div class="input-group">
-                    <select asp-for="MaNxb" class="form-control" asp-items="ViewBag.MaNxb" id="selectNXB"></select>
-                    <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#modalNXB" title="Thêm NXB mới">
-                        <i class="fas fa-plus"></i> +
-                    </button>
-                </div>
-            </div>
-
-            @* Trường Giá Bán *@
-            <div class="form-group mb-3">
-                <label asp-for="GiaBan" class="control-label">Giá Bán</label>
-                <input asp-for="GiaBan" class="form-control" />
-                <span asp-validation-for="GiaBan" class="text-danger"></span>
-            </div>
-
-            @* Trường Tồn Kho *@
-            <div class="form-group mb-3">
-                <label asp-for="SoLuongTon" class="control-label">Số Lượng Tồn</label>
-                <input asp-for="SoLuongTon" class="form-control" />
-                <span asp-validation-for="SoLuongTon" class="text-danger"></span>
-            </div>
-
-            @* Trường Mô Tả *@
-            <div class="form-group mb-3">
-                <label asp-for="MoTa" class="control-label">Mô Tả</label>
-                <textarea asp-for="MoTa" class="form-control" rows="3"></textarea>
-                <span asp-validation-for="MoTa" class="text-danger"></span>
-            </div>
-
-            @* INPUT FILE: imageFile *@
-            <div class="form-group mb-3">
-                <label for="imageFile" class="control-label">Ảnh Bìa (Tải lên)</label>
-                <input type="file" id="imageFile" name="imageFile" accept="image/*" class="form-control" />
-            </div>
-
-            <div class="form-group mt-4">
-                <input type="submit" value="Thêm Mới" class="btn btn-success" />
-                <a asp-action="ListBooks" class="btn btn-secondary">Hủy</a>
+            <div class="d-flex gap-3 mt-4">
+                <button type="submit" class="btn btn-create-book px-5">
+                    Thêm Mới Ngay <i class="bi bi-check-lg ms-1"></i>
+                </button>
+                <a asp-action="ListBooks" class="btn btn-outline-light rounded-pill px-4 d-flex align-items-center">
+                    Hủy bỏ
+                </a>
             </div>
         </form>
     </div>
 </div>
 
-@* --- CÁC MODAL (CỬA SỔ BẬT LÊN) --- *@
-
-<div class="modal fade" id="modalTheLoai" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Thêm Thể Loại Mới</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+@* --- CÁC MODAL THÊM NHANH --- *@
+<div class="modal fade modal-glass" id="modalTheLoai" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content modal-content-glass">
+            <div class="modal-header border-secondary border-opacity-25">
+                <h5 class="modal-title fw-bold text-cyan" style="color: var(--accent-cyan);">Thêm Thể Loại Mới</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                <input type="text" id="inputNewTheLoai" class="form-control" placeholder="Nhập tên thể loại..." />
-                <span id="errorTheLoai" class="text-danger small"></span>
+            <div class="modal-body p-4">
+                <label class="form-label-custom">Tên thể loại sách</label>
+                <input type="text" id="inputNewTheLoai" class="form-control form-control-glass" placeholder="Ví dụ: Kỹ năng sống..." />
+                <span id="errorTheLoai" class="text-danger small mt-2 d-block"></span>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                <button type="button" class="btn btn-primary" onclick="saveNewTheLoai()">Lưu</button>
+            <div class="modal-footer border-secondary border-opacity-25">
+                <button type="button" class="btn btn-outline-light rounded-pill px-4" data-bs-dismiss="modal">Đóng</button>
+                <button type="button" class="btn btn-primary btn-save-edit rounded-pill px-4" onclick="saveNewTheLoai()" style="background: var(--accent-cyan); color: #020c1b; border: none; font-weight: 700;">Lưu lại</button>
             </div>
         </div>
     </div>
 </div>
 
-<div class="modal fade" id="modalNXB" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Thêm Nhà Xuất Bản Mới</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+<div class="modal fade modal-glass" id="modalNXB" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content modal-content-glass">
+            <div class="modal-header border-secondary border-opacity-25">
+                <h5 class="modal-title fw-bold" style="color: var(--accent-cyan);">Thêm Nhà Xuất Bản Mới</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                <input type="text" id="inputNewNXB" class="form-control" placeholder="Nhập tên NXB..." />
-                <span id="errorNXB" class="text-danger small"></span>
+            <div class="modal-body p-4">
+                <label class="form-label-custom">Tên nhà xuất bản</label>
+                <input type="text" id="inputNewNXB" class="form-control form-control-glass" placeholder="Ví dụ: NXB Trẻ..." />
+                <span id="errorNXB" class="text-danger small mt-2 d-block"></span>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                <button type="button" class="btn btn-primary" onclick="saveNewNXB()">Lưu</button>
+            <div class="modal-footer border-secondary border-opacity-25">
+                <button type="button" class="btn btn-outline-light rounded-pill px-4" data-bs-dismiss="modal">Đóng</button>
+                <button type="button" class="btn btn-primary btn-save-edit rounded-pill px-4" onclick="saveNewNXB()" style="background: var(--accent-cyan); color: #020c1b; border: none; font-weight: 700;">Lưu lại</button>
             </div>
         </div>
     </div>
@@ -129,65 +228,45 @@
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 
-    @* --- MÃ JAVASCRIPT XỬ LÝ AJAX --- *@
-        <script>
-            // Hàm lưu Thể loại mới
-            function saveNewTheLoai() {
-                var name = $('#inputNewTheLoai').val();
-                if (!name) {
-                    $('#errorTheLoai').text("Vui lòng nhập tên thể loại.");
-                    return;
+    <script>
+        function saveNewTheLoai() {
+            var name = $('#inputNewTheLoai').val();
+            if (!name) { $('#errorTheLoai').text("Vui lòng nhập tên thể loại."); return; }
+
+            $.ajax({
+                url: '/Admin/QuickCreateGenre',
+                type: 'POST',
+                data: { tenTheLoai: name },
+                success: function (response) {
+                    if (response.success) {
+                        var newOption = new Option(response.name, response.id, true, true);
+                        $('#selectTheLoai').append(newOption).trigger('change');
+                        $('#modalTheLoai').modal('hide');
+                        $('#inputNewTheLoai').val('');
+                        $('#errorTheLoai').text('');
+                    } else { $('#errorTheLoai').text(response.message); }
                 }
+            });
+        }
 
-                $.ajax({
-                    url: '/Admin/QuickCreateGenre',
-                    type: 'POST',
-                    data: { tenTheLoai: name },
-                    success: function (response) {
-                        if (response.success) {
-                            var newOption = new Option(response.name, response.id, true, true);
-                            $('#selectTheLoai').append(newOption).trigger('change');
-                            $('#modalTheLoai').modal('hide');
-                            $('#inputNewTheLoai').val('');
-                            $('#errorTheLoai').text('');
-                        } else {
-                            $('#errorTheLoai').text(response.message);
-                        }
-                    },
-                    error: function () {
-                        alert("Lỗi kết nối đến máy chủ.");
-                    }
-                });
-            }
+        function saveNewNXB() {
+            var name = $('#inputNewNXB').val();
+            if (!name) { $('#errorNXB').text("Vui lòng nhập tên NXB."); return; }
 
-            // Hàm lưu NXB mới
-            function saveNewNXB() {
-                var name = $('#inputNewNXB').val();
-                if (!name) {
-                    $('#errorNXB').text("Vui lòng nhập tên NXB.");
-                    return;
+            $.ajax({
+                url: '/Admin/QuickCreatePublisher',
+                type: 'POST',
+                data: { tenNxb: name },
+                success: function (response) {
+                    if (response.success) {
+                        var newOption = new Option(response.name, response.id, true, true);
+                        $('#selectNXB').append(newOption).trigger('change');
+                        $('#modalNXB').modal('hide');
+                        $('#inputNewNXB').val('');
+                        $('#errorNXB').text('');
+                    } else { $('#errorNXB').text(response.message); }
                 }
-
-                $.ajax({
-                    url: '/Admin/QuickCreatePublisher',
-                    type: 'POST',
-                    data: { tenNxb: name },
-                    success: function (response) {
-                        if (response.success) {
-                            var newOption = new Option(response.name, response.id, true, true);
-                            $('#selectNXB').append(newOption).trigger('change');
-
-                            $('#modalNXB').modal('hide');
-                            $('#inputNewNXB').val('');
-                            $('#errorNXB').text('');
-                        } else {
-                            $('#errorNXB').text(response.message);
-                        }
-                    },
-                    error: function () {
-                        alert("Lỗi kết nối đến máy chủ.");
-                    }
-                });
-            }
-        </script>
+            });
+        }
+    </script>
 }

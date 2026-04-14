@@ -133,11 +133,11 @@
 
     @* --- GRID SÁCH --- *@
     <div id="featured" class="mb-5">
+        <h3 class="fw-bold mb-4" style="border-left: 4px solid var(--accent-cyan); padding-left: 15px;">SÁCH MỚI CẬP NHẬT</h3>
         <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-4">
             @foreach (var item in Model.Take(10)) {
                 <div class="col">
                     <div class="card h-100 product-card-glass p-2">
-                        @* Click vào ẢNH để xem chi tiết *@
                         <a asp-controller="Book" asp-action="Details" asp-route-id="@item.MaSach">
                             <div class="img-container-sm">
                                 <img src="@item.HinhAnh" alt="@item.TenSach" onerror="this.src='/images/no-image.png'" />
@@ -145,13 +145,11 @@
                         </a>
                         
                         <div class="card-body p-2 text-center">
-                            @* Click vào TIÊU ĐỀ để xem chi tiết *@
                             <a asp-controller="Book" asp-action="Details" asp-route-id="@item.MaSach" class="book-title-link">
                                 @item.TenSach
                             </a>
                             <p class="m-0 mt-1 fw-bold" style="color: var(--accent-cyan);">@item.GiaBan.ToString("N0") đ</p>
                             
-                            @* Nút thêm vào giỏ hàng *@
                             <button onclick="ajaxAddToCart(@item.MaSach)" class="btn btn-sm btn-outline-info w-100 mt-3" style="font-size: 0.7rem; border-radius: 8px;">
                                 <i class="bi bi-cart-plus me-1"></i> THÊM GIỎ
                             </button>
@@ -184,7 +182,6 @@
                                         <h2 class="fw-bold">@hotItems[i].TenSach</h2>
                                         <p class="text-muted mb-3">Tác giả: @hotItems[i].TacGia</p>
                                         <h3 style="color: var(--accent-cyan);" class="fw-bold">@hotItems[i].GiaBan.ToString("N0") đ</h3>
-                                        @* Click nút Chi tiết *@
                                         <a asp-controller="Book" asp-action="Details" asp-route-id="@hotItems[i].MaSach" class="btn btn-cyan-action px-5 py-2 mt-3 shadow text-decoration-none">
                                             XEM CHI TIẾT
                                         </a>
@@ -215,15 +212,61 @@
             });
         });
 
+        // Hàm thêm giỏ hàng đồng bộ toàn hệ thống
         function ajaxAddToCart(id) {
             $.post('/Cart/AddToCart', { MaSach: id, SoLuong: 1 }, function (res) {
                 if (res.success) {
-                    const toast = $('<div class="position-fixed bottom-0 end-0 p-4" style="z-index: 9999"><div class="alert shadow-lg rounded-pill mb-0" style="background: var(--accent-cyan); color: #020c1b; font-weight: bold; border:none;"><i class="bi bi-check-circle-fill me-2"></i>Thành công!</div></div>');
-                    $('body').append(toast);
-                    setTimeout(() => toast.fadeOut(() => toast.remove()), 1500);
-                    
+                    // 1. Cập nhật con số trên Navbar
                     var badge = $('#cart-count');
-                    badge.text((parseInt(badge.text()) || 0) + 1);
+                    if(badge.length > 0) {
+                        var currentCount = parseInt(badge.text()) || 0;
+                        badge.text(currentCount + 1);
+                    }
+                    
+                    // 2. Hiện thông báo đẹp ở GIỮA màn hình
+                    if (typeof notifySuccess === "function") {
+                        notifySuccess("Đã thêm sách vào giỏ hàng!");
+                    } else {
+                        // Fallback nếu hàm Layout chưa load kịp
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Thành công!',
+                            text: 'Đã thêm vào giỏ hàng!',
+                            position: 'center',
+                            showConfirmButton: false,
+                            timer: 2000,
+                            background: '#112240',
+                            color: '#64ffda'
+                        });
+                    }
+                } 
+                else if (res.redirect) {
+                    // 3. Xử lý khi CHƯA ĐĂNG NHẬP
+                    Swal.fire({
+                        title: 'Yêu cầu đăng nhập',
+                        text: "Vui lòng đăng nhập để thực hiện chức năng này!",
+                        icon: 'info',
+                        background: '#0a192f',
+                        color: '#fff',
+                        confirmButtonColor: '#64ffda',
+                        confirmButtonText: 'Đăng nhập ngay',
+                        showCancelButton: true,
+                        cancelButtonText: 'Để sau'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = '/Account/Login';
+                        }
+                    });
+                } 
+                else {
+                    // Thông báo lỗi khác
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Lỗi',
+                        text: res.message,
+                        background: '#0a192f',
+                        color: '#fff'
+                    });
                 }
             });
         }
