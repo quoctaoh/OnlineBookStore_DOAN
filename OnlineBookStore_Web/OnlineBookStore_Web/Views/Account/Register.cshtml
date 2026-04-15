@@ -1,65 +1,280 @@
 ﻿@model OnlineBookStore_Web.Models.NguoiDung
-
 @{
     ViewData["Title"] = "Đăng Ký Tài Khoản";
+    Layout = null; 
 }
 
-<h2>Đăng Ký Tài Khoản</h2>
-<hr />
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - BookStore</title>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    
+    <style>
+        @@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600;700&display=swap');
 
-<div class="row">
-    <div class="col-md-6">
-        <form asp-action="Register">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        :root {
+            --navy-darkest: #020c1b;
+            --navy-deep: #0a192f;
+            --navy-soft: #112240;
+            --accent-cyan: #64ffda;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --text-dim: #8892b0;
+        }
 
-            @* Trường Tên đăng nhập *@
-            <div class="form-group">
-                <label asp-for="TenDangNhap" class="control-label"></label>
-                <input asp-for="TenDangNhap" class="form-control" />
-                <span asp-validation-for="TenDangNhap" class="text-danger"></span>
+        body {
+            background-color: var(--navy-darkest);
+            background-image: radial-gradient(circle at 100% 0%, rgba(100, 255, 218, 0.05) 0%, transparent 50%),
+                              radial-gradient(circle at 0% 100%, rgba(59, 130, 246, 0.05) 0%, transparent 50%);
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            padding: 20px;
+            color: #e6f1ff;
+        }
+
+        .split-screen {
+            width: 100%;
+            max-width: 950px;
+            height: 680px; 
+            display: flex;
+            background: var(--navy-deep);
+            border-radius: 28px;
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        /* --- BÊN TRÁI: POSTER (Đồng bộ Login) --- */
+        .poster-section {
+            flex: 1;
+            position: relative;
+            border-right: 1px solid var(--glass-border);
+        }
+
+        #posterCarousel, .carousel-inner, .carousel-item, .carousel-item img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .carousel-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to top, var(--navy-darkest) 0%, transparent 100%);
+            opacity: 0.7;
+        }
+
+        .carousel-caption-custom {
+            position: absolute;
+            bottom: 12%; left: 10%; right: 10%;
+            color: #fff;
+            z-index: 10;
+        }
+
+        .poster-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--accent-cyan);
+            margin-bottom: 0.5rem;
+        }
+
+        /* --- BÊN PHẢI: FORM ĐĂNG KÝ (GLASS) --- */
+        .login-section {
+            flex: 1.3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2.5rem;
+            overflow-y: auto;
+            background: linear-gradient(135deg, rgba(255,255,255,0.02) 0%, transparent 100%);
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .brand-logo {
+            color: var(--accent-cyan);
+            font-size: 1.5rem;
+            font-weight: 800;
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .form-control-minimal {
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 0.7rem 1rem;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            background-color: var(--navy-soft);
+            color: #fff;
+        }
+
+        .form-control-minimal:focus {
+            box-shadow: 0 0 15px rgba(100, 255, 218, 0.1);
+            border-color: var(--accent-cyan);
+            background-color: rgba(17, 34, 64, 0.8);
+            outline: none;
+        }
+
+        .form-control-minimal::placeholder {
+            color: rgba(255,255,255,0.2);
+        }
+
+        .form-label-minimal {
+            font-weight: 600;
+            color: var(--accent-cyan);
+            text-transform: uppercase;
+            font-size: 0.65rem;
+            letter-spacing: 1.5px;
+            margin-bottom: 0.4rem;
+            display: block;
+            opacity: 0.8;
+        }
+
+        .btn-cyan {
+            background: var(--accent-cyan);
+            color: var(--navy-darkest);
+            font-weight: 700;
+            border: none;
+            border-radius: 12px;
+            padding: 0.85rem;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: 0.3s;
+            width: 100%;
+        }
+
+        .btn-cyan:hover {
+            background: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(100, 255, 218, 0.2);
+        }
+
+        .login-section::-webkit-scrollbar { width: 5px; }
+        .login-section::-webkit-scrollbar-thumb { background: var(--navy-soft); border-radius: 10px; }
+
+        @@media (max-width: 850px) {
+            .poster-section { display: none; }
+            .split-screen { max-width: 500px; height: auto; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="split-screen">
+    @* --- TRÁI: POSTER --- *@
+    <div class="poster-section">
+        <div id="posterCarousel" class="carousel slide carousel-fade h-100" data-bs-ride="carousel" data-bs-interval="3000">
+            <div class="carousel-inner h-100">
+                <div class="carousel-item active h-100">
+                    <div class="carousel-overlay"></div>
+                    <img src="~/images/BannerChinh.jpg" alt="Slide 1">
+                    <div class="carousel-caption-custom">
+                        <h2 class="poster-title">Gia Nhập Cộng Đồng</h2>
+                        <p style="font-size: 0.9rem; opacity: 0.8;">Mở ra cánh cửa tri thức và nhận ngàn ưu đãi hấp dẫn.</p>
+                    </div>
+                </div>
+                <div class="carousel-item h-100">
+                    <div class="carousel-overlay"></div>
+                    <img src="~/images/DacNhanTam.jpg" alt="Slide 2">
+                    <div class="carousel-caption-custom">
+                        <h2 class="poster-title">Tích Lũy Điểm Thưởng</h2>
+                        <p style="font-size: 0.9rem; opacity: 0.8;">Mỗi cuốn sách bạn mua là một bước tiến gần hơn tới quà tặng đặc biệt.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @* --- PHẢI: FORM ĐĂNG KÝ (GLASS) --- *@
+    <div class="login-section">
+        <div class="login-container">
+            <div class="text-center mb-4">
+                <a href="/" class="brand-logo"><i class="bi bi-bookmarks-fill me-2"></i>BOOKSTORE</a>
+                <h4 class="fw-bold mt-3 mb-1" style="font-family: 'Playfair Display', serif; color: #fff;">Tạo Tài Khoản</h4>
+                <p style="color: var(--text-dim); font-size: 0.85rem;">Trở thành thành viên chỉ trong vài giây</p>
             </div>
 
-            @* Trường Họ tên *@
-            <div class="form-group">
-                <label asp-for="HoTen" class="control-label"></label>
-                <input asp-for="HoTen" class="form-control" />
-                <span asp-validation-for="HoTen" class="text-danger"></span>
-            </div>
+            <form asp-action="Register" method="post">
+                <div asp-validation-summary="ModelOnly" class="alert alert-danger py-2 px-3 border-0 rounded-3 mb-3" style="font-size: 0.75rem; background: rgba(239, 68, 68, 0.1); color: #f87171;"></div>
 
-            @* Trường Email *@
-            <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" type="email" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
+                <div class="row g-2">
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="TenDangNhap" class="form-label-minimal">Tên đăng nhập</label>
+                        <input asp-for="TenDangNhap" class="form-control-minimal w-100" placeholder="Username" />
+                        <span asp-validation-for="TenDangNhap" class="text-danger" style="font-size: 0.65rem;"></span>
+                    </div>
 
-            @* Trường Mật khẩu *@
-            <div class="form-group">
-                <label asp-for="MatKhau" class="control-label"></label>
-                <input asp-for="MatKhau" class="form-control" type="password" />
-                <span asp-validation-for="MatKhau" class="text-danger"></span>
-            </div>
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="HoTen" class="form-label-minimal">Họ và Tên</label>
+                        <input asp-for="HoTen" class="form-control-minimal w-100" placeholder="Full Name" />
+                        <span asp-validation-for="HoTen" class="text-danger" style="font-size: 0.65rem;"></span>
+                    </div>
+                </div>
 
-            @* Trường Địa chỉ *@
-            <div class="form-group">
-                <label asp-for="DiaChi" class="control-label"></label>
-                <input asp-for="DiaChi" class="form-control" />
-                <span asp-validation-for="DiaChi" class="text-danger"></span>
-            </div>
+                <div class="mb-3">
+                    <label asp-for="Email" class="form-label-minimal">Email cá nhân</label>
+                    <input asp-for="Email" type="email" class="form-control-minimal w-100" placeholder="example@gmail.com" />
+                    <span asp-validation-for="Email" class="text-danger" style="font-size: 0.65rem;"></span>
+                </div>
 
-            <div class="form-group mt-3">
-                <input type="submit" value="Đăng Ký" class="btn btn-success" />
+                <div class="mb-3">
+                    <label asp-for="MatKhau" class="form-label-minimal">Mật khẩu bảo mật</label>
+                    <div class="position-relative">
+                        <input asp-for="MatKhau" id="passwordInput" type="password" class="form-control-minimal w-100" placeholder="••••••••" />
+                        <button class="btn bg-transparent border-0 text-white-50 p-0 shadow-none" type="button" id="togglePassword" style="position: absolute; right: 1rem; top: 50%; transform: translateY(-50%);">
+                            <i class="bi bi-eye" id="toggleIcon"></i>
+                        </button>
+                    </div>
+                    <span asp-validation-for="MatKhau" class="text-danger" style="font-size: 0.65rem;"></span>
+                </div>
+
+                <div class="mb-4">
+                    <label asp-for="DiaChi" class="form-label-minimal">Địa chỉ nhận hàng</label>
+                    <input asp-for="DiaChi" class="form-control-minimal w-100" placeholder="Số nhà, tên đường, tỉnh thành..." />
+                    <span asp-validation-for="DiaChi" class="text-danger" style="font-size: 0.65rem;"></span>
+                </div>
+
+                <button type="submit" class="btn btn-cyan text-uppercase mb-3 shadow">Đăng Ký Thành Viên</button>
+            </form>
+
+            <div class="text-center pt-3 border-top border-secondary opacity-75">
+                <p style="font-size: 0.8rem; color: var(--text-dim);">Đã có tài khoản? <a asp-action="Login" class="fw-bold text-decoration-none" style="color: var(--accent-cyan);">Đăng nhập ngay</a></p>
             </div>
-        </form>
+            
+            <div class="text-center mt-2">
+                <a href="/" class="small text-decoration-none" style="color: var(--text-dim);"><i class="bi bi-house-door me-1"></i>Về trang chủ</a>
+            </div>
+        </div>
     </div>
 </div>
 
-<div class="mt-3">
-    <p>Đã có tài khoản? <a asp-action="Login">Đăng nhập ngay</a></p>
-</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Script ẩn hiện mật khẩu
+    const togglePassword = document.querySelector('#togglePassword');
+    const password = document.querySelector('#passwordInput');
+    const icon = document.querySelector('#toggleIcon');
+    
+    togglePassword.addEventListener('click', function () {
+        const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+        password.setAttribute('type', type);
+        icon.classList.toggle('bi-eye');
+        icon.classList.toggle('bi-eye-slash');
+    });
+</script>
 
-@section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
-}
+</body>
+</html>

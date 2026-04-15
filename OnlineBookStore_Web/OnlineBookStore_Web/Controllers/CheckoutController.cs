@@ -1,146 +1,158 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using OnlineBookStore_Web.Models;
 using Microsoft.EntityFrameworkCore;
-using System.Linq;
+using Net.payOS;
+using Net.payOS.Types;
 
 namespace OnlineBookStore_Web.Controllers
 {
     public class CheckoutController : Controller
     {
         private readonly OnlineBookstore_DOANContext _context;
+        // Sử dụng định danh rõ ràng để tránh lỗi Namespace CS0118
+        private readonly Net.payOS.PayOS _payOS;
 
-        public CheckoutController(OnlineBookstore_DOANContext context)
+        public CheckoutController(OnlineBookstore_DOANContext context, Net.payOS.PayOS payOSService)
         {
             _context = context;
+            _payOS = payOSService;
         }
 
-        // INDEX (GET) - HIỂN THỊ FORM
+        // 1. Hiển thị trang thanh toán
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
             var userId = HttpContext.Session.GetInt32("UserId");
-            if (!userId.HasValue)
-            {
-                return RedirectToAction("Login", "Account"); // Yêu cầu đăng nhập
-            }
+            if (!userId.HasValue) return RedirectToAction("Login", "Account");
 
-            // 1. Lấy thông tin Giỏ hàng (đã JOIN với Sách)
-            var cart = await _context.GioHangs
-                .Include(g => g.ChiTietGioHangs)
-                .ThenInclude(ct => ct.MaSachNavigation)
-                .FirstOrDefaultAsync(g => g.MaNd == userId.Value);
-
-            if (cart == null || !cart.ChiTietGioHangs.Any())
-            {
-                TempData["Error"] = "Giỏ hàng của bạn đang trống. Vui lòng thêm sản phẩm.";
-                return RedirectToAction("Index", "Cart"); // Chuyển hướng nếu giỏ hàng trống
-            }
-
-            // 2. Lấy thông tin Hồ sơ người dùng (để điền tự động vào form)
             var user = await _context.NguoiDungs.FindAsync(userId.Value);
+            ViewBag.User = user;
 
-            // 3. Truyền dữ liệu sang View
-            ViewBag.CartDetails = cart.ChiTietGioHangs.ToList();
-            ViewBag.CurrentUser = user;
+            var cartItems = await GetCartItems(userId.Value);
+            if (!cartItems.Any()) return RedirectToAction("Index", "Cart");
 
-            return View();
+            return View(cartItems);
         }
 
-        // PLACEORDER (POST) - TẠO ĐƠN HÀNG
+        // 2. Xử lý đặt hàng chính
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> PlaceOrder(string HoTen, string DienThoai, string DiaChiGiaoHang, string GhiChu)
+        public async Task<IActionResult> ProcessOrder(string PaymentMethod)
         {
             var userId = HttpContext.Session.GetInt32("UserId");
-            if (!userId.HasValue)
+            if (!userId.HasValue) return RedirectToAction("Login", "Account");
+
+            var cartItems = await GetCartItems(userId.Value);
+            if (!cartItems.Any()) return RedirectToAction("Index", "Cart");
+
+            // Nếu chọn PayOS (VietQR)
+            if (PaymentMethod == "PayOS")
             {
-                return RedirectToAction("Login", "Account");
+                long totalAmount = (long)cartItems.Sum(x => x.SoLuong * x.MaSachNavigation.GiaBan);
+                return await CreatePayOSPayment(totalAmount, cartItems);
             }
 
-            // 1. Lấy thông tin Giỏ hàng hiện tại (JOIN Chi tiết)
+            // Nếu chọn COD hoặc các phương thức khác, lưu đơn và chuyển về lịch sử
+            return await SaveOrderAndRedirect(userId.Value, "COD");
+        }
+
+        // 3. Logic tạo link thanh toán PayOS
+        private async Task<IActionResult> CreatePayOSPayment(long totalAmount, List<ChiTietGioHang> cartItems)
+        {
+            // Tạo mã đơn hàng số (PayOS yêu cầu kiểu int/long cho OrderCode)
+            int orderCode = int.Parse(DateTimeOffset.Now.ToString("ffffff"));
+
+            // Fix lỗi tên sản phẩm quá dài (giới hạn 20 ký tự)
+            var items = cartItems.Select(x => new ItemData(
+                x.MaSachNavigation.TenSach.Length > 20 ? x.MaSachNavigation.TenSach.Substring(0, 20) : x.MaSachNavigation.TenSach,
+                (int)x.SoLuong,
+                (int)x.MaSachNavigation.GiaBan)).ToList();
+
+            // Fix lỗi Description quá 25 ký tự
+            var paymentData = new PaymentData(
+                orderCode,
+                (int)totalAmount,
+                $"Thanh toan OBS {orderCode}",
+                items,
+                $"{Request.Scheme}://{Request.Host}/Checkout/Cancel",
+                $"{Request.Scheme}://{Request.Host}/Checkout/PaymentSuccess"
+            );
+
+            var response = await _payOS.createPaymentLink(paymentData);
+            return Redirect(response.checkoutUrl);
+        }
+
+        // 4. Callback khi PayOS thanh toán thành công
+        public async Task<IActionResult> PaymentSuccess()
+        {
+            var userId = HttpContext.Session.GetInt32("UserId");
+            if (!userId.HasValue) return RedirectToAction("Index", "Home");
+
+            return await SaveOrderAndRedirect(userId.Value, "PayOS");
+        }
+
+        // 5. Hàm dùng chung để lưu đơn hàng, xóa giỏ và chuyển hướng về Lịch sử
+        private async Task<IActionResult> SaveOrderAndRedirect(int userId, string method)
+        {
+            // 1. Lấy thông tin giỏ hàng và người dùng
             var cart = await _context.GioHangs
                 .Include(g => g.ChiTietGioHangs)
                 .ThenInclude(ct => ct.MaSachNavigation)
-                .FirstOrDefaultAsync(g => g.MaNd == userId.Value);
+                .FirstOrDefaultAsync(g => g.MaNd == userId);
 
-            // Kiểm tra tồn kho trước khi đặt hàng (Nên làm)
-            foreach (var item in cart.ChiTietGioHangs)
+            if (cart == null || !cart.ChiTietGioHangs.Any())
+                return RedirectToAction("Index", "Cart");
+
+            var user = await _context.NguoiDungs.FindAsync(userId);
+
+            // 2. Tạo đối tượng đơn hàng mới
+            var newOrder = new DonHang
             {
-                var sach = await _context.Saches.FindAsync(item.MaSach);
-                if (sach == null || sach.SoLuongTon < item.SoLuong)
-                {
-                    TempData["Error"] = $"Sản phẩm '{item.MaSachNavigation.TenSach}' không đủ số lượng tồn kho.";
-                    return RedirectToAction("Index", "Cart");
-                }
-            }
-
-
-            // Tính tổng tiền
-            decimal totalAmount = cart.ChiTietGioHangs.Sum(ct => ct.SoLuong * ct.MaSachNavigation.GiaBan);
-
-            // 2. TẠO ĐƠN HÀNG (Bảng DonHang)
-            var order = new DonHang
-            {
-                MaNd = userId.Value,
+                MaNd = userId,
                 NgayDatHang = DateTime.Now,
-                TongTien = totalAmount,
-                TrangThaiDh = "Chờ xác nhận", // Trạng thái mặc định
-                DiaChiGiaoHang = DiaChiGiaoHang // Lấy từ form
+                TongTien = cart.ChiTietGioHangs.Sum(ct => ct.SoLuong * ct.MaSachNavigation.GiaBan),
+                TrangThaiDh = "Đang chờ xử lý", // Trạng thái mặc định
+                DiaChiGiaoHang = user.DiaChi, // Lấy địa chỉ từ thông tin user
+                ChiTietDonHangs = new List<ChiTietDonHang>()
             };
 
-            _context.DonHangs.Add(order);
-            await _context.SaveChangesAsync(); // Lưu để lấy MaDH tự tăng
-
-            // 3. TẠO CHI TIẾT ĐƠN HÀNG (Bảng ChiTietDonHang) & Cập nhật tồn kho
+            // 3. Chuyển đổi từ ChiTietGioHang sang ChiTietDonHang
             foreach (var item in cart.ChiTietGioHangs)
             {
-                var orderDetail = new ChiTietDonHang
+                newOrder.ChiTietDonHangs.Add(new ChiTietDonHang
                 {
-                    MaDh = order.MaDh, // Dùng MaDH vừa tạo
                     MaSach = item.MaSach,
                     SoLuong = item.SoLuong,
-                    DonGia = item.MaSachNavigation.GiaBan // Giá tại thời điểm đặt hàng
-                };
-                _context.ChiTietDonHangs.Add(orderDetail);
-
-                // Cập nhật tồn kho (trừ đi số lượng đã đặt)
-                var sach = await _context.Saches.FindAsync(item.MaSach);
-                if (sach != null)
-                {
-                    sach.SoLuongTon -= item.SoLuong;
-                }
+                    DonGia = item.MaSachNavigation.GiaBan
+                });
             }
 
-            // 4. XÓA GIỎ HÀNG cũ và lưu thay đổi tồn kho
+            // 4. Lưu vào Database
+            _context.DonHangs.Add(newOrder);
+
+            // 5. Xóa các sản phẩm trong giỏ hàng sau khi đã đặt hàng
             _context.ChiTietGioHangs.RemoveRange(cart.ChiTietGioHangs);
 
             await _context.SaveChangesAsync();
 
-            // 5. Chuyển hướng đến trang Xác nhận Đơn hàng
-            return RedirectToAction("OrderConfirmation", new { orderId = order.MaDh });
+            // 6. Cập nhật lại Session số lượng giỏ hàng về 0
+            HttpContext.Session.SetInt32("CartCount", 0);
+            TempData["SuccessMessage"] = $"Đặt hàng thành công qua {method}!";
+
+            // 7. ĐIỀU HƯỚNG: Quay về hàm History trong AccountController
+            // Vì hàm History của bạn nằm trong AccountController nên dùng:
+            return RedirectToAction("History", "Account");
         }
 
-        // ORDERCONFIRMATION (GET) - TRANG XÁC NHẬN
-        public async Task<IActionResult> OrderConfirmation(int orderId)
+        public IActionResult Cancel() => RedirectToAction("Index", "Cart");
+
+        // Helper lấy giỏ hàng kèm thông tin sách
+        private async Task<List<ChiTietGioHang>> GetCartItems(int userId)
         {
-            var userId = HttpContext.Session.GetInt32("UserId");
-            if (!userId.HasValue)
-            {
-                return RedirectToAction("Login", "Account");
-            }
-
-            // Lấy thông tin đơn hàng và chi tiết để hiển thị
-            var order = await _context.DonHangs
-                .Include(o => o.ChiTietDonHangs)
-                .ThenInclude(ct => ct.MaSachNavigation)
-                .FirstOrDefaultAsync(o => o.MaDh == orderId && o.MaNd == userId.Value);
-
-            if (order == null)
-            {
-                TempData["Error"] = "Không tìm thấy thông tin đơn hàng này.";
-                return RedirectToAction("Index", "Book");
-            }
-
-            return View(order);
+            return await _context.ChiTietGioHangs
+                .Include(ct => ct.MaSachNavigation)
+                .Where(ct => ct.MaGhNavigation.MaNd == userId)
+                .ToListAsync();
         }
     }
 }

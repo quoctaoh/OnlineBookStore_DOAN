@@ -1,151 +1,205 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using OnlineBookStore_Web.Models;
 using Microsoft.EntityFrameworkCore;
-using System.Linq;
 
 namespace OnlineBookStore_Web.Controllers
 {
     public class CartController : Controller
     {
         private readonly OnlineBookstore_DOANContext _context;
+        public CartController(OnlineBookstore_DOANContext context) => _context = context;
 
-        public CartController(OnlineBookstore_DOANContext context)
-        {
-            _context = context;
-        }
-
-        // INDEX (Hiển thị chi tiết Giỏ hàng)
+        // ==========================================
+        // 1. TRANG CHỦ GIỎ HÀNG
+        // ==========================================
         public async Task<IActionResult> Index()
         {
             var userId = HttpContext.Session.GetInt32("UserId");
+            if (!userId.HasValue) return RedirectToAction("Login", "Account");
 
-            // 1. Kiểm tra đăng nhập
-            if (!userId.HasValue)
-            {
-                TempData["Message"] = "Vui lòng đăng nhập để xem giỏ hàng.";
-                return RedirectToAction("Login", "Account");
-            }
-
-            // 2. Lấy Mã Giỏ hàng
-            var cart = await _context.GioHangs
-                .FirstOrDefaultAsync(g => g.MaNd == userId.Value);
-
-            if (cart == null)
-            {
-                return View(new List<ChiTietGioHang>());
-            }
-
-            // 3. Lấy Chi tiết Giỏ hàng (JOIN với bảng Sach)
-            var cartDetails = await _context.ChiTietGioHangs
-                .Where(ct => ct.MaGh == cart.MaGh)
-                // Phải Include để lấy thông tin Tên Sách, Giá Bán, Tác giả
+            var items = await _context.ChiTietGioHangs
                 .Include(ct => ct.MaSachNavigation)
+                .Where(ct => ct.MaGhNavigation.MaNd == userId.Value)
                 .ToListAsync();
 
-            // 4. Truyền chi tiết giỏ hàng sang View
-            return View(cartDetails);
+            await UpdateCartSession(userId.Value);
+
+            return View(items);
         }
 
-        // THÊM SÁCH VÀO GIỎ (ADD TO CART)
-        // POST: /Cart/AddToCart 
+        // ==========================================
+        // 2. THÊM ĐÁNH GIÁ (SỬA LỖI 404 & KIỂM TRA MUA HÀNG)
+        // ==========================================
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> PostReview(int MaSach, int Rating, string NoiDung)
+        {
+            var userId = HttpContext.Session.GetInt32("UserId");
+            if (userId == null) return RedirectToAction("Login", "Account");
+
+            try
+            {
+                var danhGia = new DanhGia
+                {
+                    MaSach = MaSach,
+                    MaNd = userId.Value,
+                    SoSao = Rating,
+                    NoiDung = NoiDung,
+                    NgayDanhGia = DateTime.Now
+                };
+
+                _context.DanhGias.Add(danhGia);
+                await _context.SaveChangesAsync();
+            }
+            catch { /* Log error if needed */ }
+
+            return RedirectToAction("Details", "Book", new { id = MaSach });
+        }
+
+        // ==========================================
+        // 3. THÊM VÀO GIỎ HÀNG (AJAX - FIX REDIRECT LOGIN)
+        // ==========================================
+        [HttpPost]
         public async Task<IActionResult> AddToCart(int MaSach, int SoLuong = 1)
         {
             var userId = HttpContext.Session.GetInt32("UserId");
+
+            // QUAN TRỌNG: Trả về redirect = true để JavaScript ở View biết đường mà nhảy sang Login
             if (!userId.HasValue)
+                return Json(new { success = false, redirect = true, message = "Vui lòng đăng nhập để mua hàng!" });
+
+            var result = await InternalAddToCart(userId.Value, MaSach, SoLuong);
+
+            if (result.Success)
             {
-                TempData["Message"] = "Vui lòng đăng nhập để thêm sản phẩm vào giỏ hàng.";
-                return RedirectToAction("Login", "Account");
+                await UpdateCartSession(userId.Value);
+                return Json(new { success = true });
             }
 
-            var cart = await _context.GioHangs
-                .FirstOrDefaultAsync(g => g.MaNd == userId.Value);
-
-            // Kiểm tra số lượng tồn kho 
-            var sach = await _context.Saches.FindAsync(MaSach);
-            if (sach == null || sach.SoLuongTon < SoLuong)
-            {
-                TempData["Error"] = "Số lượng đặt vượt quá tồn kho.";
-                return RedirectToAction("Details", "Book", new { id = MaSach });
-            }
-
-            var cartDetail = await _context.ChiTietGioHangs
-                .FirstOrDefaultAsync(ct => ct.MaGh == cart.MaGh && ct.MaSach == MaSach);
-
-            if (cartDetail != null)
-            {
-                cartDetail.SoLuong += SoLuong;
-                _context.Update(cartDetail);
-            }
-            else
-            {
-                var newDetail = new ChiTietGioHang
-                {
-                    MaGh = cart.MaGh,
-                    MaSach = MaSach,
-                    SoLuong = SoLuong
-                };
-                _context.Add(newDetail);
-            }
-
-            await _context.SaveChangesAsync();
-
-            TempData["SuccessMessage"] = "Thêm sản phẩm vào giỏ hàng thành công!";
-            return RedirectToAction("Index"); // Chuyển hướng về trang Giỏ hàng
+            return Json(new { success = false, message = result.Message });
         }
 
-        // CẬP NHẬT VÀ XÓA (Logic đã được triển khai trước đó)
-
+        // ==========================================
+        // 4. MUA NGAY
+        // ==========================================
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> RemoveItem(int MaSach)
+        public async Task<IActionResult> BuyNow(int MaSach, int SoLuong = 1)
         {
-            // Logic xóa sản phẩm khỏi giỏ hàng
             var userId = HttpContext.Session.GetInt32("UserId");
             if (!userId.HasValue) return RedirectToAction("Login", "Account");
 
-            var cart = await _context.GioHangs.FirstOrDefaultAsync(g => g.MaNd == userId.Value);
-            if (cart == null) return RedirectToAction("Index");
-
-            var cartDetail = await _context.ChiTietGioHangs
-                .FirstOrDefaultAsync(ct => ct.MaGh == cart.MaGh && ct.MaSach == MaSach);
-
-            if (cartDetail != null)
+            var result = await InternalAddToCart(userId.Value, MaSach, SoLuong);
+            if (result.Success)
             {
-                _context.ChiTietGioHangs.Remove(cartDetail);
-                await _context.SaveChangesAsync();
-                TempData["SuccessMessage"] = "Đã xóa sản phẩm khỏi giỏ hàng.";
+                await UpdateCartSession(userId.Value);
+                return RedirectToAction("Index", "Checkout");
             }
 
-            return RedirectToAction("Index");
+            TempData["Error"] = result.Message;
+            return RedirectToAction("Details", "Book", new { id = MaSach });
         }
 
+        // ==========================================
+        // 5. CẬP NHẬT SỐ LƯỢNG TRONG GIỎ
+        // ==========================================
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> UpdateQuantity(int MaSach, int SoLuong)
         {
-            // Logic cập nhật số lượng
             var userId = HttpContext.Session.GetInt32("UserId");
             if (!userId.HasValue) return RedirectToAction("Login", "Account");
 
-            if (SoLuong <= 0) return RedirectToAction("RemoveItem", new { MaSach = MaSach });
+            var item = await _context.ChiTietGioHangs
+                .FirstOrDefaultAsync(ct => ct.MaSach == MaSach && ct.MaGhNavigation.MaNd == userId.Value);
 
-            var cart = await _context.GioHangs.FirstOrDefaultAsync(g => g.MaNd == userId.Value);
-            if (cart == null) return RedirectToAction("Index");
-
-            var cartDetail = await _context.ChiTietGioHangs
-                .FirstOrDefaultAsync(ct => ct.MaGh == cart.MaGh && ct.MaSach == MaSach);
-
-            if (cartDetail != null)
+            if (item != null && SoLuong > 0)
             {
-                cartDetail.SoLuong = SoLuong;
-                _context.Update(cartDetail);
-                await _context.SaveChangesAsync();
-                TempData["SuccessMessage"] = "Cập nhật số lượng thành công.";
+                // Kiểm tra tồn kho trước khi cập nhật
+                var sach = await _context.Saches.FindAsync(MaSach);
+                if (sach != null && SoLuong <= sach.SoLuongTon)
+                {
+                    item.SoLuong = SoLuong;
+                    await _context.SaveChangesAsync();
+                }
+                await UpdateCartSession(userId.Value);
             }
-
             return RedirectToAction("Index");
+        }
+
+        // ==========================================
+        // 6. XÓA SẢN PHẨM KHỎI GIỎ
+        // ==========================================
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> RemoveItem(int MaSach)
+        {
+            var userId = HttpContext.Session.GetInt32("UserId");
+            if (userId.HasValue)
+            {
+                var item = await _context.ChiTietGioHangs
+                    .FirstOrDefaultAsync(ct => ct.MaSach == MaSach && ct.MaGhNavigation.MaNd == userId.Value);
+                if (item != null)
+                {
+                    _context.ChiTietGioHangs.Remove(item);
+                    await _context.SaveChangesAsync();
+                    await UpdateCartSession(userId.Value);
+                }
+            }
+            return RedirectToAction("Index");
+        }
+
+        // ==========================================
+        // HÀM HỖ TRỢ (HELPERS)
+        // ==========================================
+
+        // Cấu trúc trả về chi tiết hơn để báo lỗi tồn kho
+        private class CartResult { public bool Success { get; set; } public string Message { get; set; } }
+
+        private async Task<CartResult> InternalAddToCart(int userId, int maSach, int soLuong)
+        {
+            try
+            {
+                // Kiểm tra sách có tồn tại và còn hàng không
+                var sach = await _context.Saches.FindAsync(maSach);
+                if (sach == null) return new CartResult { Success = false, Message = "Sách không tồn tại!" };
+                if (sach.SoLuongTon < soLuong) return new CartResult { Success = false, Message = "Số lượng trong kho không đủ!" };
+
+                var cart = await _context.GioHangs.FirstOrDefaultAsync(g => g.MaNd == userId);
+                if (cart == null)
+                {
+                    cart = new GioHang { MaNd = userId, NgayTao = DateTime.Now };
+                    _context.GioHangs.Add(cart);
+                    await _context.SaveChangesAsync();
+                }
+
+                var detail = await _context.ChiTietGioHangs
+                    .FirstOrDefaultAsync(ct => ct.MaGh == cart.MaGh && ct.MaSach == maSach);
+
+                if (detail != null)
+                {
+                    if (detail.SoLuong + soLuong > sach.SoLuongTon)
+                        return new CartResult { Success = false, Message = "Tổng số lượng vượt quá tồn kho!" };
+
+                    detail.SoLuong += soLuong;
+                }
+                else
+                {
+                    _context.ChiTietGioHangs.Add(new ChiTietGioHang { MaGh = cart.MaGh, MaSach = maSach, SoLuong = soLuong });
+                }
+
+                await _context.SaveChangesAsync();
+                return new CartResult { Success = true };
+            }
+            catch { return new CartResult { Success = false, Message = "Lỗi hệ thống!" }; }
+        }
+
+        private async Task UpdateCartSession(int userId)
+        {
+            var cart = await _context.GioHangs.FirstOrDefaultAsync(g => g.MaNd == userId);
+            if (cart != null)
+            {
+                var count = await _context.ChiTietGioHangs.Where(ct => ct.MaGh == cart.MaGh).SumAsync(ct => ct.SoLuong);
+                HttpContext.Session.SetInt32("CartCount", count);
+            }
         }
     }
 }

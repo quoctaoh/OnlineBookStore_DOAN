@@ -1,36 +1,154 @@
 ﻿@model OnlineBookStore_Web.Models.Sach
 
 @{
-    ViewData["Title"] = "Xác nhận Xóa";
+    ViewData["Title"] = "Xác nhận Xóa: " + Model.TenSach;
     Layout = "_Layout";
 }
 
-<h1 class="text-danger">Xác nhận Xóa Sách</h1>
-<p class="lead">Bạn có chắc chắn muốn xóa cuốn sách này khỏi hệ thống không?</p>
-<hr />
+<style>
+    :root {
+        --glass-bg: rgba(255, 255, 255, 0.03);
+        --glass-border: rgba(255, 255, 255, 0.1);
+        --accent-danger: #ff4d4d;
+        --accent-cyan: #64ffda;
+    }
 
-<div class="alert alert-warning">
-    <strong>Lưu ý:</strong> Hành động này không thể hoàn tác.
-</div>
+    .page-header {
+        border-bottom: 2px solid var(--accent-danger);
+        display: inline-block;
+        padding-bottom: 10px;
+        margin-bottom: 30px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
 
-<div>
-    <dl class="row">
-        <dt class="col-sm-3">Tên Sách:</dt>
-        <dd class="col-sm-9">@Html.DisplayFor(model => model.TenSach)</dd>
+    /* Card Glass cho phần xác nhận */
+    .delete-card-glass {
+        background: var(--glass-bg);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid var(--glass-border);
+        border-radius: 24px;
+        padding: 40px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+    }
 
-        <dt class="col-sm-3">Tác Giả:</dt>
-        <dd class="col-sm-9">@Html.DisplayFor(model => model.TacGia)</dd>
+    .alert-danger-glass {
+        background: rgba(255, 77, 77, 0.1);
+        border: 1px solid rgba(255, 77, 77, 0.2);
+        color: var(--accent-danger);
+        border-radius: 15px;
+        padding: 20px;
+    }
 
-        <dt class="col-sm-3">Giá Bán:</dt>
-        <dd class="col-sm-9">@String.Format("{0:N0}", Model.GiaBan) VNĐ</dd>
+    .info-label {
+        color: var(--text-dim);
+        font-size: 0.8rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
 
-        <dt class="col-sm-3">Tồn Kho:</dt>
-        <dd class="col-sm-9">@Html.DisplayFor(model => model.SoLuongTon)</dd>
-    </dl>
+    .info-value {
+        color: #e6f1ff;
+        font-size: 1.1rem;
+        margin-bottom: 20px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        padding-bottom: 10px;
+    }
 
-    <form asp-action="DeleteBook">
-        <input type="hidden" asp-for="MaSach" />
-        <button type="submit" class="btn btn-danger">Xác nhận Xóa</button>
-        <a asp-action="ListBooks" class="btn btn-secondary">Hủy</a>
-    </form>
+    .book-preview-delete {
+        width: 100%;
+        max-width: 150px;
+        border-radius: 10px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        border: 1px solid var(--glass-border);
+    }
+
+    .btn-confirm-delete {
+        background: var(--accent-danger) !important;
+        color: white !important;
+        font-weight: 800;
+        border-radius: 12px;
+        padding: 12px 30px;
+        border: none;
+        transition: 0.3s;
+        text-transform: uppercase;
+    }
+
+        .btn-confirm-delete:hover {
+            background: white !important;
+            color: var(--navy-darkest) !important;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 77, 77, 0.3);
+        }
+</style>
+
+<div class="container mt-5 mb-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="text-center mb-4">
+                <h2 class="page-header fw-bold text-white mb-0">
+                    <i class="bi bi-exclamation-octagon me-2"></i>XÁC NHẬN XÓA SÁCH
+                </h2>
+            </div>
+
+            <div class="delete-card-glass shadow-lg">
+                <div class="alert alert-danger-glass mb-5 d-flex align-items-center">
+                    <i class="bi bi-exclamation-triangle-fill fs-3 me-3"></i>
+                    <div>
+                        <strong class="d-block">Cảnh báo hệ thống!</strong>
+                        Hành động xóa cuốn sách này sẽ loại bỏ hoàn toàn dữ liệu khỏi kho. Bạn không thể hoàn tác sau khi xác nhận.
+                    </div>
+                </div>
+
+                <div class="row align-items-center">
+                    @* Xem trước ảnh sách *@
+                    <div class="col-md-4 text-center mb-4 mb-md-0">
+                        <img src="@Model.HinhAnh" class="book-preview-delete" onerror="this.src='/images/no-image.png'" />
+                    </div>
+
+                    @* Thông tin chi tiết *@
+                    <div class="col-md-8">
+                        <div class="row">
+                            <div class="col-12">
+                                <span class="info-label">Tên Sách</span>
+                                <div class="info-value fw-bold text-white">@Model.TenSach</div>
+                            </div>
+                            <div class="col-12">
+                                <span class="info-label">Tác Giả</span>
+                                <div class="info-value">@Model.TacGia</div>
+                            </div>
+                            <div class="col-6">
+                                <span class="info-label">Giá Bán</span>
+                                <div class="info-value text-warning">@String.Format("{0:N0}", Model.GiaBan) đ</div>
+                            </div>
+                            <div class="col-6">
+                                <span class="info-label">Tồn Kho</span>
+                                <div class="info-value">@Model.SoLuongTon Cuốn</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-5 pt-4 border-top border-secondary border-opacity-25">
+                    <form asp-action="DeleteBook" class="d-flex gap-3">
+                        <input type="hidden" asp-for="MaSach" />
+                        <button type="submit" class="btn btn-confirm-delete flex-grow-1">
+                            Tôi đồng ý xóa <i class="bi bi-trash3 ms-1"></i>
+                        </button>
+                        <a asp-action="ListBooks" class="btn btn-outline-light rounded-pill px-5 d-flex align-items-center">
+                            Hủy bỏ
+                        </a>
+                    </form>
+                </div>
+            </div>
+
+            <div class="text-center mt-4">
+                <a asp-action="Index" class="text-muted text-decoration-none small">
+                    <i class="bi bi-house-door me-1"></i> Quay lại Dashboard
+                </a>
+            </div>
+        </div>
+    </div>
 </div>

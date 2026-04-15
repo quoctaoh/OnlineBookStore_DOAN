@@ -5,66 +5,168 @@
     Layout = "_Layout";
 }
 
-<h1>Chỉnh Sửa Sách</h1>
-<hr />
+<style>
+    :root {
+        --glass-bg: rgba(255, 255, 255, 0.03);
+        --glass-border: rgba(255, 255, 255, 0.1);
+        --accent-cyan: #64ffda;
+    }
 
-<div class="row">
-    <div class="col-md-6">
+    .page-header {
+        border-bottom: 2px solid var(--accent-cyan);
+        display: inline-block;
+        padding-bottom: 10px;
+        margin-bottom: 30px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+
+    .edit-card-glass {
+        background: var(--glass-bg);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid var(--glass-border);
+        border-radius: 24px;
+        padding: 35px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+    }
+
+    .form-label-custom {
+        font-size: 0.8rem;
+        font-weight: 700;
+        color: var(--accent-cyan);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 8px;
+        display: block;
+    }
+
+    .form-control-glass {
+        background: rgba(2, 12, 27, 0.6) !important;
+        border: 1px solid var(--glass-border) !important;
+        color: white !important;
+        border-radius: 12px !important;
+        padding: 10px 15px !important;
+        transition: 0.3s;
+    }
+
+        .form-control-glass:focus {
+            border-color: var(--accent-cyan) !important;
+            box-shadow: 0 0 15px rgba(100, 255, 218, 0.1) !important;
+        }
+
+    .image-preview-box {
+        border: 2px dashed var(--glass-border);
+        border-radius: 15px;
+        padding: 10px;
+        text-align: center;
+        background: rgba(255, 255, 255, 0.02);
+    }
+
+        .image-preview-box img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+    .btn-save-edit {
+        background: var(--accent-cyan) !important;
+        color: #020c1b !important;
+        font-weight: 800;
+        border-radius: 12px;
+        padding: 12px 25px;
+        border: none;
+        transition: 0.3s;
+        text-transform: uppercase;
+    }
+
+        .btn-save-edit:hover {
+            background: #fff !important;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(100, 255, 218, 0.2);
+        }
+</style>
+
+<div class="container mt-5 mb-5">
+    <div class="mb-4">
+        <h2 class="page-header fw-bold text-white mb-0">
+            <i class="bi bi-pencil-square me-2"></i>CHỈNH SỬA THÔNG TIN SÁCH
+        </h2>
+    </div>
+
+    <div class="edit-card-glass">
         <form asp-action="EditBook">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            @* Truyền MaSach qua hidden field *@
-            <input type="hidden" asp-for="MaSach" /> 
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-4"></div>
+            <input type="hidden" asp-for="MaSach" />
+            @* Giữ lại đường dẫn ảnh cũ nếu không đổi *@
+            <input type="hidden" asp-for="HinhAnh" />
 
-            @* Trường Tên Sách *@
-            <div class="form-group mb-3">
-                <label asp-for="TenSach" class="control-label"></label>
-                <input asp-for="TenSach" class="form-control" />
-                <span asp-validation-for="TenSach" class="text-danger"></span>
-            </div>
+            <div class="row g-5">
+                @* CỘT TRÁI: NHẬP LIỆU *@
+                <div class="col-lg-8">
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <label asp-for="TenSach" class="form-label-custom">Tên Sách</label>
+                            <input asp-for="TenSach" class="form-control form-control-glass" placeholder="Nhập tên sách..." />
+                            <span asp-validation-for="TenSach" class="text-danger small"></span>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <label asp-for="TacGia" class="form-label-custom">Tác Giả</label>
+                            <input asp-for="TacGia" class="form-control form-control-glass" placeholder="Tên tác giả..." />
+                            <span asp-validation-for="TacGia" class="text-danger small"></span>
+                        </div>
+                    </div>
 
-            @* Trường Tác Giả *@
-            <div class="form-group mb-3">
-                <label asp-for="TacGia" class="control-label"></label>
-                <input asp-for="TacGia" class="form-control" />
-                <span asp-validation-for="TacGia" class="text-danger"></span>
-            </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <label asp-for="MaTl" class="form-label-custom">Thể Loại</label>
+                            <select asp-for="MaTl" class="form-control form-control-glass" asp-items="ViewBag.MaTl"></select>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <label asp-for="MaNxb" class="form-label-custom">Nhà Xuất Bản</label>
+                            <select asp-for="MaNxb" class="form-control form-control-glass" asp-items="ViewBag.MaNxb"></select>
+                        </div>
+                    </div>
 
-            @* Trường Thể Loại (Dropdown) *@
-            <div class="form-group mb-3">
-                <label asp-for="MaTl" class="control-label">Thể Loại</label>
-                <select asp-for="MaTl" class="form-control" asp-items="ViewBag.MaTl"></select>
-            </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <label asp-for="GiaBan" class="form-label-custom">Giá Bán (VNĐ)</label>
+                            <input asp-for="GiaBan" class="form-control form-control-glass" type="number" />
+                            <span asp-validation-for="GiaBan" class="text-danger small"></span>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <label asp-for="SoLuongTon" class="form-label-custom">Số Lượng Tồn Kho</label>
+                            <input asp-for="SoLuongTon" class="form-control form-control-glass" type="number" />
+                            <span asp-validation-for="SoLuongTon" class="text-danger small"></span>
+                        </div>
+                    </div>
 
-            @* Trường NXB (Dropdown) *@
-            <div class="form-group mb-3">
-                <label asp-for="MaNxb" class="control-label">Nhà Xuất Bản</label>
-                <select asp-for="MaNxb" class="form-control" asp-items="ViewBag.MaNxb"></select>
-            </div>
+                    <div class="mb-4">
+                        <label asp-for="MoTa" class="form-label-custom">Mô Tả Sản Phẩm</label>
+                        <textarea asp-for="MoTa" class="form-control form-control-glass" rows="4" placeholder="Viết mô tả chi tiết nội dung sách..."></textarea>
+                        <span asp-validation-for="MoTa" class="text-danger small"></span>
+                    </div>
 
-            @* Trường Giá Bán *@
-            <div class="form-group mb-3">
-                <label asp-for="GiaBan" class="control-label"></label>
-                <input asp-for="GiaBan" class="form-control" />
-                <span asp-validation-for="GiaBan" class="text-danger"></span>
-            </div>
+                    <div class="d-flex gap-3 mt-4">
+                        <button type="submit" class="btn btn-save-edit px-5">
+                            Lưu Thay Đổi <i class="bi bi-check2-circle ms-1"></i>
+                        </button>
+                        <a asp-action="ListBooks" class="btn btn-outline-light rounded-pill px-4 d-flex align-items-center">
+                            Hủy & Quay lại
+                        </a>
+                    </div>
+                </div>
 
-            @* Trường Tồn Kho *@
-            <div class="form-group mb-3">
-                <label asp-for="SoLuongTon" class="control-label">Số Lượng Tồn</label>
-                <input asp-for="SoLuongTon" class="form-control" />
-                <span asp-validation-for="SoLuongTon" class="text-danger"></span>
-            </div>
-
-            @* Trường Mô Tả *@
-            <div class="form-group mb-3">
-                <label asp-for="MoTa" class="control-label"></label>
-                <textarea asp-for="MoTa" class="form-control" rows="3"></textarea>
-                <span asp-validation-for="MoTa" class="text-danger"></span>
-            </div>
-
-            <div class="form-group mt-4">
-                <input type="submit" value="Lưu Thay Đổi" class="btn btn-success" />
-                <a asp-action="ListBooks" class="btn btn-secondary">Quay lại Danh sách</a>
+                @* CỘT PHẢI: XEM TRƯỚC HÌNH ẢNH *@
+                <div class="col-lg-4">
+                    <label class="form-label-custom text-center d-block">Hình Ảnh Hiện Tại</label>
+                    <div class="image-preview-box mt-2">
+                        <img src="@Model.HinhAnh" alt="Book Cover" id="preview" onerror="this.src='/images/no-image.png'" />
+                        <div class="mt-3 text-muted small">
+                            <i class="bi bi-info-circle me-1"></i> Đây là ảnh hiển thị trên website
+                        </div>
+                    </div>
+                </div>
             </div>
         </form>
     </div>

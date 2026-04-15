@@ -2,41 +2,147 @@
 
 @{
     ViewData["Title"] = "Cập nhật Thông tin Admin";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml"; 
+    Layout = "_Layout";
 }
 
-<div class="container mt-4">
-    <h1 class="mb-4">Cập nhật Tên hiển thị</h1>
-    <hr />
+<style>
+    :root {
+        --glass-bg: rgba(255, 255, 255, 0.03);
+        --glass-border: rgba(255, 255, 255, 0.1);
+        --accent-cyan: #64ffda;
+    }
 
-    <div class="row">
-        <div class="col-md-6">
-            <form asp-action="EditProfile" method="post">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    .page-header {
+        border-bottom: 2px solid var(--accent-cyan);
+        display: inline-block;
+        padding-bottom: 10px;
+        margin-bottom: 30px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
 
-                <input type="hidden" asp-for="MaAdmin" />
+    .profile-card-glass {
+        background: var(--glass-bg);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid var(--glass-border);
+        border-radius: 24px;
+        padding: 40px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+    }
 
-                <div class="form-group mb-3">
-                    <label class="control-label">Tên Đăng Nhập</label>
-                    <input class="form-control" value="@Model.TenDangNhap" readonly />
-                </div>
+    .form-label-custom {
+        font-size: 0.8rem;
+        font-weight: 700;
+        color: var(--accent-cyan);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 8px;
+        display: block;
+    }
 
-                <div class="form-group mb-3">
-                    <label asp-for="HoTen" class="control-label">Họ và Tên hiển thị mới</label>
-                    <input asp-for="HoTen" class="form-control" />
-                    <span asp-validation-for="HoTen" class="text-danger"></span>
-                </div>
+    .form-control-glass {
+        background: rgba(2, 12, 27, 0.6) !important;
+        border: 1px solid var(--glass-border) !important;
+        color: white !important;
+        border-radius: 12px !important;
+        padding: 12px 15px !important;
+        transition: 0.3s;
+    }
 
-                <div class="form-group mt-4">
-                    <input type="submit" value="Lưu Tên Mới" class="btn btn-primary" />
-                    <a asp-action="Index" class="btn btn-secondary">Hủy bỏ</a>
-                </div>
-            </form>
+        .form-control-glass:focus {
+            border-color: var(--accent-cyan) !important;
+            box-shadow: 0 0 15px rgba(100, 255, 218, 0.1) !important;
+        }
+
+    .form-control-readonly {
+        background: rgba(255, 255, 255, 0.05) !important;
+        border: 1px dashed var(--glass-border) !important;
+        color: #8892b0 !important;
+        cursor: not-allowed;
+    }
+
+    .info-alert-glass {
+        background: rgba(100, 255, 218, 0.05);
+        border: 1px solid rgba(100, 255, 218, 0.1);
+        border-radius: 20px;
+        padding: 25px;
+        color: #ccd6f6;
+    }
+
+    .btn-save-profile {
+        background: var(--accent-cyan) !important;
+        color: #020c1b !important;
+        font-weight: 800;
+        border-radius: 12px;
+        padding: 12px 25px;
+        border: none;
+        transition: 0.3s;
+        text-transform: uppercase;
+    }
+
+        .btn-save-profile:hover {
+            background: #fff !important;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(100, 255, 218, 0.2);
+        }
+</style>
+
+<div class="container mt-5 mb-5">
+    <div class="mb-4">
+        <h2 class="page-header fw-bold text-white mb-0">
+            <i class="bi bi-person-gear me-2"></i>HỒ SƠ QUẢN TRỊ VIÊN
+        </h2>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-lg-7">
+            <div class="profile-card-glass shadow-lg">
+                <form asp-action="EditProfile" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger mb-4 small"></div>
+                    <input type="hidden" asp-for="MaAdmin" />
+
+                    <div class="mb-4">
+                        <label class="form-label-custom">Tên Đăng Nhập (Cố định)</label>
+                        <div class="position-relative">
+                            <input class="form-control form-control-glass form-control-readonly" value="@Model.TenDangNhap" readonly />
+                            <i class="bi bi-lock-fill position-absolute top-50 end-0 translate-middle-y me-3 text-muted"></i>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label asp-for="HoTen" class="form-label-custom">Họ và Tên hiển thị mới</label>
+                        <input asp-for="HoTen" class="form-control form-control-glass" placeholder="Nhập tên bạn muốn hiển thị..." />
+                        <span asp-validation-for="HoTen" class="text-danger small mt-1"></span>
+                    </div>
+
+                    <div class="d-flex gap-3 pt-3">
+                        <button type="submit" class="btn btn-save-profile flex-grow-1">
+                            Lưu Thay Đổi <i class="bi bi-check-circle ms-1"></i>
+                        </button>
+                        <a asp-action="Index" class="btn btn-outline-light rounded-pill px-4 d-flex align-items-center">
+                            Hủy bỏ
+                        </a>
+                    </div>
+                </form>
+            </div>
         </div>
-        <div class="col-md-6">
-            <div class="alert alert-info" role="alert">
-                <h4 class="alert-heading">Lưu ý!</h4>
-                <p>Bạn chỉ có thể thay đổi Họ và Tên hiển thị tại đây. Tên Đăng nhập và Mật khẩu không được phép sửa đổi.</p>
+
+        <div class="col-lg-5">
+            <div class="info-alert-glass h-100 shadow-sm">
+                <div class="d-flex align-items-center mb-3">
+                    <i class="bi bi-shield-check fs-2 text-info me-3"></i>
+                    <h5 class="fw-bold text-white mb-0">Quyền hạn & Bảo mật</h5>
+                </div>
+                <hr class="border-secondary opacity-25">
+                <p class="small lh-lg">
+                    Chào <strong>@Model.HoTen</strong>, nhằm đảm bảo tính toàn vẹn của hệ thống quản trị, các thông tin định danh cốt lõi như
+                    <span class="text-info">Tên đăng nhập</span> và <span class="text-info">Mật khẩu</span>
+                    được quản lý bởi bộ phận kỹ thuật.
+                </p>
+                <p class="small lh-lg mb-0">
+                    Việc thay đổi <strong>Họ tên hiển thị</strong> sẽ cập nhật ngay lập tức trên thanh Navbar và các thông báo hoạt động của bạn.
+                </p>
             </div>
         </div>
     </div>

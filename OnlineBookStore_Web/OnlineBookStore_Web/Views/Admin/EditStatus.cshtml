@@ -5,34 +5,136 @@
     Layout = "_Layout";
 }
 
-<h1>Cập Nhật Trạng Thái Đơn Hàng #@Model.MaDh</h1>
-<hr />
+<style>
+    :root {
+        --glass-bg: rgba(255, 255, 255, 0.03);
+        --glass-border: rgba(255, 255, 255, 0.1);
+        --accent-cyan: #64ffda;
+    }
 
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="EditStatus">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="MaDh" /> @* Truyền ID đơn hàng *@
+    .page-header {
+        border-bottom: 2px solid var(--accent-cyan);
+        display: inline-block;
+        padding-bottom: 10px;
+        margin-bottom: 30px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
 
-            <dl class="row mb-3">
-                <dt class="col-sm-6">Ngày Đặt:</dt>
-                <dd class="col-sm-6">@Model.NgayDatHang.ToString("dd/MM/yyyy")</dd>
-                <dt class="col-sm-6">Khách hàng:</dt>
-                <dd class="col-sm-6">@(Model.MaNdNavigation?.HoTen ?? "N/A")</dd>
-            </dl>
+    /* Card Glass cho Form */
+    .edit-status-card {
+        background: var(--glass-bg);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid var(--glass-border);
+        border-radius: 24px;
+        padding: 40px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+    }
 
-            @* Dropdown chọn trạng thái mới *@
-            <div class="form-group mb-3">
-                <label asp-for="TrangThaiDh" class="control-label">Trạng Thái Mới</label>
-                <select asp-for="TrangThaiDh" class="form-control" asp-items="@(new SelectList(ViewBag.StatusList, Model.TrangThaiDh))">
-                </select>
+    .info-box {
+        background: rgba(100, 255, 218, 0.05);
+        border-radius: 15px;
+        padding: 20px;
+        margin-bottom: 30px;
+        border: 1px dashed rgba(100, 255, 218, 0.2);
+    }
+
+    .form-label-custom {
+        font-size: 0.8rem;
+        font-weight: 700;
+        color: var(--accent-cyan);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 10px;
+        display: block;
+    }
+
+    .form-select-glass {
+        background: rgba(2, 12, 27, 0.8) !important;
+        border: 1px solid var(--glass-border) !important;
+        color: white !important;
+        border-radius: 12px !important;
+        padding: 12px 15px !important;
+        transition: 0.3s;
+        cursor: pointer;
+    }
+
+        .form-select-glass:focus {
+            border-color: var(--accent-cyan) !important;
+            box-shadow: 0 0 15px rgba(100, 255, 218, 0.1) !important;
+        }
+
+    .btn-save-status {
+        background: var(--accent-cyan) !important;
+        color: #020c1b !important;
+        font-weight: 800;
+        border-radius: 12px;
+        padding: 12px 25px;
+        border: none;
+        transition: 0.3s;
+        text-transform: uppercase;
+    }
+
+        .btn-save-status:hover {
+            background: #fff !important;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(100, 255, 218, 0.2);
+        }
+</style>
+
+<div class="container mt-5 mb-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8">
+            <div class="mb-4 text-center">
+                <h2 class="page-header fw-bold text-white mb-0">
+                    <i class="bi bi-arrow-repeat me-2"></i>CẬP NHẬT TRẠNG THÁI
+                </h2>
+                <p class="text-muted mt-3">Thay đổi tình trạng xử lý cho đơn hàng <strong>#@Model.MaDh</strong></p>
             </div>
 
-            <div class="form-group mt-4">
-                <input type="submit" value="Lưu Trạng Thái" class="btn btn-primary" />
-                <a asp-action="ListOrders" class="btn btn-secondary">Hủy</a>
+            <div class="edit-status-card shadow-lg">
+                @* Phần tóm tắt thông tin đơn hàng *@
+                <div class="info-box">
+                    <div class="row mb-2">
+                        <div class="col-5 text-muted small uppercase">Khách hàng:</div>
+                        <div class="col-7 fw-bold text-white">@(Model.MaNdNavigation?.HoTen ?? "N/A")</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-5 text-muted small uppercase">Ngày đặt:</div>
+                        <div class="col-7 text-white-50">@Model.NgayDatHang.ToString("dd/MM/yyyy HH:mm")</div>
+                    </div>
+                </div>
+
+                <form asp-action="EditStatus" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger mb-3 small"></div>
+                    <input type="hidden" asp-for="MaDh" />
+
+                    <div class="form-group mb-4">
+                        <label asp-for="TrangThaiDh" class="form-label-custom">Lựa chọn trạng thái mới</label>
+                        <select asp-for="TrangThaiDh" class="form-select form-select-glass w-100"
+                                asp-items="@(new SelectList(ViewBag.StatusList, Model.TrangThaiDh))">
+                        </select>
+                        <span asp-validation-for="TrangThaiDh" class="text-danger small mt-1 d-block"></span>
+                    </div>
+
+                    <div class="d-flex gap-3 pt-2">
+                        <button type="submit" class="btn btn-save-status flex-grow-1">
+                            Lưu Thay Đổi <i class="bi bi-check-lg ms-1"></i>
+                        </button>
+                        <a asp-action="ListOrders" class="btn btn-outline-light rounded-pill px-4 flex-grow-0 d-flex align-items-center">
+                            Hủy
+                        </a>
+                    </div>
+                </form>
             </div>
-        </form>
+
+            <div class="text-center mt-4">
+                <a asp-action="OrderDetails" asp-route-id="@Model.MaDh" class="text-info text-decoration-none small">
+                    <i class="bi bi-eye me-1"></i> Xem lại chi tiết đơn hàng
+                </a>
+            </div>
+        </div>
     </div>
 </div>
 

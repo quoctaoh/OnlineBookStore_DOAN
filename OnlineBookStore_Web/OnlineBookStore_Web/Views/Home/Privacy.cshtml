@@ -1,6 +1,146 @@
 ﻿@{
-    ViewData["Title"] = "Privacy Policy";
+    ViewData["Title"] = "Chính sách bảo mật";
 }
-<h1>@ViewData["Title"]</h1>
 
-<p>Use this page to detail your site's privacy policy.</p>
+<style>
+    :root {
+        --navy-darkest: #020c1b;
+        --navy-deep: #0a192f;
+        --navy-soft: #112240;
+        --accent-cyan: #64ffda;
+        --text-bright: #e6f1ff;
+        --text-dim: #8892b0;
+        --glass-bg: rgba(255, 255, 255, 0.03);
+        --glass-border: rgba(255, 255, 255, 0.1);
+    }
+
+    body {
+        background-color: var(--navy-darkest) !important;
+        color: var(--text-bright);
+    }
+
+    /* Khối Glassmorphism */
+    .policy-container {
+        background: var(--glass-bg);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid var(--glass-border);
+        border-radius: 30px;
+        padding: 50px;
+        margin-top: 30px;
+    }
+
+    .policy-header {
+        text-align: center;
+        margin-bottom: 50px;
+    }
+
+    .policy-header h1 {
+        font-family: 'Playfair Display', serif;
+        font-weight: 800;
+        color: var(--accent-cyan);
+        font-size: 3rem;
+        margin-bottom: 15px;
+    }
+
+    .policy-header p {
+        color: var(--text-dim);
+        font-size: 1.1rem;
+    }
+
+    /* Style từng mục chính sách */
+    .policy-section {
+        margin-bottom: 40px;
+        border-left: 3px solid var(--accent-cyan);
+        padding-left: 25px;
+        transition: 0.3s;
+    }
+
+    .policy-section:hover {
+        background: rgba(100, 255, 218, 0.02);
+    }
+
+    .policy-section h4 {
+        color: var(--accent-cyan);
+        font-weight: 700;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .policy-section p, .policy-section li {
+        color: var(--text-dim);
+        line-height: 1.8;
+        font-size: 1rem;
+    }
+
+    .policy-footer {
+        text-align: center;
+        margin-top: 50px;
+        padding-top: 30px;
+        border-top: 1px solid var(--glass-border);
+    }
+
+    .btn-contact {
+        background: var(--accent-cyan);
+        color: var(--navy-darkest);
+        font-weight: 800;
+        padding: 12px 30px;
+        border-radius: 50px;
+        text-decoration: none;
+        transition: 0.3s;
+    }
+
+    .btn-contact:hover {
+        background: #fff;
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(100, 255, 218, 0.2);
+    }
+</style>
+
+<div class="container mb-5">
+    <div class="policy-container shadow-lg animate__animated animate__fadeIn">
+        
+        <div class="policy-header">
+            <h1>Privacy Policy</h1>
+            <p>Sự riêng tư của bạn là ưu tiên hàng đầu của BookStore</p>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-10 mx-auto">
+                
+                <div class="policy-section">
+                    <h4><i class="bi bi-shield-lock"></i> Thu thập thông tin</h4>
+                    <p>Chúng tôi thu thập các thông tin cá nhân như Họ tên, Email, Số điện thoại và Địa chỉ khi bạn đăng ký tài khoản hoặc thực hiện đặt hàng. Thông tin này giúp chúng tôi xử lý đơn hàng nhanh chóng và chính xác nhất.</p>
+                </div>
+
+                <div class="policy-section">
+                    <h4><i class="bi bi-eye"></i> Sử dụng thông tin</h4>
+                    <p>Thông tin của bạn được sử dụng vào các mục đích:</p>
+                    <ul>
+                        <li>Xác nhận và giao đơn hàng đến tận tay bạn.</li>
+                        <li>Gửi thông báo về trạng thái đơn hàng và các chương trình khuyến mãi.</li>
+                        <li>Cải thiện chất lượng dịch vụ và trải nghiệm mua sắm tại website.</li>
+                    </ul>
+                </div>
+
+                <div class="policy-section">
+                    <h4><i class="bi bi-safe"></i> Bảo mật dữ liệu</h4>
+                    <p>Mọi thông tin giao dịch được mã hóa bằng công nghệ SSL 256-bit. Chúng tôi cam kết không bao giờ bán, trao đổi hoặc chia sẻ thông tin cá nhân của khách hàng cho bất kỳ bên thứ ba nào khác.</p>
+                </div>
+
+                <div class="policy-section">
+                    <h4><i class="bi bi-cookie"></i> Chính sách Cookie</h4>
+                    <p>Website sử dụng Cookie để ghi nhớ phiên đăng nhập và các sản phẩm trong giỏ hàng của bạn, giúp quá trình mua sắm trở nên thuận tiện hơn.</p>
+                </div>
+
+                <div class="policy-footer">
+                    <p class="mb-4">Bạn có bất kỳ câu hỏi nào về chính sách của chúng tôi?</p>
+                    <a href="mailto:support@bookstore.com" class="btn-contact">LIÊN HỆ HỖ TRỢ</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

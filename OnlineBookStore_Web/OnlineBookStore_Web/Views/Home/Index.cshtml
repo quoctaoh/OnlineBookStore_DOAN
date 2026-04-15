@@ -1,71 +1,274 @@
-﻿@using OnlineBookStore_Web.Models
+﻿@model IEnumerable<OnlineBookStore_Web.Models.Sach>
 @{
-    ViewData["Title"] = "Trang Chủ - Online Bookstore";
-    var topBooks = ViewBag.TopBooks as List<Sach>;
-    var featuredBook = ViewBag.FeaturedBook as Sach;
+    ViewData["Title"] = "Trang chủ - OnlineBookStore";
 }
 
 <style>
-    /* CSS Tùy chỉnh cho phần nổi bật */
-    .featured-card {
-        background-color: #f8f8f8;
-        border-radius: 10px;
-        padding: 20px;
+    :root {
+        --navy-darkest: #020c1b;
+        --navy-deep: #0a192f;
+        --accent-cyan: #64ffda;
+        --glass-border: rgba(255, 255, 255, 0.1);
     }
+
+    body {
+        background-color: var(--navy-darkest) !important;
+        color: #e6f1ff;
+    }
+
+    /* --- 1. HERO SECTION --- */
+    .glass-hero {
+        background: rgba(17, 34, 64, 0.4) !important;
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        border: 1px solid var(--glass-border);
+        border-radius: 40px;
+        padding: 60px 0;
+    }
+
+    /* --- 2. PRODUCT CARDS --- */
+    .product-card-glass {
+        background: rgba(255, 255, 255, 0.03) !important;
+        backdrop-filter: blur(10px);
+        border: 1px solid var(--glass-border) !important;
+        border-radius: 20px !important;
+        transition: 0.3s ease;
+        overflow: hidden;
+    }
+    .product-card-glass:hover {
+        border-color: var(--accent-cyan) !important;
+        transform: translateY(-8px);
+    }
+
+    /* Vùng chứa ảnh bìa */
+    .img-container-sm {
+        background: #ffffff;
+        border-radius: 15px;
+        height: 180px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+        margin-bottom: 10px;
+        transition: 0.3s;
+    }
+    .img-container-sm:hover { transform: scale(1.02); }
+    .img-container-sm img { max-width: 100%; max-height: 100%; object-fit: contain; }
+
+    /* Định dạng link tiêu đề */
+    .book-title-link {
+        text-decoration: none !important;
+        color: #fff !important;
+        font-size: 0.85rem;
+        font-weight: 600;
+        height: 2.4rem;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        transition: 0.2s;
+    }
+    .book-title-link:hover { color: var(--accent-cyan) !important; }
+
+    /* --- 3. CAROUSEL HOT (TỐC ĐỘ 1S & MŨI TÊN CYAN) --- */
+    .hot-item-glass-box {
+        background: rgba(255, 255, 255, 0.02) !important;
+        backdrop-filter: blur(25px);
+        border: 1px solid var(--glass-border);
+        border-radius: 30px;
+        padding: 40px;
+        margin: 0 auto;
+        max-width: 900px;
+    }
+
+    .carousel-control-prev, .carousel-control-next {
+        width: 50px;
+        height: 50px;
+        background: var(--accent-cyan) !important;
+        border-radius: 50%;
+        top: 50%;
+        transform: translateY(-50%);
+        opacity: 1 !important;
+        box-shadow: 0 0 15px rgba(100, 255, 218, 0.5);
+    }
+    .carousel-control-prev { left: -25px; }
+    .carousel-control-next { right: -25px; }
+
+    .carousel-control-prev-icon, .carousel-control-next-icon {
+        filter: brightness(0); /* Mũi tên màu đen nổi bật */
+        width: 20px;
+        height: 20px;
+    }
+
+    .btn-cyan-action {
+        background: var(--accent-cyan);
+        color: var(--navy-darkest);
+        border: none;
+        font-weight: 800;
+        border-radius: 10px;
+        transition: 0.3s;
+    }
+    .btn-cyan-action:hover { background: #fff; transform: translateY(-2px); }
 </style>
 
-<div class="container mt-4">
-
-    @* KHU VỰC 1: BANNER LỚN*@
-    <div class="text-center rounded-3 mb-5 overflow-hidden" 
-         style="
-            height: 300px; /* Chiều cao cố định */
-            width: 100%;
-            background-image: url('/images/BannerChinh.jpg'); /* ĐƯỜNG DẪN ĐẾN ẢNH BANNER */
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;">
+<div class="container mt-5">
+    @* --- HERO --- *@
+    <div class="glass-hero mb-5 px-5 shadow-lg text-center text-lg-start">
+        <div class="row align-items-center">
+            <div class="col-lg-7">
+                <h1 class="display-4 fw-bold mb-3" style="font-family: 'Playfair Display', serif;">
+                    Sách <span style="color: var(--accent-cyan)">Hot</span> Trong Tuần
+                </h1>
+                <p class="opacity-75 mb-4">Mọi hành trình tri thức đều bắt đầu từ một trang giấy.</p>
+                <div class="d-flex gap-3 justify-content-center justify-content-lg-start">
+                    <a asp-controller="Book" asp-action="Index" class="btn btn-cyan-action px-5 py-3 shadow-lg text-decoration-none">MUA NGAY</a>
+                    <a href="#featured" class="btn border border-secondary text-white px-5 py-3 rounded-pill text-decoration-none">KHÁM PHÁ</a>
+                </div>
+            </div>
+            <div class="col-lg-5 d-none d-lg-block">
+                <img src="~/images/BannerChinh.jpg" class="rounded-4 img-fluid" style="max-height: 280px; border: 1px solid var(--glass-border);" />
+            </div>
+        </div>
     </div>
 
-    @* KHU VỰC 2: TOP THỊNH HÀNH *@
-    <h2 class="text-center mb-4">TOP THỊNH HÀNH</h2>
-    <div class="row row-cols-1 row-cols-md-5 g-4 mb-5">
-        @if (topBooks != null)
-        {
-            @foreach (var book in topBooks)
-            {
-                        <div class="col">
-                            <div class="card h-100 text-center shadow-sm">
-                        @* Hiển thị ảnh thumbnail sách *@
-                                <img src="@book.HinhAnh" class="card-img-top mx-auto mt-2" alt="@book.TenSach" style="width: 100px; height: 150px; object-fit: cover;">
-                                <div class="card-body">
-                                    <h6 class="card-title">@book.TenSach</h6>
-                                    <p class="text-danger">@String.Format("{0:N0} VNĐ", book.GiaBan)</p>
-                                    <a asp-controller="Book" asp-action="Details" asp-route-id="@book.MaSach" class="btn btn-sm btn-outline-primary">Xem chi tiết</a>
+    @* --- GRID SÁCH --- *@
+    <div id="featured" class="mb-5">
+        <h3 class="fw-bold mb-4" style="border-left: 4px solid var(--accent-cyan); padding-left: 15px;">SÁCH MỚI CẬP NHẬT</h3>
+        <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-4">
+            @foreach (var item in Model.Take(10)) {
+                <div class="col">
+                    <div class="card h-100 product-card-glass p-2">
+                        <a asp-controller="Book" asp-action="Details" asp-route-id="@item.MaSach">
+                            <div class="img-container-sm">
+                                <img src="@item.HinhAnh" alt="@item.TenSach" onerror="this.src='/images/no-image.png'" />
+                            </div>
+                        </a>
+                        
+                        <div class="card-body p-2 text-center">
+                            <a asp-controller="Book" asp-action="Details" asp-route-id="@item.MaSach" class="book-title-link">
+                                @item.TenSach
+                            </a>
+                            <p class="m-0 mt-1 fw-bold" style="color: var(--accent-cyan);">@item.GiaBan.ToString("N0") đ</p>
+                            
+                            <button onclick="ajaxAddToCart(@item.MaSach)" class="btn btn-sm btn-outline-info w-100 mt-3" style="font-size: 0.7rem; border-radius: 8px;">
+                                <i class="bi bi-cart-plus me-1"></i> THÊM GIỎ
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    @* --- CAROUSEL HOT (1S & MŨI TÊN NỔI) --- *@
+    <div class="mb-5 pt-5">
+        <h3 class="text-center fw-bold mb-5" style="color: var(--accent-cyan); letter-spacing: 2px;">DANH MỤC HOT</h3>
+        
+        <div id="hotBookCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="1000">
+            <div class="carousel-inner">
+                @{
+                    var hotItems = Model.Reverse().Take(5).ToList();
+                    for (int i = 0; i < hotItems.Count; i++) {
+                        <div class="carousel-item @(i == 0 ? "active" : "")">
+                            <div class="hot-item-glass-box shadow-lg">
+                                <div class="row align-items-center">
+                                    <div class="col-md-4 text-center">
+                                        <a asp-controller="Book" asp-action="Details" asp-route-id="@hotItems[i].MaSach">
+                                            <img src="@hotItems[i].HinhAnh" class="rounded shadow-lg" style="max-height: 250px; border: 3px solid #fff;" onerror="this.src='/images/no-image.png'" />
+                                        </a>
+                                    </div>
+                                    <div class="col-md-8 pt-4 pt-md-0 px-md-5">
+                                        <span class="badge bg-danger mb-2">HOT DEAL</span>
+                                        <h2 class="fw-bold">@hotItems[i].TenSach</h2>
+                                        <p class="text-muted mb-3">Tác giả: @hotItems[i].TacGia</p>
+                                        <h3 style="color: var(--accent-cyan);" class="fw-bold">@hotItems[i].GiaBan.ToString("N0") đ</h3>
+                                        <a asp-controller="Book" asp-action="Details" asp-route-id="@hotItems[i].MaSach" class="btn btn-cyan-action px-5 py-2 mt-3 shadow text-decoration-none">
+                                            XEM CHI TIẾT
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-            }
-        }
-    </div>
-
-    @* KHU VỰC 3: SÁCH NỔI BẬT *@
-    @if (featuredBook != null)
-    {
-            <h2 class="mb-4">SÁCH NỔI BẬT</h2>
-            <div class="row featured-card shadow-lg">
-                <div class="col-md-4 text-center">
-                    <img src="@featuredBook.HinhAnh" alt="Ảnh bìa @featuredBook.TenSach" style="max-width: 100%; height: auto; border-radius: 5px;">
-                </div>
-                <div class="col-md-8">
-                    <h3 class="mt-2 text-primary">@featuredBook.TenSach</h3>
-                    <p><strong>Tác giả:</strong> @featuredBook.TacGia</p>
-                    <p><strong>Thể loại:</strong> @featuredBook.MaTlNavigation?.TenTheLoai</p>
-                    <p>@featuredBook.MoTa?.Substring(0, Math.Min(featuredBook.MoTa.Length, 300)) ...</p>
-                    <a asp-controller="Book" asp-action="Details" asp-route-id="@featuredBook.MaSach" class="btn btn-warning btn-lg">Xem chi tiết và Mua ngay</a>
-                </div>
+                    }
+                }
             </div>
-    }
+            
+            <button class="carousel-control-prev" type="button" data-bs-target="#hotBookCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#hotBookCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </button>
+        </div>
+    </div>
 </div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#hotBookCarousel').carousel({
+                interval: 1000,
+                pause: "hover"
+            });
+        });
+
+        // Hàm thêm giỏ hàng đồng bộ toàn hệ thống
+        function ajaxAddToCart(id) {
+            $.post('/Cart/AddToCart', { MaSach: id, SoLuong: 1 }, function (res) {
+                if (res.success) {
+                    // 1. Cập nhật con số trên Navbar
+                    var badge = $('#cart-count');
+                    if(badge.length > 0) {
+                        var currentCount = parseInt(badge.text()) || 0;
+                        badge.text(currentCount + 1);
+                    }
+                    
+                    // 2. Hiện thông báo đẹp ở GIỮA màn hình
+                    if (typeof notifySuccess === "function") {
+                        notifySuccess("Đã thêm sách vào giỏ hàng!");
+                    } else {
+                        // Fallback nếu hàm Layout chưa load kịp
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Thành công!',
+                            text: 'Đã thêm vào giỏ hàng!',
+                            position: 'center',
+                            showConfirmButton: false,
+                            timer: 2000,
+                            background: '#112240',
+                            color: '#64ffda'
+                        });
+                    }
+                } 
+                else if (res.redirect) {
+                    // 3. Xử lý khi CHƯA ĐĂNG NHẬP
+                    Swal.fire({
+                        title: 'Yêu cầu đăng nhập',
+                        text: "Vui lòng đăng nhập để thực hiện chức năng này!",
+                        icon: 'info',
+                        background: '#0a192f',
+                        color: '#fff',
+                        confirmButtonColor: '#64ffda',
+                        confirmButtonText: 'Đăng nhập ngay',
+                        showCancelButton: true,
+                        cancelButtonText: 'Để sau'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = '/Account/Login';
+                        }
+                    });
+                } 
+                else {
+                    // Thông báo lỗi khác
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Lỗi',
+                        text: res.message,
+                        background: '#0a192f',
+                        color: '#fff'
+                    });
+                }
+            });
+        }
+    </script>
+}

@@ -1,106 +1,234 @@
 ﻿@model List<OnlineBookStore_Web.Models.ChiTietGioHang>
+@using Microsoft.AspNetCore.Http
 
 @{
     ViewData["Title"] = "Giỏ Hàng Của Tôi";
-    // Biến để tính tổng tiền
     decimal total = 0;
 }
 
-<h1>Giỏ Hàng Của Tôi</h1>
-<hr />
+<style>
+    :root {
+        --navy-darkest: #020c1b;
+        --navy-deep: #0a192f;
+        --navy-soft: #112240;
+        --accent-cyan: #64ffda;
+        --text-bright: #e6f1ff;
+        --text-dim: #8892b0;
+        --glass-bg: rgba(255, 255, 255, 0.03);
+        --glass-border: rgba(255, 255, 255, 0.1);
+    }
 
-@* Hiển thị thông báo thành công/lỗi từ TempData *@
-@if (TempData["SuccessMessage"] != null)
-{
-        <div class="alert alert-success">@TempData["SuccessMessage"]</div>
-}
-@if (TempData["Error"] != null)
-{
-        <div class="alert alert-danger">@TempData["Error"]</div>
-}
-@if (TempData["Message"] != null)
-{
-        <div class="alert alert-warning">@TempData["Message"]</div>
-}
+    body {
+        background-color: var(--navy-darkest) !important;
+        color: var(--text-bright);
+    }
 
+    /* Tiêu đề giỏ hàng */
+    .cart-header-title {
+        color: var(--accent-cyan);
+        font-weight: 700;
+        letter-spacing: 1px;
+    }
 
-@if (Model == null || !Model.Any())
-{
-    @* Trường hợp Giỏ hàng trống *@
-        <div class="alert alert-info" role="alert">
-            Giỏ hàng của bạn hiện đang trống.
+    /* Khối bảng kính mờ */
+    .glass-cart-card {
+        background: var(--glass-bg) !important;
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        border: 1px solid var(--glass-border) !important;
+        border-radius: 24px !important;
+    }
+
+    .table {
+        color: var(--text-bright) !important;
+        margin-bottom: 0;
+    }
+
+        .table thead th {
+            background: rgba(100, 255, 218, 0.1) !important;
+            color: var(--accent-cyan) !important;
+            border-bottom: 1px solid var(--glass-border);
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            padding: 1.2rem;
+        }
+
+        .table tbody tr {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: 0.3s;
+        }
+
+            .table tbody tr:hover {
+                background: rgba(255, 255, 255, 0.02) !important;
+            }
+
+    /* Ảnh sản phẩm */
+    .cart-img-wrapper {
+        background: #fff;
+        padding: 4px;
+        border-radius: 8px;
+        width: 55px;
+        height: 75px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+
+        .cart-img-wrapper img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+    /* Input số lượng */
+    .qty-input-glass {
+        background: var(--navy-soft) !important;
+        border: 1px solid var(--glass-border) !important;
+        color: var(--accent-cyan) !important;
+        border-radius: 10px !important;
+        font-weight: 700;
+    }
+
+    /* Nút bấm */
+    .btn-remove {
+        color: #ff4d4d;
+        border: 1px solid rgba(255, 77, 77, 0.2);
+        background: transparent;
+        transition: 0.3s;
+    }
+
+        .btn-remove:hover {
+            background: #ff4d4d;
+            color: white;
+        }
+
+    .btn-checkout {
+        background: var(--accent-cyan) !important;
+        color: var(--navy-darkest) !important;
+        font-weight: 800;
+        border: none;
+        border-radius: 50px;
+        padding: 12px 40px;
+        transition: 0.3s;
+    }
+
+        .btn-checkout:hover {
+            background: #fff !important;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(100, 255, 218, 0.2);
+        }
+
+    .empty-cart-box {
+        background: var(--navy-soft);
+        border: 1px solid var(--glass-border);
+        border-radius: 24px;
+        padding: 60px;
+    }
+</style>
+
+<div class="container mt-5 mb-5">
+    <h2 class="fw-bold cart-header-title mb-4">
+        <i class="bi bi-bag-check-fill me-2"></i>GIỎ HÀNG CỦA TÔI
+    </h2>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert shadow-sm border-0 rounded-3" style="background: rgba(100, 255, 218, 0.1); color: var(--accent-cyan);">
+            <i class="bi bi-check-circle-fill me-2"></i> @TempData["SuccessMessage"]
         </div>
-        <p>
-            <a asp-controller="Book" asp-action="Index" class="btn btn-primary">Tiếp tục mua sắm</a>
-        </p>
-}
-else
-{
-    @* Trường hợp Giỏ hàng có sản phẩm *@
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Sản phẩm</th>
-                    <th>Tác giả</th>
-                    <th>Đơn giá</th>
-                    <th>Số lượng</th>
-                    <th>Thành tiền</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-            @foreach (var item in Model)
-            {
-                if (item.MaSachNavigation != null)
-                {
-                    decimal lineTotal = item.MaSachNavigation.GiaBan * item.SoLuong;
-                    total += lineTotal;
+    }
+
+    @if (Model == null || !Model.Any())
+    {
+        <div class="text-center empty-cart-box shadow-lg">
+            <i class="bi bi-cart-x display-1 text-muted opacity-25"></i>
+            <p class="fs-4 mt-3" style="color: var(--text-dim);">Giỏ hàng của bạn đang trống.</p>
+            <a asp-controller="Book" asp-action="Index" class="btn btn-checkout mt-3">TIẾP TỤC MUA SẮM</a>
+        </div>
+    }
+    else
+    {
+        <div class="card glass-cart-card shadow-lg overflow-hidden">
+            <div class="table-responsive">
+                <table class="table align-middle">
+                    <thead>
+                        <tr>
+                            <th class="ps-4">Sản phẩm</th>
+                            <th>Đơn giá</th>
+                            <th class="text-center" style="width: 130px;">Số lượng</th>
+                            <th>Thành tiền</th>
+                            <th class="text-center">Xóa</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            if (item.MaSachNavigation != null)
+                            {
+                                decimal lineTotal = item.MaSachNavigation.GiaBan * item.SoLuong;
+                                total += lineTotal;
 
                                 <tr>
-                                    <td>
-                                        <a asp-controller="Book" asp-action="Details" asp-route-id="@item.MaSach">
-                                @Html.DisplayFor(modelItem => item.MaSachNavigation.TenSach)
-                                        </a>
+                                    <td class="ps-4 py-3">
+                                        <div class="d-flex align-items-center">
+                                            <div class="cart-img-wrapper me-3 shadow-sm">
+                                                <img src="@item.MaSachNavigation.HinhAnh" alt="@item.MaSachNavigation.TenSach" onerror="this.src='/images/no-image.png'">
+                                            </div>
+                                            <div>
+                                                <a asp-controller="Book" asp-action="Details" asp-route-id="@item.MaSach" class="text-decoration-none fw-bold text-white mb-1 d-block">
+                                                    @item.MaSachNavigation.TenSach
+                                                </a>
+                                                <small class="text-muted">Tác giả: @item.MaSachNavigation.TacGia</small>
+                                            </div>
+                                        </div>
                                     </td>
-                                    <td>@Html.DisplayFor(modelItem => item.MaSachNavigation.TacGia)</td>
-                                    <td>@String.Format("{0:N0} VNĐ", item.MaSachNavigation.GiaBan)</td>
-
-                        @* CỘT SỐ LƯỢNG: FORM CẬP NHẬT TỰ ĐỘNG *@
+                                    <td class="fw-bold" style="color: var(--text-dim);">@String.Format("{0:N0}", item.MaSachNavigation.GiaBan) đ</td>
                                     <td>
-                                        <form asp-controller="Cart" asp-action="UpdateQuantity" method="post" class="d-flex align-items-center">
-                                @Html.AntiForgeryToken()
+                                        <form asp-controller="Cart" asp-action="UpdateQuantity" method="post">
+                                            @Html.AntiForgeryToken()
                                             <input type="hidden" name="MaSach" value="@item.MaSach" />
-                                @* Input này sẽ tự động submit form khi giá trị thay đổi *@
-                                            <input type="number" name="SoLuong" value="@item.SoLuong" min="1" style="width: 70px;" class="form-control me-2" onchange="this.form.submit()" />
+                                            <input type="number" name="SoLuong" value="@item.SoLuong" min="1"
+                                                   class="form-control qty-input-glass text-center shadow-none mx-auto"
+                                                   style="width: 70px;"
+                                                   onchange="this.form.submit()" />
                                         </form>
                                     </td>
-
-                                    <td>@String.Format("{0:N0} VNĐ", lineTotal)</td>
-
-                        @* CỘT XÓA: FORM XÓA SẢN PHẨM *@
-                                    <td>
+                                    <td class="fw-bold" style="color: var(--accent-cyan);">@String.Format("{0:N0}", lineTotal) đ</td>
+                                    <td class="text-center">
                                         <form asp-controller="Cart" asp-action="RemoveItem" method="post">
-                                @Html.AntiForgeryToken()
+                                            @Html.AntiForgeryToken()
                                             <input type="hidden" name="MaSach" value="@item.MaSach" />
-                                            <button type="submit" class="btn btn-sm btn-danger">Xóa</button>
+                                            <button type="submit" class="btn btn-remove btn-sm rounded-circle p-2 px-3">
+                                                <i class="bi bi-trash3"></i>
+                                            </button>
                                         </form>
                                     </td>
                                 </tr>
-                }
-            }
-            </tbody>
-            <tfoot>
-                <tr>
-                    <td colspan="4" class="text-right"><strong>TỔNG CỘNG:</strong></td>
-                    <td><strong>@String.Format("{0:N0} VNĐ", total)</strong></td>
-                    <td></td>
-                </tr>
-            </tfoot>
-        </table>
-
-        <div class="d-flex justify-content-between">
-            <a asp-controller="Book" asp-action="Index" class="btn btn-secondary">Tiếp tục mua sắm</a>
-        @* Nút chuyển đến trang Thanh toán Checkout *@
-            <a asp-controller="Checkout" asp-action="Index" class="btn btn-success">Tiến hành Thanh toán</a>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="card-footer bg-transparent p-4 border-top" style="border-color: var(--glass-border) !important;">
+                <div class="row align-items-center">
+                    <div class="col-md-6 mb-3 mb-md-0">
+                        <a asp-controller="Book" asp-action="Index" class="text-decoration-none" style="color: var(--text-dim);">
+                            <i class="bi bi-arrow-left me-2"></i>Tiếp tục mua sắm
+                        </a>
+                    </div>
+                    <div class="col-md-6 text-md-end">
+                        <div class="mb-3">
+                            <span class="text-muted text-uppercase small letter-spacing-1">Tổng thanh toán:</span>
+                            <h2 class="fw-bold m-0" style="color: var(--accent-cyan);">@String.Format("{0:N0}", total) VNĐ</h2>
+                        </div>
+                        <a asp-controller="Checkout" asp-action="Index" class="btn btn-checkout shadow-lg">
+                            TIẾN HÀNH THANH TOÁN <i class="bi bi-credit-card-2-back ms-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
-}
+    }
+</div>

@@ -26,8 +26,8 @@ namespace OnlineBookStore_Web.Models
         public virtual DbSet<NhaXuatBan> NhaXuatBans { get; set; } = null!;
         public virtual DbSet<Sach> Saches { get; set; } = null!;
         public virtual DbSet<TheLoai> TheLoais { get; set; } = null!;
-
-       
+        // Thêm DbSet cho DanhGia
+        public virtual DbSet<DanhGia> DanhGias { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -50,6 +50,32 @@ namespace OnlineBookStore_Web.Models
                 entity.Property(e => e.TenDangNhap)
                     .HasMaxLength(50)
                     .IsUnicode(false);
+            });
+
+            // Cấu hình Fluent API cho bảng DanhGia
+            modelBuilder.Entity<DanhGia>(entity =>
+            {
+                entity.HasKey(e => e.MaDg);
+
+                entity.ToTable("DanhGia");
+
+                entity.Property(e => e.MaDg).HasColumnName("MaDG");
+                entity.Property(e => e.MaSach).HasColumnName("MaSach");
+                entity.Property(e => e.MaNd).HasColumnName("MaND");
+                entity.Property(e => e.NgayDanhGia).HasColumnType("datetime").HasDefaultValueSql("(getdate())");
+                entity.Property(e => e.NoiDung).HasMaxLength(1000);
+
+                entity.HasOne(d => d.MaSachNavigation)
+                    .WithMany(p => p.DanhGias)
+                    .HasForeignKey(d => d.MaSach)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_DanhGia_Sach");
+
+                entity.HasOne(d => d.MaNdNavigation)
+                    .WithMany(p => p.DanhGias)
+                    .HasForeignKey(d => d.MaNd)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_DanhGia_NguoiDung");
             });
 
             modelBuilder.Entity<ChiTietDonHang>(entity =>
